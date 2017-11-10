@@ -1,12 +1,15 @@
 {
   "name": "Cafe Garbo im Cinema",
-  "slug": "cafe-garbo",
+  "slug"?: "cafe-garbo",
   "type": ["Cafe"],
   "description": "Im Mittagsmenü gibt's immer das tägliche wechselnde Hauptgericht + Nachtisch für 80ct günstiger.",
-  "tags": ["some", "foo"],
-  "url": "http://www.cinema-muenster.de/menu/cafe-garbo.html",
-  "date_start": "2019-11-30",
-  "date_end": "2019-12-22",
+  "properties"?: {
+    "some": "foo",
+    "some_other": "more_foo"
+  },
+  "url"?: "http://www.cinema-muenster.de/menu/cafe-garbo.html",
+  "date_start"?: "2019-11-30",
+  "date_end"?: "2019-12-22",
   "address": {
     "street": "Warendorfer Str. 45",
     "zip": "48145",
@@ -16,7 +19,7 @@
       "lat": 51.9619735,
       "lon": 7.6428276
     },
-    "geometry": {
+    "geometry"?: {
       "type": "point",
       "coordinates": [
         7.6428276,
