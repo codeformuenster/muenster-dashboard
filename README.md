@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with
+https://github.com/Microsoft/TypeScript-React-Starter
 
 ## Installing
 
@@ -34,6 +35,15 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
 
 
     sudo apt-get install docker
+
+## Data "type"-category values
+ - construction = Baustellen
+ - pool = Bäder
+ - playground = Spielplätze
+ - wifi = WLAN
+ - kindergarden = Kitas
+ - wc = WCs
+ - sport = Sportstätte
 
 ## Playing with the data
 

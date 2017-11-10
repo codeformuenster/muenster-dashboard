@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Lunchheader.css';
 import { Link } from 'react-router-dom';
 
-const logo = require('./Lunchheader.svg');
+const logo = require('./Logo.svg');
 
 class Lunchheader extends React.Component {
   render() {
@@ -18,13 +18,13 @@ class Lunchheader extends React.Component {
                 src={logo}
                 width="60"
                 height="70"
-                alt="Lunchtimer"
+                alt="Stadtteil-Dashboard"
               />
 
             </Link>
 
             <Link className="navbar-item" to="/">
-              <div className="lunchtext">Lunchtimer</div>
+              <div className="lunchtext">Stadtteil-Dashboard</div>
             </Link>
 
             <div className="navbar-burger burger" data-target="lunchMenuDropdown">
