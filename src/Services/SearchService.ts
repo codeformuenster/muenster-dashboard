@@ -23,27 +23,10 @@ class SearchService {
     let searchQuery: any = {
       index: 'places',
       body: {
+        size : 100,
         query: {
           bool: {
-            filter: {
-              "geo_shape": {
-                "address.geometry": {
-                  "indexed_shape": {
-                    "index": "stadtteile",
-                    "type": "stadtteil",
-                    "id": (searchParams.district === undefined ? '' : searchParams.district),
-                    "path": "geometry"
-                  }
-                }
-              }
-              // geo_distance: {
-              //   distance: '20km',
-              //   'address.geo': {
-              //     lat: latitude,
-              //     lon: longitude
-              //   }
-              // }
-            },
+            filter: {},
             // must: [],
             should: [
               {
@@ -69,6 +52,28 @@ class SearchService {
         ]
       }
     };
+    if (searchParams.district == undefined || searchParams.district == "")  {
+      searchQuery.body.query.bool.filter.geo_distance = {
+        distance: '20km',
+        'address.geo': {
+          lat: latitude,
+          lon: longitude
+        }
+      }
+    }
+    else
+    {
+      searchQuery.body.query.bool.filter.geo_shape = {
+        "address.geometry": {
+          "indexed_shape": {
+            "index": "stadtteile",
+            "type": "stadtteil",
+            "id": (searchParams.district === undefined ? '' : searchParams.district),
+            "path": "geometry"
+          }
+        }
+      }
+    }
     if (searchParams.searchQuery !== undefined) {
       // searchQuery.body.q = searchParams.searchQuery + '*';
     }
