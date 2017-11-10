@@ -24,7 +24,6 @@ class SearchService {
       index: 'lunchtimer',
       body: {
         query: {
-          // q: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery) + '*',
           bool: {
             filter: {
               geo_distance: {
@@ -48,6 +47,13 @@ class SearchService {
                     }
                   },
                   inner_hits: {}
+                }
+              },
+            ],
+            should: [
+              {
+                query_string: {
+                  query: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery)
                 }
               }
             ]
