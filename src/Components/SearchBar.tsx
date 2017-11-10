@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { ISearchParams } from '../App';
+import { DistrictService, IDistrictResultSlim } from '../Services/districtService';
+
 
 interface ISearchBarProps {
     results?: any;
@@ -8,9 +10,27 @@ interface ISearchBarProps {
 }
 
 class SearchBar extends React.Component<ISearchBarProps, any> {
+
+  constructor(props: ISearchBarProps) {
+    super(props);
+     this.state = {
+      districts: []
+    };
+    new DistrictService().loadDistricts(
+      (results: any) => {
+        this.state.districts = results;
+      }
+    );
+  }
+
   render() {
 
     const DebounceInput = require('react-debounce-input');
+
+    let districtList = this.state.districts.map((d: IDistrictResultSlim) => {
+      return <option value={d.number}>{d.name}</option>
+    });
+
 
     return (
       <div className="columns">
@@ -61,8 +81,8 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                   onChange={this.onDistrictChange}
                 >
                   <option value=""> - Stadtteil -  </option>
-                  <option value="1"> Kuh </option>
-                  <option value="2"> Erpho </option>
+                  {districtList}
+
                 </select>
               </div>
             </div>

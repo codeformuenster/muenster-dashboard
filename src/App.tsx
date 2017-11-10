@@ -32,6 +32,12 @@ export interface ISearchResult {
   address?: string;
 }
 
+export interface IDistrictResultSlim {
+  name: string;
+  number: number;
+  id: number;
+}
+
 interface IAppProps {
 }
 
