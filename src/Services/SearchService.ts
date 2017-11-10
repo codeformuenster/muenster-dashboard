@@ -27,13 +27,15 @@ class SearchService {
         query: {
           bool: {
             filter: {},
-            must: [{
-              range: {
-                  date_start: {
-                      gte: '2017-11-01',
-                  }
-              }
-            }],
+            must: [
+              // {
+              //   range: {
+              //       date_start: {
+              //           gte: '2017-11-01',
+              //       }
+              //   }
+              // }
+            ],
             should: [
               {
                 query_string: {
