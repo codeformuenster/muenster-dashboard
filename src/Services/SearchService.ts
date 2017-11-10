@@ -26,14 +26,25 @@ class SearchService {
         query: {
           bool: {
             filter: {
-              geo_distance: {
-                distance: '20km',
-                'address.geo': {
-                  lat: latitude,
-                  lon: longitude
+              "geo_shape": {
+                "address.geometry": {
+                  "indexed_shape": {
+                    "index": "stadtteile",
+                    "type": "stadtteil",
+                    "id": (searchParams.district === undefined ? '' : searchParams.district),
+                    "path": "geometry"
+                  }
                 }
               }
+              // geo_distance: {
+              //   distance: '20km',
+              //   'address.geo': {
+              //     lat: latitude,
+              //     lon: longitude
+              //   }
+              // }
             },
+            // must: [],
             should: [
               {
                 query_string: {
@@ -64,9 +75,9 @@ class SearchService {
     if ( searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
     }
-    if ( searchParams.district) {
-      searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
-    }
+    // if ( searchParams.district) {
+    //   searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
+    // }
 
     client
       .search(
