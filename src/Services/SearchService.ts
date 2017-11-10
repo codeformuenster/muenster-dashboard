@@ -24,7 +24,6 @@ class SearchService {
       index: 'lunchtimer',
       body: {
         query: {
-          // q: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery) + '*',
           bool: {
             filter: {
               geo_distance: {
@@ -49,10 +48,12 @@ class SearchService {
                   },
                   inner_hits: {}
                 }
-              } ,
+              },
+            ],
+            should: [
               {
-                wildcard: {
-                  _all: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery) + '*'
+                query_string: {
+                  query: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery)
                 }
               }
             ]
@@ -75,6 +76,12 @@ class SearchService {
     };
     if (searchParams.searchQuery !== undefined) {
       // searchQuery.body.q = searchParams.searchQuery + '*';
+    }
+    if ( searchParams.category) {
+      searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
+    }
+    if ( searchParams.district) {
+      searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
     }
 
     client

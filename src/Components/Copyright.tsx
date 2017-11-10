@@ -19,8 +19,8 @@ class Copyright extends React.Component<any, any> {
       ],
       [ 'Logo-Icon',
         (
-          <div>Das Lunchtimer-Logo-Icon "Dinner Reservation" wurde erstellt
-          von <a href="https://thenounproject.com/rafaleao/uploads/?i=38650">Rafael Farias Leão vom Noun Project</a></div>)
+          <div>Das Logo-Icon "family house" wurde erstellt
+          von <a href="https://thenounproject.com/rafaleao/uploads/?i=38650"> von Oksana Latysheva from the Noun Project</a></div>)
       ],
       [ 'Karten',
         (

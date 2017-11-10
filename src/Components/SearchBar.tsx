@@ -21,7 +21,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
               <DebounceInput
                 className="input is-large"
                 type="text"
-                onChange={this.handleChange}
+                onChange={this.onSearchTermChange}
                 placeholder="Suchbegriff"
               />
               <span className="icon is-small is-left">
@@ -38,7 +38,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
             <div className="control has-icons-left has-icons-right">
               <div className="select is-large is-fullwidth">
                 <select
-                  onChange={this.handleChange}
+                  onChange={this.onTypeChange}
                 >
                   <option value=""> - Typen-Auswahl - </option>
                   <option value="construction"> Baustellen </option>
@@ -58,7 +58,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
             <div className="control has-icons-left has-icons-right">
               <div className="select is-large is-fullwidth">
                 <select
-                  onChange={this.handleChange}
+                  onChange={this.onDistrictChange}
                 >
                   <option value=""> - Stadtteil -  </option>
                   <option value="1"> Kuh </option>
@@ -72,10 +72,22 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     );
   }
 
-  private handleChange = (event: any) => {
+  private onSearchTermChange = (event: any) => {
     const searchQuery = event.target.value;
     let searchParams = this.props.searchParams;
     searchParams.searchQuery = searchQuery;
+    this.props.updateHandler(searchParams);
+  }
+
+  private onDistrictChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    let searchParams = this.props.searchParams;
+    searchParams.district = event.currentTarget.value;
+    this.props.updateHandler(searchParams);
+  }
+
+  private onTypeChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    let searchParams = this.props.searchParams;
+    searchParams.category = event.currentTarget.value;
     this.props.updateHandler(searchParams);
   }
 }
