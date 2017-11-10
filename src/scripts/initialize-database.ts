@@ -13,7 +13,7 @@ class DatabaseInit {
   public constructor() {
 
       let client = new Elasticsearch.Client({
-        host: 'localhost:9200',
+        host: 'elasticsearch:9200',
         apiVersion: '5.6',
         log: 'trace'
       });
@@ -78,10 +78,6 @@ class DatabaseInit {
       index: this.indexName,
       type: this.typeName,
       body: {
-        _all : {
-          enabled: true,
-          index: 'not_analyzed'
-        },
         properties: {
           min_price: {
             type: 'float'

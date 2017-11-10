@@ -2,31 +2,27 @@ version: '2'
 
 services:
 
-  elasticsearch:
-    build: elasticsearch/
+  dashboard:
+    build: .
+    ports:
+      - "3000:3000"
     volumes:
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - .:/usr/src/app
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0-rc2
+    volumes:
+      - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - elk
 
   kibana:
-    build: kibana/
+    image: docker.elastic.co/kibana/kibana-oss:6.0.0-rc2
     volumes:
-      - ./kibana/config/:/usr/share/kibana/config
+      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
-    networks:
-      - elk
-    depends_on:
-      - elasticsearch
-
-networks:
-
-  elk:
-    driver: bridge
