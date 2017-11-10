@@ -1,7 +1,17 @@
 {
   "name": "Cafe Garbo im Cinema",
   "slug"?: "cafe-garbo",
-  "type": ["Cafe"],
+  "type": ["Cafe"
+
+    - construction = Baustellen
+    - pool = Bäder
+    - playground = Spielplätze
+    - wifi = WLAN
+    - kindergarden = Kitas
+    - wc = WCs
+    - sport = Sportstätte
+
+  ],
   "description": "Im Mittagsmenü gibt's immer das tägliche wechselnde Hauptgericht + Nachtisch für 80ct günstiger.",
   "properties"?: {
     "some": "foo",
