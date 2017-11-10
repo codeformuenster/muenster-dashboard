@@ -1,0 +1,14 @@
+?REQUEST=GetFeature&SERVICE=WFS&VERSION=2.0.0&TYPENAME=aufgrabungen&OUTPUTFORMAT=CSV&EXCEPTIONS=XML
+
+https://www.stadt-muenster.de/ows/mapserv621/odaufgrabserv
+
+https://www.stadt-muenster.de/ows/mapserv706/poiserv
+
+https://www.stadt-muenster.de/ows/mapserv706/kitaserv
+
+https://www.stadt-muenster.de/ows/mapserv706/schulenserv
+
+https://www.stadt-muenster.de/ows/mapserv706/odspielplserv
+
+https://www.stadt-muenster.de/ows/mapserv706/odsportstserv
+
