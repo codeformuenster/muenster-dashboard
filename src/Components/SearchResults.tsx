@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
 
+import SearchResultsWifi from './SearchResults/SearchResultsWifi';
+import SearchResultsConstruction from './SearchResults/SearchResultsConstruction';
+import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
+
 import './SearchResults.css';
 
 interface ISearchResultsProps {
@@ -19,15 +23,31 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
     return (
       <div className="search_results">
           {results.map((result: ISearchResult) => {
+            let searchResultComponent;
+
+            switch (result.type) {
+            case 'wifi':
+                searchResultComponent = <SearchResultsWifi result={result}/>;
+                break;
+            case 'playground':
+                searchResultComponent = <SearchResultsPlayground result={result}/>;
+                break;
+            case 'construction':
+                searchResultComponent = <SearchResultsConstruction result={result}/>;
+                break;
+            default:
+            }
+
             return (
               <article
                 key={result.id}
-                className={'media notification' + ((searchParams.selectedId === result.id) ? ' is-primary' : '')}
+                className={'notification' + ((searchParams.selectedId === result.id) ? ' is-primary' : '')}
                 onClick={e => this.toggleSelection(e, result.id)}
               >
+                {searchResultComponent}
+                {/*
                 <div className="media-left">
                   <p className="image is-64x64">
-                {/*  <img src="https://bulma.io/images/placeholders/128x128.png" /> */}
                     <img className="previewImage" src="/media/cafe-garbo.jpg" />
                   </p>
                   <div className="distanceDiv has-text-centered">
@@ -72,20 +92,12 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                         )}
                       </div>
 
-                  </div>
-                {/*<div className="media-right">
-                  <button className="delete"></button>
-                </div>*/}
+                  </div>*/}
               </article>
             );
           })}
       </div>
     );
-  }
-
-  private distancePrettifier(dist: number): string {
-
-    return '' + Math.round(dist) + 'm';
   }
 
   /**
