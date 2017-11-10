@@ -8,9 +8,9 @@ RUN npm install
 
 COPY . /usr/src/app
 # RUN yarn build
-# RUN npm build
 
-CMD [ "yarn", "start" ]
+# CMD [ "yarn", "start" ]
+CMD [ "npm", "run", "start" ]
 
 
 # FROM node:9.0-alpine
