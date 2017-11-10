@@ -1,0 +1,44 @@
+
+.leaflet-container {
+  height: 250px;
+  width: 100%;
+  margin: 0 auto;
+  overflow:hidden;
+}
+
+.leaflet-container { position: fixed !important; top: 60px; z-index:400}
+
+.leaflet-container img {
+  max-height: inherit;
+}
+
+.lu-icon
+{
+  background:#000;
+  border:4px solid #666;
+  color:white;
+  text-align:center;
+  border-radius:50%;
+  font-size:22px;
+}
+.lu-icon i {
+   margin-top: 3px;
+}
+.lu-icon i.fa-user-circle-o {
+  font-size:25px;
+}
+.lu-icon.igreen {
+  background:#23d160;
+  border: 4px solid #13b150
+}
+
+.LunchMap {height:255px}
+
+@media only screen and (max-width: 768px) {
+
+  .LunchMap {height:155px}
+
+  .leaflet-container {
+    height: 150px;
+  }
+}

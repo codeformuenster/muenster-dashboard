@@ -1,0 +1,49 @@
+.LogoBox {
+  padding:20px;
+  background-color:#000;
+  border-radius:10px;
+  color:white;
+}
+.LogoText {
+  font-size:100px;
+  font-family: 'Londrina Solid', cursive;
+  color:white;
+  display: inline-block;
+  margin-left:30px;
+  margin-right:20px;
+
+  background: -webkit-linear-gradient(left, #FFF 20%, #F00 40%, #FF0 60%, #FFF 80%);
+  background: linear-gradient(to right, #FFF 20%, #F00 40%, #FF0 60%, #FFF 80%);
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: shine 1s linear infinite;
+          animation: shine 1s linear infinite;
+}
+@-webkit-keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .App-logo{
+    font-size:20px;
+  }
+  .LogoText {
+    font-size:50px;
+    margin-top: 110px;
+    display: block;
+  }
+  .SmileyIcon {
+    margin-top:20px;
+  }
+}
