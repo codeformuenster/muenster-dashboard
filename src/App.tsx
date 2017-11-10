@@ -13,6 +13,8 @@ export interface ISearchParams {
   datetime: string;
   searchQuery: string;
   selectedId: number;
+  category: string;
+  district: string;
 }
 
 export interface ISearchResult {
@@ -81,7 +83,7 @@ class App extends React.Component<IAppProps, any> {
 
     this.setState({ searchParams: searchParams });
 
-    const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude;
+    const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
     if (searchHash !== this.lastSearchHash) {
       this.searchService.sendSearchToServer(
