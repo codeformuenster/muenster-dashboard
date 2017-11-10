@@ -27,7 +27,7 @@ class SearchService {
         query: {
           bool: {
             filter: {},
-            // must: [],
+            must: [],
             should: [
               {
                 query_string: {
