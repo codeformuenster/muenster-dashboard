@@ -49,11 +49,6 @@ class SearchService {
                   },
                   inner_hits: {}
                 }
-              } ,
-              {
-                wildcard: {
-                  _all: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery) + '*'
-                }
               }
             ]
           }
