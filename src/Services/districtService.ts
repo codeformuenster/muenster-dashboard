@@ -6,7 +6,6 @@ let client = new Elasticsearch.Client({
   log: 'trace'
 });
 
-
 export interface IDistrictResultSlim {
   name: string;
   number: number;
@@ -26,8 +25,8 @@ export class DistrictService {
     let searchQuery: any = {
       index: 'stadtteile',
       body: {
-        "size" : 100,
-        "_source": [ "properties" ]
+        'size' : 100,
+        '_source': [ 'properties' ]
       }
     };
 
@@ -47,12 +46,11 @@ export class DistrictService {
             for (let result of results) {
               const district = result._source.properties;
 
-                districts.push({
-                  id: result._id,
-                  name: district.Name,
-                  number: district.Nr,
-                });
-
+              districts.push({
+                id: result._id,
+                name: district.Name,
+                number: district.Nr,
+              });
             }
           }
           console.log('districts', districts);

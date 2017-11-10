@@ -6,9 +6,9 @@ import './index.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Lunchheader from './Components/Lunchheader';
-import Impressum from './Components/Impressum';
-import WorkInProgress from './Components/WorkInProgress';
-import Copyright from './Components/Copyright';
+import Impressum from './Pages/Impressum';
+import WorkInProgress from './Pages/WorkInProgress';
+import Copyright from './Pages/Copyright';
 
 ReactDOM.render(
   <Router>

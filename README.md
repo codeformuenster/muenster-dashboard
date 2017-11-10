@@ -45,6 +45,15 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
  - wc = WCs
  - sport = Sportstätte
 
+
+## Indexes
+
+ - WN News:  https://elasticsearch.codeformuenster.org/news/_search
+ - Alle locations (Aufgrabungsmeldungen, Kindergärten, etc..): places
+ - WN Events: events
+ - Stadtteile geojson shapes: stadtteile 
+
+
 ## Playing with the data
 
 Open kibana:

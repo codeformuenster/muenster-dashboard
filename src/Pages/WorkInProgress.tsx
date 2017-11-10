@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './WorkInProgress.css';
 
-const logo = require('./Lunchheader.svg');
+const logo = require('./../Components/Logo.svg');
 
 class WorkInProgress extends React.Component<any, any> {
   render() {

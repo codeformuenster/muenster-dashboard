@@ -27,7 +27,13 @@ class SearchService {
         query: {
           bool: {
             filter: {},
-            must: [],
+            must: [{
+              range: {
+                  date_start: {
+                      gte: '2017-11-01',
+                  }
+              }
+            }],
             should: [
               {
                 query_string: {
@@ -38,6 +44,7 @@ class SearchService {
           }
         },
         'sort': [
+          { 'date_start': {'order': 'asc'}},
           {
             '_geo_distance': {
               'address.geo': {
@@ -52,27 +59,25 @@ class SearchService {
         ]
       }
     };
-    if (searchParams.district == undefined || searchParams.district == "")  {
+    if (searchParams.district === undefined || searchParams.district === '')  {
       searchQuery.body.query.bool.filter.geo_distance = {
         distance: '20km',
         'address.geo': {
           lat: latitude,
           lon: longitude
         }
-      }
-    }
-    else
-    {
+      };
+    } else {
       searchQuery.body.query.bool.filter.geo_shape = {
-        "address.geometry": {
-          "indexed_shape": {
-            "index": "stadtteile",
-            "type": "stadtteil",
-            "id": (searchParams.district === undefined ? '' : searchParams.district),
-            "path": "geometry"
+        'address.geometry': {
+          'indexed_shape': {
+            'index': 'stadtteile',
+            'type': 'stadtteil',
+            'id': (searchParams.district === undefined ? '' : searchParams.district),
+            'path': 'geometry'
           }
         }
-      }
+      };
     }
     if (searchParams.searchQuery !== undefined) {
       // searchQuery.body.q = searchParams.searchQuery + '*';
