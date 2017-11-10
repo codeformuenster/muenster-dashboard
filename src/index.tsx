@@ -10,6 +10,10 @@ import Impressum from './Components/Impressum';
 import WorkInProgress from './Components/WorkInProgress';
 import Copyright from './Components/Copyright';
 
+import SearchResultsWifi from './Components/SearchResults/SearchResultsWifi';
+import SearchResultsConstruction from './Components/SearchResults/SearchResultsConstruction';
+import SearchResultsPlayground from './Components/SearchResults/SearchResultsPlayground';
+
 ReactDOM.render(
   <Router>
     <div>
@@ -22,6 +26,10 @@ ReactDOM.render(
       <Route path="/stadtteile" component={WorkInProgress} />
       <Route path="/copyright" component={Copyright} />
       <Route path="/unterstuetzen" component={WorkInProgress} />
+
+      <Route path="/wifi" component={SearchResultsWifi} />
+      <Route path="/construction" component={SearchResultsConstruction} />
+      <Route path="/playground" component={SearchResultsPlayground} />
 
     </div>
   </Router>,
