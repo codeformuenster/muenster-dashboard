@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { ISearchParams, ISearchResult } from '../../App';
+import { SearchResults } from './SearchResults';
 
 import './SearchResultsWifi.css';
 
-interface ISearchResultsProps {
-    result: ISearchResult;
-    updateHandler: any;
-    searchParams: ISearchParams;
-}
-
-class SearchResultsWifi extends React.Component<ISearchResultsProps, any> {
+class SearchResultsWifi extends SearchResults {
 
   render() {
     console.log('Rendering wifi search result');
+
+    const result = this.props.result;
+
     return (
-      <article
-        className={'media notification'}
-      >
+      <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
@@ -24,15 +19,17 @@ class SearchResultsWifi extends React.Component<ISearchResultsProps, any> {
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
-            <span className="tag is-white">140m</span>
+            <span className="tag is-white">{this.distancePrettifier(result.distance)}</span>
           </div>
         </div>
         <div className="media-content">
           <div className="content">
             <span className="title">
-              <span> Rathaus &nbsp; </span>
+              <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">W-LAN</span> &nbsp;
-              <span className="tag is-success">in Betrieb</span>
+              <span className={'tag ' + (this.isRunning(result.properties.WLAN_STATUS) ? 'is-success' : 'is-danger')}>
+                {result.properties.WLAN_STATUS}
+              </span>
             </span>
             <div className="is-clearfix">
               Friedenssaal, Prinzipalmarkt 10
@@ -50,8 +47,12 @@ class SearchResultsWifi extends React.Component<ISearchResultsProps, any> {
             </p>
           </div>
         </div>
-      </article>
+      </div>
     );
+  }
+
+  protected isRunning(wlanStatus: string): boolean {
+    return wlanStatus === 'in Bearbeitung';
   }
 
   //private distancePrettifier(dist: number): string {

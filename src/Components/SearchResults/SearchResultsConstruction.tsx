@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { ISearchParams, ISearchResult } from '../../App';
+import { SearchResults } from './SearchResults';
 
 import './SearchResultsConstruction.css';
 
-interface ISearchResultsProps {
-    result: ISearchResult;
-    updateHandler: any;
-    searchParams: ISearchParams;
-}
-
-class SearchResultsConstruction extends React.Component<ISearchResultsProps, any> {
+class SearchResultsConstruction extends SearchResults {
 
   render() {
     console.log('Rendering construction search result');
+
+    const result = this.props.result;
+
     return (
-      <article
-        className={'media notification'}
-      >
+      <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
@@ -24,35 +19,38 @@ class SearchResultsConstruction extends React.Component<ISearchResultsProps, any
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
-            <span className="tag is-white">140m</span>
+            <span className="tag is-white">{this.distancePrettifier(result.distance)}</span>
           </div>
         </div>
         <div className="media-content">
           <div className="content">
             <span className="title">
-              <span>Stadtwerke Münster GmbH &nbsp; </span>
+              <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">Baustelle</span> &nbsp;
-              <span className="tag is-danger">in Bebauung</span>
+              <span className={'tag ' + (this.isUnderConstruction(result.dateStart) ? 'is-danger' : 'is-success')}>
+                {this.isUnderConstruction(result.dateStart) ? 'in Bebauung' : 'geplant'}
+              </span>
             </span>
             <div className="is-clearfix">
-              An der Meerwiese, Hoher Heckenweg K 8, Volbachweg
+              {result.description}
             </div>
             <p className="has-text-danger">
               <span className="icon">
                 <i className="mdi mdi-timetable"></i>
               </span>
-              ab 10. Nov. 2017
+              ab {this.toHumanReadableDate(result.dateStart)}
             </p>
           </div>
         </div>
-      </article>
+      </div>
     );
   }
 
-  //private distancePrettifier(dist: number): string {
+  protected isUnderConstruction(constructionStartDate: string): boolean {
+    let currentDate = new Date();
 
-    //return '' + Math.round(dist) + 'm';
-  //}
+    return this.isoDateStringToDate(constructionStartDate) <= currentDate;
+  }
 
   /**
    * Onclick handler for search result row, updates selectedId in searchParams
