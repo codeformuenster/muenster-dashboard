@@ -3,7 +3,7 @@ import * as Elasticsearch from 'elasticsearch';
 import { ISearchParams, ISearchResult } from '../App';
 
 let client = new Elasticsearch.Client({
-  host: 'localhost:9200',
+  host: 'https://elasticsearch.codeformuenster.org:443',
   log: 'trace'
 });
 
@@ -21,7 +21,7 @@ class SearchService {
     const longitude = searchParams.longitude;
 
     let searchQuery: any = {
-      index: 'lunchtimer',
+      index: 'places',
       body: {
         query: {
           bool: {
@@ -34,22 +34,6 @@ class SearchService {
                 }
               }
             },
-            must: [
-              {
-                nested: {
-                  path: 'times',
-                  query: {
-                    bool: {
-                      must: [
-                        { term: { 'times.type': 'lunch'} },
-                  /*      { match: { 'times.day': 'weekday' }} */
-                      ]
-                    }
-                  },
-                  inner_hits: {}
-                }
-              },
-            ],
             should: [
               {
                 query_string: {
@@ -111,13 +95,11 @@ class SearchService {
                   name: location.name,
                   distance: result.sort[0],
                   type: location.type,
-                  minPrice: location.min_price,
+                  dateStart: location.date_start,
                   url: location.url,
-                  menuUrl: location.menu_url,
-                  menuDesc: location.lunch_desc,
-                  phone: location.phone,
-                  features: features,
-                  openToday: location.times[0].start + ' - ' + location.times[0].end
+                  dateEnd: location.date_end,
+                  description: location.description,
+                  properties: location.properties,
                 });
               }
             }

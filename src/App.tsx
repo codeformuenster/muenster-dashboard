@@ -23,15 +23,13 @@ export interface ISearchResult {
   lon: number;
   distance: number;
   name: string;
-  address?: string;
+  description: string;
+  properties: any;
   type: string;
-  minPrice: number;
   url: string;
-  menuUrl: string;
-  menuDesc: string;
-  phone: string;
-  features: Array<string>;
-  openToday: string;
+  dateStart: string;
+  dateEnd: string;
+  address?: string;
 }
 
 interface IAppProps {
@@ -55,15 +53,26 @@ class App extends React.Component<IAppProps, any> {
   public render() {
     return (
       <div>
-        <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
-        <div className="container">
+      <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
 
-          {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
-          {this.hasGeoSelector
-            && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
+      <div className="tile is-ancestor">
+          <div className="tile is-parent">
 
-          <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
-          <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+            <div className="tile">
+              <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+            </div>
+            <div className="tile">
+              <div className="article mainContent">
+                {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
+                {this.hasGeoSelector
+                  && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
+                <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+              </div>
+            </div>
+            <div className="tile is-2">
+              Hier könnten Ihre Nachrichten stehen.
+            </div>
+          </div>
         </div>
       </div>
     );

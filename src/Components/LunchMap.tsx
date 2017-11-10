@@ -30,8 +30,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
 
       this.centerPosition = null;
       const map = (
-        <div className="columns">
-          <div className="column LunchMap">
+
             <Map center={position} zoom={13} ref={(el: any) => {this.mapRef = el; }}>
               <TileLayer
                 url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -44,8 +43,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
               </Marker>
               {this.getAllMarkers(this.props.results)}
             </Map>
-          </div>
-        </div>
+
         );
       return map;
     } else {

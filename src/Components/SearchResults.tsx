@@ -40,33 +40,18 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                       <span className="lunchtitle">{result.name} &nbsp;   <span className="tag is-dark">{result.type}</span></span>
 
                       <div className="is-clearfix">
-                        {result.menuDesc}
+                        {result.description}
                       </div>
                     </div>
                       <div className="tags is-pulled-left">
 
-                        <span className="tag is-success">ab {result.minPrice}€</span>
+                        <span className="tag is-success">ab {result.dateEnd}€</span>
 
                         <div className="tag is-warning">
-                          <span className="icon" data-balloon={result.phone} data-balloon-pos="up">
+                          <span className="icon" data-balloon={result.url} data-balloon-pos="up">
                             <i className="fa fa-cutlery"></i>
-                          </span> {result.openToday}
+                          </span> {result.dateStart}
                         </div>
-
-                        <div className="tag is-warning">
-                          {this.renderFeatures(result.features)}
-                        </div>
-
-                        {result.phone && (
-                          <div className="tag is-warning">
-                            <span className="icon" data-balloon={result.phone} data-balloon-pos="up">
-                              <i className="fa fa-phone"></i>
-                            </span>
-                            <span className="is-hidden-mobile">
-                              {result.phone}
-                            </span>
-                          </div>
-                        )}
 
                       </div>
                       <div className="is-pulled-right columns is-mobile is-1 is-variable">
@@ -80,9 +65,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                             </div>
                         )}
 
-                        {result.menuUrl && (
+                        {result.url && (
                             <div className="column">
-                              <a className="button is-link" href={result.menuUrl}>Menu</a>
+                              <a className="button is-link" href={result.url}>Menu</a>
                             </div>
                         )}
                       </div>
@@ -115,42 +100,6 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
       searchParams.selectedId = id;
     }
     this.props.updateHandler(searchParams);
-  }
-
-  /**
-   * get the feature icons html
-   */
-  private renderFeatures(features: string[]) {
-    let iconRows = [];
-
-    for (let feature of features) {
-      iconRows.push(this.getFeatureIcon(feature));
-    }
-    return iconRows;
-  }
-
-  /**
-   * Get icon html for the feature named $feature
-   */
-  private getFeatureIcon(feature: string) {
-
-    const iconList = {
-      wifi: ['wifi', 'W-Lan'],
-      cash: ['money', 'Barzahlung'],
-      debit_card: ['credit-card', 'EC-Karte'],
-      credit_card: ['cc-visa', 'Kreditkarte'],
-      special_card: ['warning', 'Bezahlen nur mit spezieller Karte. Automat am Eingang.']
-    };
-    const iconSettings = iconList[feature] ? iconList[feature] : null;
-    if (iconSettings) {
-      return (
-        <span className="icon" data-balloon={iconSettings[1]} data-balloon-pos="up">
-          <i className={'fa fa-' + iconSettings[0]}></i>
-        </span>
-      );
-    }
-    console.log('Unrecognized feature', feature);
-    return null;
   }
 }
 

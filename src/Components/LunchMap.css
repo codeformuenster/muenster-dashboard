@@ -1,16 +1,16 @@
 
 .leaflet-container {
-  height: 250px;
   width: 100%;
-  margin: 0 auto;
-  overflow:hidden;
+  height: 100vh;
+
 }
-
+/*
 .leaflet-container { position: fixed !important; top: 60px; z-index:400}
-
+*/
 .leaflet-container img {
   max-height: inherit;
 }
+
 
 .lu-icon
 {
