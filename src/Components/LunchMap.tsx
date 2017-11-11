@@ -95,12 +95,13 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     const categoryIcons = {
       'kindergarden': this.getIcon('baby-buggy', 'kindergarden'),
       'construction': this.getIcon('vlc', 'construction'),
-      'wifi': this.getIcon('wifi', 'wifji'),
+      'event': this.getIcon('calendar-text', 'event'),
+      'lunch': this.getIcon('food', 'lunch'),
       'playground': this.getIcon('castle', 'playground'),
       'pool': this.getIcon('pool', 'pool'),
       'wc': this.getIcon('human-male-female', 'wc'),
       'webcam': this.getIcon('camera', 'webcam'),
-      'event': this.getIcon('calendar-text', 'event')
+      'wifi': this.getIcon('wifi', 'wifji')
     };
 
     var rows = [];

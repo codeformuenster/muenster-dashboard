@@ -3,6 +3,7 @@ import { ISearchParams, ISearchResult } from '../App';
 
 import SearchResultsConstruction from './SearchResults/SearchResultsConstruction';
 import SearchResultsKindergarden from './SearchResults/SearchResultsKindergarden';
+import SearchResultsLunch from './SearchResults/SearchResultsLunch';
 import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
 import SearchResultsPool from './SearchResults/SearchResultsPool';
 import SearchResultsWc from './SearchResults/SearchResultsWc';
@@ -43,6 +44,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                 break;
             case 'kindergarden':
                 searchResultComponent = <SearchResultsKindergarden result={result}/>;
+                break;
+            case 'lunch':
+                searchResultComponent = <SearchResultsLunch result={result}/>;
                 break;
             case 'playground':
                 searchResultComponent = <SearchResultsPlayground result={result}/>;
@@ -151,6 +155,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
         break;
     case 'kindergarden':
         result = 'is-primary'
+        break;
+    case 'lunch':
+        result = 'is-link'
         break;
     case 'playground':
         result = 'is-warning'

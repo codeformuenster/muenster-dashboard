@@ -61,6 +61,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                   <option value=""> Was suchst Du? </option>
                   <option value="construction"> Baustellen </option>
                   <option value="pool"> Bäder </option>
+                  <option value="lunch"> Mittagstische </option>
                   <option value="playground"> Spielplätze </option>
                   <option value="event"> Termine </option>
                   <option value="wifi"> WLANs </option>
