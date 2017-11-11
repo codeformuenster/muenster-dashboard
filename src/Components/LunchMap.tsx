@@ -86,6 +86,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     var iconDefault = this.getIcon('paw');
 
     const categoryIcons = {
+      'kindergarden': this.getIcon('baby-buggy'),
       'construction': this.getIcon('vlc'),
       'wifi': this.getIcon('wifi'),
       'playground': this.getIcon('castle'),

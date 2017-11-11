@@ -3,6 +3,7 @@ import { ISearchParams, ISearchResult } from '../App';
 
 import SearchResultsWifi from './SearchResults/SearchResultsWifi';
 import SearchResultsConstruction from './SearchResults/SearchResultsConstruction';
+import SearchResultsKindergarden from './SearchResults/SearchResultsKindergarden';
 import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
 import SearchResultsPool from './SearchResults/SearchResultsPool';
 
@@ -29,6 +30,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
             switch (result.type) {
             case 'construction':
                 searchResultComponent = <SearchResultsConstruction result={result}/>;
+                break;
+            case 'kindergarden':
+                searchResultComponent = <SearchResultsKindergarden result={result}/>;
                 break;
             case 'playground':
                 searchResultComponent = <SearchResultsPlayground result={result}/>;
