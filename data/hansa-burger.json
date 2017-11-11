@@ -1,0 +1,32 @@
+{
+  "name": "Hansa Burger",
+  "slug": "hansa-burger",
+  "type": ["Imbiss"],
+  "food": ["Currywurst", "Pommes", "Schnitzel", "Mantaplatte", "Bamischeibe"],
+  "min_price": 4.00,
+  "price_type": "range",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "daily",
+      "start": "11:30",
+      "end": "22:00"
+    }
+  ],
+  "payment_methods": ["cash"],
+  "lunch_desc": "Klassische deutsche Imbissbude. Im Sommer kann man draußen vor der Bude sitzen.",
+  "wifi": false,
+  "menu_url": "",
+  "url": "http://www.heinemanns-grillbetriebe.de/Hansa_Grill/Hansa_Grill_Seite/Hansa_Grill_Seite.html",
+  "address": {
+    "street": "Hansaring 36",
+    "zip": "48155",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.9530228,
+      "lon": 7.6408534
+    }
+  },
+  "phone": "+49251 - 6 41 18",
+  "rating": 4
+}

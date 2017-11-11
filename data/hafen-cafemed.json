@@ -1,0 +1,30 @@
+{
+  "name": "Cafe Med",
+  "type": ["Restaurant"],
+  "food": ["Pasta", "Salat"],
+  "min_price": 10.50,
+  "price_type": "range",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "weekday",
+      "start": "12:00",
+      "end": "14:30"
+    }
+  ],
+  "payment_methods": ["cash", "debit_card", "credit_card"],
+  "lunch_desc": "Ab 10,50 EUR bekommt man im Mittagsmenü ein Getränk, Hauptgericht und Kaffeespezialität.",
+  "wifi": false,
+  "menu_url": "http://cafe-med.de/Kulinarisches/Mittagstisch",
+  "url": "http://cafe-med.de",
+  "address": {
+    "street": "Hafenweg 26 a",
+    "zip": "48155",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.951958,
+      "lon": 7.643115
+    }
+  },
+  "phone": "+49 251 6749595"
+}

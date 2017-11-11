@@ -1,0 +1,32 @@
+{
+  "name": "Töfte Köfte",
+  "slug": "toefte-koefte",
+  "type": ["Türkischer Imbiss"],
+  "food": ["Köfte", "Pide", "Salat", "Döner"],
+  "min_price": 4.00,
+  "price_type": "range",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "weekday",
+      "start": "12:00",
+      "end": "14:30"
+    }
+  ],
+  "payment_methods": ["cash"],
+  "wifi": false,
+  "menu_url": "",
+  "lunch_desc": "Diverse türkische Gerichte, lecker zubereitet",
+  "url": "",
+  "address": {
+    "street": "Bernhard-Ernst-Straße 7",
+    "zip": "48155",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.952274,
+      "lon": 7.6372732
+    }
+  },
+  "phone": "",
+  "rating": 4
+}
