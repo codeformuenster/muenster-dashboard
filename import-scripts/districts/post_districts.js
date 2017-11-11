@@ -1,10 +1,14 @@
-const request = require('request-promise-native');
+'use strict';
+
+const request = require('request-promise-native'),
+  center = require('@turf/center-of-mass');
 
 const { eSurl } = require('./config.json');
 
 const stadtteile = require('./data/stadtteile.json');
 
 for (const feature of stadtteile.features) {
+  feature.center = center(feature).geometry;
   request.put({
     url: `${eSurl}/${feature.properties.Nr}`,
     json: true,
