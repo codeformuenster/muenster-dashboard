@@ -32,7 +32,7 @@ class SearchResultsWifi extends SearchResults {
               </span>
             </span>
             <div className="is-clearfix">
-              Friedenssaal, Prinzipalmarkt 10
+              {result.properties.ADRESSE}
             </div>
             <p className="has-text-danger">
               <span className="icon">
