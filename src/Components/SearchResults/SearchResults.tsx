@@ -17,6 +17,14 @@ export abstract class SearchResults extends React.Component<ISearchResultsProps,
   protected distancePrettifier(dist: number): string {
     return '' + Math.round(dist) + 'm';
   }
+
+  protected getMinutesByFeet(dist: number): string {
+    return Math.round(dist / 80) + ' Min.';
+  }
+
+  protected getMinutesByCar(dist: number): string {
+    return Math.round(dist / 250) + ' Min.';
+  }
 }
 
 export default SearchResults;

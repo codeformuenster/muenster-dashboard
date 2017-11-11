@@ -38,12 +38,12 @@ class SearchResultsWifi extends SearchResults {
               <span className="icon">
                 <i className="mdi mdi-walk"></i>
               </span>
-              12 Min.
+              {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
                 <i className="mdi mdi-car"></i>
               </span>
-              5 Min.
+              {this.getMinutesByCar(result.distance)}
             </p>
           </div>
         </div>
