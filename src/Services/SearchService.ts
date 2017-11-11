@@ -86,9 +86,9 @@ class SearchService {
     if ( searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
     }
-    if ( searchParams.district) {
-      searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
-    }
+    // if ( searchParams.district) {
+    //   searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
+    // }
 
     client
       .search(
