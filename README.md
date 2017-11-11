@@ -239,3 +239,6 @@ Open kibana:
         }
       }
     }
+
+# Importing data
+See README in `import-scripts`
