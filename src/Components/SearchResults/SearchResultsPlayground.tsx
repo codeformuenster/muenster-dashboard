@@ -28,7 +28,16 @@ class SearchResultsPlayground extends SearchResults {
               <span>{this.displayName(result.name)} &nbsp; </span>
               <span className="tag is-dark">Spielplatz</span> &nbsp;
               {result.properties.Groesse && <span className="tag is-dark"> {result.properties.Groesse} m<sup>2</sup></span>} &nbsp;
-              {this.displayPitch(result.properties.Ball, result.properties.Streetball) && <span className="icon"> <i className="mdi mdi-soccer"></i> </span>} &nbsp;
+              {this.displayPitch(result.properties.Ball, result.properties.Streetball)
+                &&
+                <span
+                  data-balloon="Mit Ballspielplatz"
+                  data-balloon-pos="up"
+                  className="icon"
+                >
+                    <i className="mdi mdi-soccer"></i>
+                </span>
+              } &nbsp;
               {this.displaySkater(result.properties.Skater) && <span> <img className="tag-image" src="/media/skateboard.png"/> </span>} &nbsp;
               {result.properties.Bereich && <span className="tag is-success"> {this.displayArea(result.properties.Bereich)} </span>} &nbsp;
             </span>
@@ -52,11 +61,14 @@ class SearchResultsPlayground extends SearchResults {
     );
   }
 
-  private displayName(name: string): string{
+  private displayName(name: string): string {
     let result = '';
     result = name.slice(3);
 
-    return result.toLowerCase().replace(/\b\w/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    return result.toLowerCase().replace(/\b\w/g, function(txt: any){
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
   }
 
   private displayArea(area: string): string {
@@ -64,16 +76,17 @@ class SearchResultsPlayground extends SearchResults {
 
     switch (area) {
     case 'A':
-        result = 'Für alle Altersklassen';
+        result = 'Großer Spielplatz';
         break;
     case 'B/C':
-        result = 'Für Kleinkinder und schulpflichtige Kinder und Jugendliche';
+        result = 'Wohngebiets-Spielplatz';
         break;
     case 'C':
         result = 'Für Kleinkinder';
         break;
     case 'A+B/C':
-        result = 'Für alle Altersklassen';
+        result = 'Groß, und extra Kleinkinderbereich';
+        break;
     default:
     }
 
@@ -81,7 +94,7 @@ class SearchResultsPlayground extends SearchResults {
   }
 
   private displayPitch(ball: number, streetBall: string): boolean {
-    return ball === 1 || ball === 2 || streetBall === 'ja'
+    return ball === 1 || ball === 2 || streetBall === 'ja';
   }
 
   private displaySkater(skater: string): boolean {

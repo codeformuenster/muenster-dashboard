@@ -10,6 +10,7 @@ import SearchResultsWc from './SearchResults/SearchResultsWc';
 import SearchResultsWifi from './SearchResults/SearchResultsWifi';
 import SearchResultsWebcam from './SearchResults/SearchResultsWebcam';
 import SearchResultsDefault from './SearchResults/SearchResultsDefault';
+import SearchResultsEvent from './SearchResults/SearchResultsEvent';
 
 import './SearchResults.css';
 
@@ -61,6 +62,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                 break;
             case 'webcam':
                 searchResultComponent = <SearchResultsWebcam result={result}/>;
+                break;
+            case 'event':
+                searchResultComponent = <SearchResultsEvent result={result}/>;
                 break;
             default:
                 searchResultComponent = <SearchResultsDefault result={result}/>;

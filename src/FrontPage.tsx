@@ -91,7 +91,7 @@ class FrontPage extends React.Component<IAppProps, any> {
           </div>
           <div className="column">
             <h2 className="title">Wetter für die nächsten zwei Tage</h2>
-            <img src="http://www.yr.no/place/Germany/North_Rhine-Westphalia/M%C3%BCnster/meteogram.png" />
+            <img src="https://www.yr.no/place/Germany/North_Rhine-Westphalia/M%C3%BCnster/meteogram.png" />
           </div>
 
       </div>

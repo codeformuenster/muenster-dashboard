@@ -58,7 +58,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                 <select
                   onChange={this.onTypeChange}
                 >
-                  <option value=""> - Typen-Auswahl - </option>
+                  <option value=""> Was suchst Du? </option>
                   <option value="construction"> Baustellen </option>
                   <option value="pool"> Bäder </option>
                   <option value="lunch"> Mittagstische </option>
