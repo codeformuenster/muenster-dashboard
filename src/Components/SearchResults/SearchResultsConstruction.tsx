@@ -46,7 +46,7 @@ class SearchResultsConstruction extends SearchResults {
     );
   }
 
-  protected isUnderConstruction(constructionStartDate: string): boolean {
+  private isUnderConstruction(constructionStartDate: string): boolean {
     let currentDate = new Date();
 
     return this.isoDateStringToDate(constructionStartDate) <= currentDate;

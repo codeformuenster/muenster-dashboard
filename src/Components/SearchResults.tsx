@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
 
-import SearchResultsWifi from './SearchResults/SearchResultsWifi';
 import SearchResultsConstruction from './SearchResults/SearchResultsConstruction';
 import SearchResultsKindergarden from './SearchResults/SearchResultsKindergarden';
 import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
 import SearchResultsPool from './SearchResults/SearchResultsPool';
+import SearchResultsWc from './SearchResults/SearchResultsWc';
+import SearchResultsWifi from './SearchResults/SearchResultsWifi';
 
 import './SearchResults.css';
 
@@ -39,6 +40,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                 break;
             case 'pool':
                 searchResultComponent = <SearchResultsPool result={result}/>;
+                break;
+            case 'wc':
+                searchResultComponent = <SearchResultsWc result={result}/>;
                 break;
             case 'wifi':
                 searchResultComponent = <SearchResultsWifi result={result}/>;
