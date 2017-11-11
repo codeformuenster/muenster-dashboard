@@ -52,7 +52,7 @@ class SearchResultsWifi extends SearchResults {
   }
 
   protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Bearbeitung';
+    return wlanStatus === 'in Betrieb';
   }
 }
 
