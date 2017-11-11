@@ -9,6 +9,19 @@ class Copyright extends React.Component<any, any> {
     var rainbowColors = Rainbow.create(numColors);
 
     const infos = [
+      [ 'Datenquellen',
+        (
+          <div>Wir nutzen Daten aus dem
+          <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a></div>
+        )
+      ],
+      [ 'Nachrichten',
+        (
+          <div>Auf unserer Startzeite erscheinen Nachrichten
+          <a href="http://www.wn.de">aus dem RSS Feed der westfälischen Nachrichten</a></div>
+        )
+      ],
+
       [ 'Emoji-Icons',
         (<div>Alle Emojis auf dieser Seite stammen aus aus der <a href="https://github.com/twitter/twemoji">Twemoji 2.3 Bibliothek von Twitter</a></div>)
       ],

@@ -56,11 +56,55 @@ export class DistrictService {
             }
           }
           // sort
-          districts = districts.sort((a, b) => { return a.name.localeCompare(b.name) });
+          districts = districts.sort((a, b) => { return a.name.localeCompare(b.name); });
           console.log('districts', districts);
 
           callback(districts);
         })
       );
+  }
+
+  public queryDistrictByCoordinates({ latitude, longitude }: { latitude:number, longitude:number }) {
+    const searchQuery: any = {
+      index: 'stadtteile',
+      body: {
+        'size' : 1,
+        '_source': [ 'properties.Name' ],
+        'query': {
+          'geo_shape': {
+            'geometry': {
+              'relation': 'contains',
+              'shape': {
+                'type': 'point',
+                'coordinates': [
+                    longitude,latitude
+                  ]
+              }
+            }
+          }
+        }
+      }
+    };
+
+    return new Promise(function (resolve, reject) {
+      client
+        .search(
+          searchQuery,
+          ((error: any, body: any) => {
+            if (error) {
+              console.trace('error', error.message);
+              return reject(error);
+            }
+
+            if (body && body.hits) {
+              const result = body.hits.hits[0];
+              if (result) {
+                return resolve(result._source.properties.Name);
+              }
+            }
+            return resolve('');
+          })
+        );
+    });
   }
 }

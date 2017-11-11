@@ -44,6 +44,7 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
  - kindergarden = Kitas
  - wc = WCs
  - sport = Sportstätte
+ - webcam = Webcams
 
 
 ## Indexes

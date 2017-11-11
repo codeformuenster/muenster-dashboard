@@ -65,4 +65,7 @@
   .leaflet-container {
     height: 180px;
   }
+  .frontpageMap .leaflet-container {
+    height: 270px;
+  }
 }
