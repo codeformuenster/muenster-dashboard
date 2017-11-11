@@ -53,7 +53,7 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
             return (
               <article
                 key={result.id}
-                className={'notification' + ((searchParams.selectedId === result.id) ? ' is-primary' : '')}
+                className={'notification' + ((searchParams.selectedId === result.id) ? ' ' + this.getSearchResultColor(result.type) : '')}
                 onClick={e => this.toggleSelection(e, result.id)}
               >
                 {searchResultComponent}
@@ -124,6 +124,34 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
       searchParams.selectedId = id;
     }
     this.props.updateHandler(searchParams);
+  }
+
+  private getSearchResultColor(type: string): string {
+    let result = '';
+
+    switch (type) {
+    case 'construction':
+        result = 'is-danger'
+        break;
+    case 'kindergarden':
+        result = 'is-primary'
+        break;
+    case 'playground':
+        result = 'is-warning'
+        break;
+    case 'pool':
+        result = 'is-info'
+        break;
+    case 'wc':
+        result = 'is-light'
+        break;
+    case 'wifi':
+        result = 'is-dark'
+        break;
+    default:
+    }
+
+    return result;
   }
 }
 
