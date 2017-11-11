@@ -24,8 +24,8 @@ class SearchService {
    */
   public sendSearchToServer(searchParams: ISearchParams, callback: any, isFrontPageSearch: boolean = false) {
 
-    const latitude = searchParams.latitude;
-    const longitude = searchParams.longitude;
+    const { latitude, longitude } = searchParams;
+    const { centerLat, centerLon } = searchParams;
 
     let searchQuery: any = {
       index: 'places',

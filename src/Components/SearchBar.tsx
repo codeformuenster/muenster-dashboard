@@ -106,10 +106,12 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     searchParams.district = district;
 
     if (this.state.districts) {
-      const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
-      if (centerLat && centerLon) {
-      searchParams.centerLat = Number(centerLat);
-      searchParams.centerLon = parseFloat(centerLon);
+      /*const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });*/
+      const found = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
+      if (found) {
+        const { centerLat, centerLon } = found;
+        searchParams.centerLat = Number(centerLat);
+        searchParams.centerLon = Number(centerLon);
       }
     }
     this.props.updateHandler(searchParams);
