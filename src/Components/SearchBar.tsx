@@ -66,6 +66,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                   <option value="wifi"> WLANs </option>
                   <option value="kindergarden"> Kitas </option>
                   <option value="wc"> WCs </option>
+                  <option value="webcam"> Webcams </option>
                 </select>
 
               </div>
