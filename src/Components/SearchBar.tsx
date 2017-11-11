@@ -63,9 +63,11 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                   <option value="pool"> Bäder </option>
                   <option value="lunch"> Mittagstische </option>
                   <option value="playground"> Spielplätze </option>
+                  <option value="event"> Termine </option>
                   <option value="wifi"> WLANs </option>
                   <option value="kindergarden"> Kitas </option>
                   <option value="wc"> WCs </option>
+                  <option value="webcam"> Webcams </option>
                 </select>
 
               </div>
@@ -100,7 +102,16 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
 
   private onDistrictChange = (event: React.FormEvent<HTMLSelectElement>) => {
     let searchParams = this.props.searchParams;
-    searchParams.district = event.currentTarget.value;
+    const district = event.currentTarget.value;
+    searchParams.district = district;
+
+    if (this.state.districts) {
+      const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
+      if (centerLat && centerLon) {
+      searchParams.centerLat = Number(centerLat);
+      searchParams.centerLon = parseFloat(centerLon);
+      }
+    }
     this.props.updateHandler(searchParams);
   }
 

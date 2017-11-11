@@ -3,6 +3,7 @@
   "slug"?: "cafe-garbo",
   "type": ["Cafe"
 
+    - event = Events
     - construction = Baustellen
     - pool = Bäder
     - playground = Spielplätze

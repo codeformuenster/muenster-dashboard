@@ -14,6 +14,8 @@ export interface ISearchParams {
   selectedId: number;
   category: string;
   district: string;
+  centerLat?: number
+  centerLon?: number
 }
 
 export interface ISearchResult {
@@ -29,12 +31,6 @@ export interface ISearchResult {
   dateStart: string;
   dateEnd: string;
   address?: string;
-}
-
-export interface IDistrictResultSlim {
-  name: string;
-  number: number;
-  id: number;
 }
 
 interface IAppProps {

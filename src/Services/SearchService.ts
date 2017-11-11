@@ -35,6 +35,7 @@ class SearchService {
           bool: {
             filter: {},
             must: [],
+            must_not: []
             // should: [
             // ]
           }
@@ -77,16 +78,24 @@ class SearchService {
       };
     }
 
-    if (isFrontPageSearch)  {
+    if ((searchParams.category === 'construction') || isFrontPageSearch)  {
       searchQuery.body.query.bool.must.push({
-            range: {
-              date_start: {
-                gte: '2017-11-01',
-              }
+          range: {
+            date_start: {
+              gte: '2017-11-01',
             }
           }
-        );
+        }
+      );
     }
+
+      //           should: [
+      //             { term: { author: 'kimchy' } },
+      //             { bool: { must: [
+      //               { match: { message: 'this is a test' } },
+      //               { term: { type: 'comment' } }
+      //             ] } }
+      //           ]
 
     if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
       searchQuery.body.query.bool.must.push({query_string: {'query': searchParams.searchQuery}});

@@ -8,6 +8,8 @@ import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
 import SearchResultsPool from './SearchResults/SearchResultsPool';
 import SearchResultsWc from './SearchResults/SearchResultsWc';
 import SearchResultsWifi from './SearchResults/SearchResultsWifi';
+import SearchResultsWebcam from './SearchResults/SearchResultsWebcam';
+import SearchResultsDefault from './SearchResults/SearchResultsDefault';
 
 import './SearchResults.css';
 
@@ -15,13 +17,19 @@ interface ISearchResultsProps {
     results: Array<ISearchResult>;
     updateHandler: any;
     searchParams: ISearchParams;
+    limit?: number;
 }
 
 class SearchResults extends React.Component<ISearchResultsProps, any> {
 
   render() {
-    const results = this.props.results || [];
+    let results = this.props.results || [];
     const searchParams = this.props.searchParams;
+
+    const limit = this.props.limit ? this.props.limit : 100;
+    if (results && results.length > limit) {
+      results = results.slice(0, this.props.limit);
+    }
 
     console.log('Rendering results');
     return (
@@ -51,7 +59,11 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
             case 'wifi':
                 searchResultComponent = <SearchResultsWifi result={result}/>;
                 break;
+            case 'webcam':
+                searchResultComponent = <SearchResultsWebcam result={result}/>;
+                break;
             default:
+                searchResultComponent = <SearchResultsDefault result={result}/>;
             }
 
             return (
@@ -154,6 +166,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
         break;
     case 'wifi':
         result = 'is-dark'
+        break;
+    case 'webcam':
+        result = 'is-success'
         break;
     default:
     }

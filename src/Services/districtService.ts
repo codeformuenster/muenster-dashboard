@@ -10,6 +10,8 @@ export interface IDistrictResultSlim {
   name: string;
   number: number;
   id: number;
+  centerLat: number;
+  centerLon: number;
 }
 
 /**
@@ -26,7 +28,7 @@ export class DistrictService {
       index: 'stadtteile',
       body: {
         'size' : 100,
-        '_source': [ 'properties' ]
+        '_source': [ 'properties', 'center' ]
       }
     };
 
@@ -42,22 +44,67 @@ export class DistrictService {
 
           if (body && body.hits) {
             console.log('hits', body.hits.total);
-            let results = body.hits.hits;
-            for (let result of results) {
-              const district = result._source.properties;
-
+            const results = body.hits.hits;
+            for (const { _id, _source: { properties: district, center: { coordinates } } } of results) {
               districts.push({
-                id: result._id,
+                id: _id,
                 name: district.Name,
                 number: district.Nr,
+                centerLat: coordinates[1],
+                centerLon: coordinates[0]
               });
             }
           }
+          // sort
+          districts = districts.sort((a, b) => { return a.name.localeCompare(b.name); });
           console.log('districts', districts);
 
           callback(districts);
-
         })
       );
+  }
+
+  public queryDistrictByCoordinates({ latitude, longitude }: { latitude:number, longitude:number }) {
+    const searchQuery: any = {
+      index: 'stadtteile',
+      body: {
+        'size' : 1,
+        '_source': [ 'properties.Name' ],
+        'query': {
+          'geo_shape': {
+            'geometry': {
+              'relation': 'contains',
+              'shape': {
+                'type': 'point',
+                'coordinates': [
+                    longitude,latitude
+                  ]
+              }
+            }
+          }
+        }
+      }
+    };
+
+    return new Promise(function (resolve, reject) {
+      client
+        .search(
+          searchQuery,
+          ((error: any, body: any) => {
+            if (error) {
+              console.trace('error', error.message);
+              return reject(error);
+            }
+
+            if (body && body.hits) {
+              const result = body.hits.hits[0];
+              if (result) {
+                return resolve(result._source.properties.Name);
+              }
+            }
+            return resolve('');
+          })
+        );
+    });
   }
 }

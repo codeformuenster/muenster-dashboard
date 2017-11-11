@@ -79,7 +79,7 @@ class FrontPage extends React.Component<IAppProps, any> {
                     {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
                     {this.hasGeoSelector
                       && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
-                    <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+                    <SearchResults limit={3} updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@ class FrontPage extends React.Component<IAppProps, any> {
           </div>
           </div>
           <div className="column">
-            <NewsList searchParams={this.state.searchParams}/>
+            <NewsList searchParams={this.state.searchParams} />
           </div>
           <div className="column">
             <h2 className="title">Wetter für die nächsten zwei Tage</h2>
