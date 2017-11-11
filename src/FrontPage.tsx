@@ -1,10 +1,10 @@
 import * as React from 'react';
 import SearchResults from './Components/SearchResults';
-import SearchBar from './Components/SearchBar';
 import LunchMap from './Components/LunchMap';
 import GeoSelector from './Components/GeoSelector';
+import NewsList from './Components/NewsList';
 import SearchService from './Services/SearchService';
-import './App.css';
+import './FrontPage.css';
 
 export interface ISearchParams {
   latitude: number;
@@ -40,7 +40,7 @@ export interface IDistrictResultSlim {
 interface IAppProps {
 }
 
-class App extends React.Component<IAppProps, any> {
+class FrontPage extends React.Component<IAppProps, any> {
 
   private lastSearchHash = '-';
   private searchService: SearchService;
@@ -57,29 +57,43 @@ class App extends React.Component<IAppProps, any> {
 
   public render() {
     return (
-      <div className="container is-fluid">
-        <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+      <div className="container">
 
-        <div className="tile is-ancestor">
-          <div className="tile is-parent">
+        <h2 className="title">Aktuell im Viertel</h2>
+        <div className="limitedHeight">
 
-            <div className="tile">
-              <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+          <div className="tile is-ancestor limitedHeight">
+            <div className="tile is-parent">
+
+              <div className="tile frontpageMap">
+
+                <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+
+              </div>
             </div>
-          </div>
-          <div className="tile is-parent">
-            <div className="tile">
-              <div className="article mainContent">
-                <div className="innerContent">
-                  {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
-                  {this.hasGeoSelector
-                    && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
-                  <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+
+            <div className="tile is-parent">
+              <div className="tile">
+                <div className="article mainContent">
+                  <div className="innerContent">
+                    {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
+                    {this.hasGeoSelector
+                      && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
+                    <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          </div>
+          <div className="column">
+            <NewsList searchParams={this.state.searchParams}/>
+          </div>
+          <div className="column">
+            <h2 className="title">Wetter für die nächsten zwei Tage</h2>
+            <img src="http://www.yr.no/place/Germany/North_Rhine-Westphalia/M%C3%BCnster/meteogram.png" />
+          </div>
+
       </div>
     );
   }
@@ -101,7 +115,7 @@ class App extends React.Component<IAppProps, any> {
     const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
     if (searchHash !== this.lastSearchHash) {
-      this.searchService.sendSearchToServer(
+      this.searchService.sendFrontpageSearchToServer(
         searchParams,
         (locations: ISearchResult[]) => {
           this.setState({ results: locations });
@@ -141,4 +155,4 @@ class App extends React.Component<IAppProps, any> {
 
 }
 
-export default App;
+export default FrontPage;

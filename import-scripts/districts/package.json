@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@turf/center-of-mass": "^5.0.4",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   }

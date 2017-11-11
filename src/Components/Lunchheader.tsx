@@ -38,7 +38,10 @@ class Lunchheader extends React.Component {
           <div id="lunchMenuDropdown" className="navbar-menu">
             <div className="navbar-start">
               <Link className="navbar-item" to="/">
-                Mittagstisch
+                Startseite
+              </Link>
+              <Link className="navbar-item" to="/stadtviertel">
+                Erkunde Dein Stadtviertel
               </Link>
 
               <div className="navbar-item has-dropdown is-hoverable">
@@ -46,15 +49,6 @@ class Lunchheader extends React.Component {
                   Menu
                 </a>
                 <div className="navbar-dropdown">
-                  <a className="navbar-item" href="/stadtteile">
-                    Stadtteile
-                  </a>
-
-                  <a className="navbar-item" href="/locations">
-                    Liste aller Locations
-                  </a>
-
-                  <hr className="navbar-divider" />
 
                   <a className="navbar-item" href="/copyright">
                     Copyright

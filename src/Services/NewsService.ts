@@ -27,7 +27,7 @@ export class NewsService {
     let searchQuery: any = {
       index: 'news',
       body: {
-        'size' : 100
+        'size' : 4
       }
     };
 

@@ -67,7 +67,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     if (this.centerPosition) {
       this.mapRef.leafletElement.setView(
         this.centerPosition,
-        17,
+        16,
         { animate: true, duration: 1}
       );
     } else {

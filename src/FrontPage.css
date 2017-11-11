@@ -1,0 +1,9 @@
+
+.limitedHeight {
+  height:500px;
+  overflow:hidden;
+}
+
+.wn_news .box {
+    height: 100%;
+}
