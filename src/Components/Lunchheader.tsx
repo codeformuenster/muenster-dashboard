@@ -24,7 +24,7 @@ class Lunchheader extends React.Component {
             </Link>
 
             <Link className="navbar-item" to="/">
-              <div className="lunchtext">Stadtteil-Dashboard</div>
+              <div className="lunchtext">MEIN-MS.de</div>
             </Link>
 
             <div className="navbar-burger burger" data-target="lunchMenuDropdown">

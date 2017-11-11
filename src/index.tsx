@@ -14,15 +14,16 @@ ReactDOM.render(
   <Router>
     <div className="outerWrapper">
       <Lunchheader />
-      <Route exact={true} path="/" component={App} />
-      <Route path="/impressum" component={Impressum} />
+      <div className="container is-fluid">
+        <Route exact={true} path="/" component={App} />
+        <Route path="/impressum" component={Impressum} />
 
-      <Route path="/team" component={WorkInProgress} />
-      <Route path="/locations" component={WorkInProgress} />
-      <Route path="/stadtteile" component={WorkInProgress} />
-      <Route path="/copyright" component={Copyright} />
-      <Route path="/unterstuetzen" component={WorkInProgress} />
-
+        <Route path="/team" component={WorkInProgress} />
+        <Route path="/locations" component={WorkInProgress} />
+        <Route path="/stadtteile" component={WorkInProgress} />
+        <Route path="/copyright" component={Copyright} />
+        <Route path="/unterstuetzen" component={WorkInProgress} />
+      </div>
     </div>
   </Router>,
   document.getElementById('root') as HTMLElement

@@ -3,7 +3,7 @@ import SearchResults from './Components/SearchResults';
 import SearchBar from './Components/SearchBar';
 import LunchMap from './Components/LunchMap';
 import GeoSelector from './Components/GeoSelector';
-
+import NewsList from './Components/NewsList';
 import SearchService from './Services/SearchService';
 import './App.css';
 
@@ -59,24 +59,33 @@ class App extends React.Component<IAppProps, any> {
   public render() {
     return (
       <div>
-      <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+        <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
 
-      <div className="tile is-ancestor">
+        <div className="tile is-ancestor">
           <div className="tile is-parent">
 
             <div className="tile">
               <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
             </div>
+          </div>
+          <div className="tile is-parent">
             <div className="tile">
               <div className="article mainContent">
-                {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
-                {this.hasGeoSelector
-                  && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
-                <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+                <div className="innerContent">
+                  {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
+                  {this.hasGeoSelector
+                    && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
+                  <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+                </div>
               </div>
             </div>
-            <div className="tile is-2">
-              Hier könnten Ihre Nachrichten stehen.
+          </div>
+          <div className="tile is-parent  is-2">
+
+            <div className="tile">
+              <div className="mainContent">
+                <NewsList searchParams={this.state.searchParams}/>
+              </div>
             </div>
           </div>
         </div>
