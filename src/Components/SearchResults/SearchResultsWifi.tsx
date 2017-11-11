@@ -54,61 +54,6 @@ class SearchResultsWifi extends SearchResults {
   protected isRunning(wlanStatus: string): boolean {
     return wlanStatus === 'in Bearbeitung';
   }
-
-  //private distancePrettifier(dist: number): string {
-
-    //return '' + Math.round(dist) + 'm';
-  //}
-
-  /**
-   * Onclick handler for search result row, updates selectedId in searchParams
-   */
-  //private toggleSelection = (event: any, id: number) => {
-
-    //let searchParams = this.props.searchParams;
-    //if (searchParams.selectedId === id) {
-      //searchParams.selectedId = 0;
-    //} else {
-      //searchParams.selectedId = id;
-    //}
-    //this.props.updateHandler(searchParams);
-  //}
-
-  /**
-   * get the feature icons html
-   */
-  //private renderFeatures(features: string[]) {
-    //let iconRows = [];
-
-    //for (let feature of features) {
-      //iconRows.push(this.getFeatureIcon(feature));
-    //}
-    //return iconRows;
-  //}
-
-  /**
-   * Get icon html for the feature named $feature
-   */
-  //private getFeatureIcon(feature: string) {
-
-    //const iconList = {
-      //wifi: ['wifi', 'W-Lan'],
-      //cash: ['money', 'Barzahlung'],
-      //debit_card: ['credit-card', 'EC-Karte'],
-      //credit_card: ['cc-visa', 'Kreditkarte'],
-      //special_card: ['warning', 'Bezahlen nur mit spezieller Karte. Automat am Eingang.']
-    //};
-    //const iconSettings = iconList[feature] ? iconList[feature] : null;
-    //if (iconSettings) {
-      //return (
-        //<span className="icon" data-balloon={iconSettings[1]} data-balloon-pos="up">
-          //<i className={'fa fa-' + iconSettings[0]}></i>
-        //</span>
-      //);
-    //}
-    //console.log('Unrecognized feature', feature);
-    //return null;
-  //}
 }
 
 export default SearchResultsWifi;
