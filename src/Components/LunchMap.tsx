@@ -85,12 +85,12 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     var iconDefault = this.getIcon('paw');
 
     const categoryIcons = {
-      'kindergarden': this.getIcon('baby-buggy'),
-      'construction': this.getIcon('vlc'),
-      'wifi': this.getIcon('wifi'),
-      'playground': this.getIcon('castle'),
-      'pool': this.getIcon('pool'),
-      'wc': this.getIcon('human-male-female')
+      'kindergarden': this.getIcon('baby-buggy', 'kindergarden'),
+      'construction': this.getIcon('vlc', 'construction'),
+      'wifi': this.getIcon('wifi', 'wifji'),
+      'playground': this.getIcon('castle', 'playground'),
+      'pool': this.getIcon('pool', 'pool'),
+      'wc': this.getIcon('human-male-female', 'wc')
     };
 
     var rows = [];
@@ -132,7 +132,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     return divIcon({
       className: 'lu-icon ' + extraClass,
       iconSize: new Point(40, 40),
-      html: '<i class="mdi mdi-' + name + '"></i>'
+      html: '<i class="mdi mdi-' + name + ' is-info"></i>'
     });
   }
 
