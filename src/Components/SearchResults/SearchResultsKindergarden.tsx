@@ -15,7 +15,7 @@ class SearchResultsKindergarden extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-pool"></i>
+              <i className="mdi mdi-48px mdi-baby-buggy"></i>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
