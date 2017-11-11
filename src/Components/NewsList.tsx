@@ -31,22 +31,25 @@ class NewsList extends React.Component<INewsListProps, INewsListState> {
     return (
       <div className="wn_news">
       <h2 className="title">WN Aktuell</h2>
+      <div className="columns">
           {this.state.news.map((result: INewsResult) => {
 
             return (
-              <article
-                key={result.id}
-                className="box"
-              >
-              <div className="content ">
-                <a className="subtitle" href={result.url}>{result.title}</a>
-                <div className="content">
-                 {result.description}
+              <div key={result.id} className="column">
+                <article
+                  className="box"
+                >
+                <div className="content ">
+                  <a className="subtitle" href={result.url}>{result.title}</a>
+                  <div className="content">
+                   {result.description}
+                   </div>
                  </div>
-               </div>
-              </article>
+                </article>
+              </div>
             );
           })}
+      </div>
       </div>
     );
   }

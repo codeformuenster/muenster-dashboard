@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ISearchParams } from '../App';
 import { DistrictService, IDistrictResultSlim } from '../Services/districtService';
 
-
 interface ISearchBarProps {
     results?: any;
     updateHandler: any;
@@ -13,12 +12,12 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
 
   constructor(props: ISearchBarProps) {
     super(props);
-     this.state = {
+    this.state = {
       districts: []
     };
     new DistrictService().loadDistricts(
       (results: any) => {
-        this.state.districts = results;
+        this.setState({districts: results});
       }
     );
   }
@@ -28,12 +27,11 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     const DebounceInput = require('react-debounce-input');
 
     let districtList = this.state.districts.map((d: IDistrictResultSlim) => {
-      return <option value={d.number}>{d.name}</option>
+      return <option key={d.number} value={d.number}>{d.name}</option>
     });
 
-
     return (
-      <div className="columns">
+      <div className="columns notification is-warning">
         <div className="column">
           <div className="field">
           {/* <label className="label is-large">Large input</label> */}
