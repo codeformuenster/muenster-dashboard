@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsWifi.css';
+import './SearchResultsPool.css';
 
-class SearchResultsWifi extends SearchResults {
+class SearchResultsPool extends SearchResults {
 
   render() {
-    console.log('Rendering wifi search result');
+    console.log('Rendering pool search result');
 
     const result = this.props.result;
 
@@ -15,7 +15,7 @@ class SearchResultsWifi extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-wifi"></i>
+              <i className="mdi mdi-48px mdi-pool"></i>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -26,13 +26,14 @@ class SearchResultsWifi extends SearchResults {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">W-LAN</span> &nbsp;
-              <span className={'tag ' + (this.isRunning(result.properties.WLAN_STATUS) ? 'is-success' : 'is-danger')}>
-                {result.properties.WLAN_STATUS}
-              </span>
+              <span className="tag is-dark">Bad</span> &nbsp;
             </span>
             <div className="is-clearfix">
-              Friedenssaal, Prinzipalmarkt 10
+              <a href={result.properties.LINK1} target="_blank">
+                <span className="icon is-large">
+                  <i className="mdi mdi-16px mdi-web"></i>
+                </span>
+                Website besuchen</a>
             </div>
             <p className="has-text-danger">
               <span className="icon">
@@ -52,8 +53,8 @@ class SearchResultsWifi extends SearchResults {
   }
 
   protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Betrieb';
+    return wlanStatus === 'in Bearbeitung';
   }
 }
 
-export default SearchResultsWifi;
+export default SearchResultsPool;

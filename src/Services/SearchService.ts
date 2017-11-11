@@ -86,9 +86,9 @@ class SearchService {
     if ( searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
     }
-    if ( searchParams.district) {
-      searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
-    }
+    // if ( searchParams.district) {
+    //   searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
+    // }
 
     client
       .search(
@@ -115,7 +115,7 @@ class SearchService {
                   lat: location.address.geo.lat,
                   lon: location.address.geo.lon,
                   name: location.name,
-                  distance: result.sort[0],
+                  distance: result.sort[1],
                   type: location.type,
                   dateStart: location.date_start,
                   url: location.url,

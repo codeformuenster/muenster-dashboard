@@ -33,7 +33,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
 
             <Map center={position} zoom={13} ref={(el: any) => {this.mapRef = el; }}>
               <TileLayer
-                url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                url="https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29kZTRtcyIsImEiOiJjaXlpeWNuaW8wMDQ0MnFuNGhocGZjMzVlIn0.QBWu9vI5AYJq68dtVIqCJg"
                 attribution="&copy; http://osm.org/copyright OpenStreetMap contributors"
               />
               <Marker position={position} icon={this.getIcon('user-circle-o', 'igreen')}>
@@ -88,7 +88,8 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     const categoryIcons = {
       'construction': this.getIcon('vlc'),
       'wifi': this.getIcon('wifi'),
-      'playground': this.getIcon('castle')
+      'playground': this.getIcon('castle'),
+      'pool': this.getIcon('pool')
     };
 
     var rows = [];
