@@ -7,6 +7,7 @@ import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
 import SearchResultsPool from './SearchResults/SearchResultsPool';
 import SearchResultsWc from './SearchResults/SearchResultsWc';
 import SearchResultsWifi from './SearchResults/SearchResultsWifi';
+import SearchResultsWebcam from './SearchResults/SearchResultsWebcam';
 
 import './SearchResults.css';
 
@@ -46,6 +47,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
                 break;
             case 'wifi':
                 searchResultComponent = <SearchResultsWifi result={result}/>;
+                break;
+            case 'webcam':
+                searchResultComponent = <SearchResultsWebcam result={result}/>;
                 break;
             default:
             }
@@ -147,6 +151,9 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
         break;
     case 'wifi':
         result = 'is-dark'
+        break;
+    case 'webcam':
+        result = 'is-success'
         break;
     default:
     }

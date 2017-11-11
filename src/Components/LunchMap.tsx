@@ -98,7 +98,8 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
       'wifi': this.getIcon('wifi', 'wifji'),
       'playground': this.getIcon('castle', 'playground'),
       'pool': this.getIcon('pool', 'pool'),
-      'wc': this.getIcon('human-male-female', 'wc')
+      'wc': this.getIcon('human-male-female', 'wc'),
+      'webcam': this.getIcon('camera', 'webcam')
     };
 
     var rows = [];
