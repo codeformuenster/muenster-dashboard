@@ -99,7 +99,16 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
 
   private onDistrictChange = (event: React.FormEvent<HTMLSelectElement>) => {
     let searchParams = this.props.searchParams;
-    searchParams.district = event.currentTarget.value;
+    const district = event.currentTarget.value;
+    searchParams.district = district;
+
+    if (this.state.districts) {
+      const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
+      if (centerLat && centerLon) {
+      searchParams.centerLat = Number(centerLat);
+      searchParams.centerLon = parseFloat(centerLon);
+      }
+    }
     this.props.updateHandler(searchParams);
   }
 
