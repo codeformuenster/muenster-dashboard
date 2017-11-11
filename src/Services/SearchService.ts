@@ -36,13 +36,8 @@ class SearchService {
               //   }
               // }
             ],
-            should: [
-              {
-                query_string: {
-                  query: (searchParams.searchQuery === undefined ? '' : searchParams.searchQuery)
-                }
-              }
-            ]
+            // should: [
+            // ]
           }
         },
         'sort': [
@@ -61,6 +56,8 @@ class SearchService {
         ]
       }
     };
+
+
     if (searchParams.district === undefined || searchParams.district === '')  {
       searchQuery.body.query.bool.filter.geo_distance = {
         distance: '20km',
@@ -81,15 +78,17 @@ class SearchService {
         }
       };
     }
-    if (searchParams.searchQuery !== undefined) {
-      // searchQuery.body.q = searchParams.searchQuery + '*';
+
+    if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
+      searchQuery.body.query.bool.must.push({query_string: {'query': searchParams.searchQuery}})
     }
+
     if ( searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
     }
-    // if ( searchParams.district) {
-    //   searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
-    // }
+    if ( searchParams.district) {
+      searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
+    }
 
     client
       .search(
