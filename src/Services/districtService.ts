@@ -9,8 +9,9 @@ let client = new Elasticsearch.Client({
 export interface IDistrictResultSlim {
   name: string;
   number: number;
-  coordinates: [number, number];
   id: number;
+  centerLat: number;
+  centerLon: number;
 }
 
 /**
@@ -49,7 +50,8 @@ export class DistrictService {
                 id: _id,
                 name: district.Name,
                 number: district.Nr,
-                coordinates
+                centerLat: coordinates[1],
+                centerLon: coordinates[0]
               });
             }
           }

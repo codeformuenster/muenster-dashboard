@@ -21,12 +21,17 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
   private markerRef: Marker|null;
   private mapRef: Map;
   private centerPosition: LatLng|null;
+  private districtCenterPosition: LatLng|null;
 
   render() {
 
-    if (this.props.searchParams.latitude) {
+    const { latitude, longitude, centerLat, centerLon } = this.props.searchParams;
+    if (latitude || centerLat) {
 
-      let position = new LatLng( this.props.searchParams.latitude, this.props.searchParams.longitude);
+      let position = new LatLng(latitude, longitude);
+      if (centerLat && centerLon) {
+        this.districtCenterPosition = new LatLng(centerLat, centerLon);
+      }
 
       this.centerPosition = null;
       const map = (
@@ -64,18 +69,21 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     if (!this.mapRef) {
       return ;
     }
+
+    let center = new LatLng( this.props.searchParams.latitude, this.props.searchParams.longitude);
+    let zoom = 13;
+
     if (this.centerPosition) {
-      this.mapRef.leafletElement.setView(
-        this.centerPosition,
-        16,
-        { animate: true, duration: 1}
-      );
-    } else {
-      this.mapRef.leafletElement.setView(
-        new LatLng( this.props.searchParams.latitude, this.props.searchParams.longitude),
-        13,
-        {animate: true, duration: 1});
+      center = this.centerPosition;
+      zoom = 16;
+    } else if (this.districtCenterPosition) {
+      center = this.districtCenterPosition;
     }
+    this.mapRef.leafletElement.setView(
+      center,
+      zoom,
+      { animate: true, duration: 1}
+    );
   }
 
   /**
