@@ -9,6 +9,7 @@ let client = new Elasticsearch.Client({
 export interface IDistrictResultSlim {
   name: string;
   number: number;
+  coordinates: [number, number];
   id: number;
 }
 
@@ -26,7 +27,7 @@ export class DistrictService {
       index: 'stadtteile',
       body: {
         'size' : 100,
-        '_source': [ 'properties' ]
+        '_source': [ 'properties', 'center' ]
       }
     };
 
@@ -42,21 +43,21 @@ export class DistrictService {
 
           if (body && body.hits) {
             console.log('hits', body.hits.total);
-            let results = body.hits.hits;
-            for (let result of results) {
-              const district = result._source.properties;
-
+            const results = body.hits.hits;
+            for (const { _id, _source: { properties: district, center: { coordinates } } } of results) {
               districts.push({
-                id: result._id,
+                id: _id,
                 name: district.Name,
                 number: district.Nr,
+                coordinates
               });
             }
           }
+          // sort
+          districts = districts.sort((a, b) => { return a.name.localeCompare(b.name) });
           console.log('districts', districts);
 
           callback(districts);
-
         })
       );
   }
