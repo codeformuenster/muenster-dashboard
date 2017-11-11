@@ -12,10 +12,17 @@ let client = new Elasticsearch.Client({
  */
 class SearchService {
 
+  /**
+   * Frontpage has a modified search query
+   */
+  public sendFrontpageSearchToServer(searchParams: ISearchParams, callback: any) {
+    this.sendSearchToServer(searchParams, callback, true);
+  }
+
   /*
    * Execute search
    */
-  public sendSearchToServer(searchParams: ISearchParams, callback: any) {
+  public sendSearchToServer(searchParams: ISearchParams, callback: any, isFrontPageSearch: boolean = false) {
 
     const latitude = searchParams.latitude;
     const longitude = searchParams.longitude;
@@ -23,19 +30,11 @@ class SearchService {
     let searchQuery: any = {
       index: 'places',
       body: {
-        size : 100,
+        size : isFrontPageSearch ? 15 : 100,
         query: {
           bool: {
             filter: {},
-            must: [
-              // {
-              //   range: {
-              //       date_start: {
-              //           gte: '2017-11-01',
-              //       }
-              //   }
-              // }
-            ],
+            must: [],
             // should: [
             // ]
           }
@@ -57,10 +56,9 @@ class SearchService {
       }
     };
 
-
     if (searchParams.district === undefined || searchParams.district === '')  {
       searchQuery.body.query.bool.filter.geo_distance = {
-        distance: '20km',
+        distance: '7km',
         'address.geo': {
           lat: latitude,
           lon: longitude
@@ -79,10 +77,20 @@ class SearchService {
       };
     }
 
-    if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
-      searchQuery.body.query.bool.must.push({query_string: {'query': searchParams.searchQuery}})
+    if (isFrontPageSearch)  {
+      searchQuery.body.query.bool.must.push({
+            range: {
+              date_start: {
+                gte: '2017-11-01',
+              }
+            }
+          }
+        );
     }
 
+    if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
+      searchQuery.body.query.bool.must.push({query_string: {'query': searchParams.searchQuery}});
+    }
     if ( searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
     }
