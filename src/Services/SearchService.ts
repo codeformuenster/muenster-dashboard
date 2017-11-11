@@ -33,11 +33,9 @@ class SearchService {
         size : isFrontPageSearch ? 15 : 100,
         query: {
           bool: {
-            filter: {},
+            // filter: {},
             must: [],
             must_not: []
-            // should: [
-            // ]
           }
         },
         'sort': [
@@ -57,55 +55,148 @@ class SearchService {
       }
     };
 
-    if (searchParams.district === undefined || searchParams.district === '')  {
-      searchQuery.body.query.bool.filter.geo_distance = {
-        distance: '7km',
-        'address.geo': {
-          lat: latitude,
-          lon: longitude
-        }
-      };
-    } else {
-      searchQuery.body.query.bool.filter.geo_shape = {
-        'address.geometry': {
-          'indexed_shape': {
-            'index': 'stadtteile',
-            'type': 'stadtteil',
-            'id': (searchParams.district === undefined ? '' : searchParams.district),
-            'path': 'geometry'
-          }
-        }
-      };
-    }
+    // if (!searchParams.district)  {
+    //   searchQuery.body.query.bool.filter.geo_distance = {
+    //     distance: '7km',
+    //     'address.geo': {
+    //       lat: latitude,
+    //       lon: longitude
+    //     }
+    //   };
+    // }
+    // else
+    // if (centerLat && centerLon) {
+    //   console.log("TEST");
+    //   if (!searchQuery.body.query.bool.must) {
+    //     searchQuery.body.query.bool.must = []
+    //   };
+    //   if (!searchQuery.body.query.bool.should) {
+    //     searchQuery.body.query.bool.should = []
+    //   };
+    //   searchQuery.body.query.bool.should.push({'geo_distance' : {
+    //     distance: '1km',
+    //     'address.geo': {
+    //       lat: centerLat,
+    //       lon: centerLon
+    //     }
+    //   }
+    // });
+    //
+    //   // )
+    //   // filter.geo_distance = {
+    //   //   distance: '1km',
+    //   //   'address.geo': {
+    //   //     lat: centerLat,
+    //   //     lon: centerLon
+    //   //   }
+    //   // };
+    // }
 
-    if ((searchParams.category === 'construction') || isFrontPageSearch)  {
-      searchQuery.body.query.bool.must.push({
-          range: {
-            date_start: {
-              gte: '2017-11-01',
-            }
-          }
-        }
-      );
-    }
-
-      //           should: [
-      //             { term: { author: 'kimchy' } },
-      //             { bool: { must: [
-      //               { match: { message: 'this is a test' } },
-      //               { term: { type: 'comment' } }
-      //             ] } }
-      //           ]
-
-    if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
+    // if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
+    if (searchParams.searchQuery)  {
       searchQuery.body.query.bool.must.push({query_string: {'query': searchParams.searchQuery}});
     }
-    if ( searchParams.category) {
+
+    if (searchParams.category) {
       searchQuery.body.query.bool.must.push({term: {'type': searchParams.category}});
+    } else {
+
+      // searchQuery.body.query.bool.should.push(
+      if (!searchQuery.body.query.bool.should) {
+        searchQuery.body.query.bool.should = []
+      };
+      // searchQuery.body.query.bool.should.push(
+      searchQuery.body.query.bool.should.push(
+            {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "type": "construction"
+                    }
+                  },
+                  {
+                    "range": {
+                      "date_start": {
+                        "gte": "now",
+                        "lte": "now+10d"
+                      }
+                    }
+                  },
+                  {
+                    "geo_distance": {
+                      "distance": "2km",
+                      "address.geo": {
+                        "lat": centerLat ? centerLat: latitude,
+                        "lon": centerLon ? centerLon: longitude
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "bool": {
+                "must_not": [
+                  {
+                    "term": {
+                      "type": "construction"
+                    }
+                  }
+                ],
+                "must": [
+                  {
+                    "geo_distance": {
+                      "distance": "2km",
+                      "address.geo": {
+                        "lat": centerLat ? centerLat: latitude,
+                        "lon": centerLon ? centerLon: longitude
+                      }
+                    }
+                  }
+                ]
+              }
+            });
+
+
+
+      // searchQuery.body.query.bool.filter = {
+      //   "bool": {
+      //     "should": [
+      //       {
+      //         "bool": {
+      //           "must": [
+      //             {
+      //               "term": {
+      //                 "type": "construction"
+      //               }
+      //             },
+      //             {
+      //               "range": {
+      //                 "date_start": {
+      //                   "gte": "now",
+      //                   "lte": "now+10d"
+      //                 }
+      //               }
+      //             }
+      //           ]
+      //         }
+      //       },
+      //       {
+      //         "bool": {
+      //           "must_not": [
+      //             {
+      //               "term": {
+      //                 "type": "construction"
+      //               }
+      //             }
+      //           ]
+      //         }
+      //       }
+      //     ]
+      //   }
+      // }
     }
-    // if ( searchParams.district) {
-    //   searchQuery.body.query.bool.must.push({term: {'address.district': searchParams.district}});
-    // }
 
     client
       .search(
