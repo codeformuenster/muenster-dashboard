@@ -1,0 +1,7 @@
+.wn_news .box {
+    height: 100%;
+}
+.wn_news a.subtitle {
+    font-weight: bold;
+    display: block;
+}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ISearchParams } from '../App';
 import { NewsService, INewsResult } from '../Services/NewsService';
+import './NewsList.css';
 
 interface INewsListProps {
     searchParams: ISearchParams;

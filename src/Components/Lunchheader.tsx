@@ -9,7 +9,7 @@ class Lunchheader extends React.Component {
     return (
       <div>
         <div className="Lunchheader"></div>
-        <nav className="navbar is-dark">
+        <nav className="navbar is-dark msRed">
           <div className="navbar-brand">
             <Link className="App-logo" to="/">
 
@@ -41,6 +41,9 @@ class Lunchheader extends React.Component {
                 Startseite
               </Link>
               <Link className="navbar-item" to="/stadtviertel">
+                <span className="icon msIcon">
+                  <i className="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                </span>
                 Erkunde Dein Stadtviertel
               </Link>
 
@@ -56,9 +59,6 @@ class Lunchheader extends React.Component {
                   <a className="navbar-item" href="/team">
                     Team
                   </a>
-                  <a className="navbar-item" href="/unterstuetzen">
-                    Unterstützen
-                  </a>
                   <a className="navbar-item" href="/impressum">
                     Kontakt &amp; Impressum
                   </a>
@@ -70,6 +70,7 @@ class Lunchheader extends React.Component {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="field is-grouped">
+                {/*
                   <p className="control">
                     <a
                       className="bd-tw-button button"
@@ -87,6 +88,7 @@ class Lunchheader extends React.Component {
                       </span>
                     </a>
                   </p>
+
                   <p className="control">
                     <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
                       <span className="icon">
@@ -95,9 +97,12 @@ class Lunchheader extends React.Component {
                       <span>Mitmachen</span>
                     </a>
                   </p>
+
+                  */}
                 </div>
               </div>
             </div>
+
           </div>
         </nav>
       </div>
