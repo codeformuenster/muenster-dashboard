@@ -1,11 +1,41 @@
 import * as React from 'react';
 import './Lunchheader.css';
 import { Link } from 'react-router-dom';
+import { DistrictService } from '../Services/districtService';
 
 const logo = require('./Logo.svg');
 
-class Lunchheader extends React.Component {
+class Lunchheader extends React.Component<any,any> {
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      district: ''
+    };
+
+    // Oh noes! Dirty hack :(
+    if (!navigator.geolocation) {
+      return;
+    }
+
+    const success = (position: any) => {
+      new DistrictService().queryDistrictByCoordinates(position.coords)
+        .then((district:string) => {
+          this.setState({ district });
+        })
+        .catch(() => {});
+    };
+
+    const error = () => {};
+
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
   render() {
+    let currentDistrict = <p></p>
+    if (this.state.district) {
+      currentDistrict = <p className="control">Du bist hier: {this.state.district}</p>
+    }
     return (
       <div>
         <div className="Lunchheader"></div>
@@ -70,6 +100,7 @@ class Lunchheader extends React.Component {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="field is-grouped">
+                  {currentDistrict}
                 {/*
                   <p className="control">
                     <a
