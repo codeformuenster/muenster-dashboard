@@ -15,7 +15,7 @@ class SearchResultsLunch extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-castle"></i>
+              <i className="mdi mdi-48px mdi-food"></i>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -62,7 +62,7 @@ class SearchResultsLunch extends SearchResults {
 
                 {result.properties.url && (
                     <div className="column">
-                      <a className="button is-link" href={result.url}>
+                      <a className="button is-link" href={result.properties.url} target="_blank">
                         <i className="fa fa-home"></i>
                         <span className="is-hidden-mobile">&nbsp;Homepage</span>
                       </a>
@@ -71,7 +71,7 @@ class SearchResultsLunch extends SearchResults {
 
                 {result.properties.menu_url && (
                     <div className="column">
-                      <a className="button is-link" href={result.properties.menu_url}>Menu</a>
+                      <a className="button is-link" href={result.properties.menu_url} target="_blank">Menu</a>
                     </div>
                 )}
               </div>
