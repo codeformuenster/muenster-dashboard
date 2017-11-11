@@ -1,0 +1,32 @@
+{
+  "name": "FOK",
+  "slug": "fok-muenster",
+  "type": ["Imbiss"],
+  "food": ["Döner"],
+  "min_price": 4.00,
+  "price_type": "range",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "weekday",
+      "start": "12:00",
+      "end": "14:30"
+    }
+  ],
+  "payment_methods": ["cash"],
+  "wifi": false,
+  "lunch_desc": "Hier gibts Fast-Food unter dem Motto 'Fleisch oder Kartoffel' (FOK)",
+  "menu_url": "https://www.foodora.de/restaurant/s9hu/fok-food",
+  "url": "https://www.facebook.com/fok.muenster/",
+  "address": {
+    "street": "Hansaring 37",
+    "zip": "48155",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.9533033,
+      "lon": 7.6413255
+    }
+  },
+  "phone": "",
+  "rating": 3
+}

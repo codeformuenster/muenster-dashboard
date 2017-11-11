@@ -1,0 +1,54 @@
+{
+  "name": "Der silberne Löffel",
+  "slug": "der-silberne-loeffel",
+  "type": ["Restaurant"],
+  "food": ["Pasta", "Pizza"],
+  "min_price": 7.50,
+  "price_type": "fixed",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "tuesday",
+      "start": "11:45",
+      "end": "14:00"
+    },
+    {
+      "type": "lunch",
+      "day": "wednesday",
+      "start": "11:45",
+      "end": "14:00"
+    },
+    {
+      "type": "lunch",
+      "day": "thursday",
+      "start": "11:45",
+      "end": "14:00"
+    },
+    {
+      "type": "lunch",
+      "day": "friday",
+      "start": "11:45",
+      "end": "14:00"
+    },
+    {
+      "type": "lunch",
+      "day": "saturday",
+      "start": "11:45",
+      "end": "14:00"
+    }
+  ],
+  "payment_methods": ["cash", "debit_card", "credit_card"],
+  "wifi": false,
+  "menu_url": "https://i.imgur.com/QwsmbNb.jpg",
+  "url": "http://www.der-silberne-loeffel.de/",
+  "address": {
+    "street": "Überwasserstraße 3",
+    "zip": "48143",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.965230,
+      "lon": 7.620721
+    }
+  },
+  "phone": "+49251392045"
+}

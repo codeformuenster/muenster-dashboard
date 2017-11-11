@@ -1,0 +1,43 @@
+{
+  "name": "King Döner 2",
+  "slug": "king-doener2",
+  "type": ["Imbiss"],
+  "food": ["Döner", "Currywurst", "Pizza", "Burger", "Pommes", "Bratwurst"],
+  "min_price": 4,
+  "price_type": "range",
+  "times": [
+    {
+      "type": "lunch",
+      "day": "daily",
+      "start": "11:00",
+      "end": "00:00"
+    },
+    {
+      "type": "lunch",
+      "day": "friday",
+      "start": "11:00",
+      "end": "06:30"
+    },
+    {
+      "type": "lunch",
+      "day": "saturday",
+      "start": "11:00",
+      "end": "06:30"
+    }
+  ],
+  "lunch_desc": "Familiengeführte Dönerbude, hier gibt's wenig zu beanstanden.",
+  "payment_methods": ["cash"],
+  "wifi": false,
+  "menu_url": "",
+  "url": "https://www.facebook.com/kingdoner2/",
+  "address": {
+    "street": "Albersloher Weg 3",
+    "zip": "48155",
+    "city": "Münster",
+    "geo": {
+      "lat": 51.9520370,
+      "lon": 7.6364120
+    }
+  },
+  "phone": "+49 251 2897700"
+}
