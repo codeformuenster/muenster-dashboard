@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE Belegungen SYSTEM "bel.dtd">
+<Belegungen>
+  <Zeitraum>
+      <Von>13.10.2017</Von>
+      <Bis>20.01.2018</Bis>
+  </Zeitraum>
+    <Einrichtung>
+        <Nummer>00001</Nummer>
+        <Name>Aaseesporthalle</Name>
+    <Segmente>
+    <Segment>
+        <SegmentNr1>G</SegmentNr1>
+        <SegmentName>Gesamtspielfläche</SegmentName>
+      </Segment>
+    <Segment>
+        <SegmentNr1>G</SegmentNr1>
+        <SegmentNr2>S1</SegmentNr2>
+        <SegmentName>Segment 1</SegmentName>
+      </Segment>
+    <Segment>
+        <SegmentNr1>G</SegmentNr1>
+        <SegmentNr2>S2</SegmentNr2>
+        <SegmentName>Segment 2</SegmentName>
+      </Segment>
+    <Segment>
+        <SegmentNr1>G</SegmentNr1>
+        <SegmentNr2>S3</SegmentNr2>
+        <SegmentName>Segment 3</SegmentName>
+      </Segment>
+      </Segmente>
+    <Einrichtungsbelegungen>
+      <Belegung ID="1">
+          <Datum>13.10.2017</Datum>
+          <Wochentag>Fr</Wochentag>
+          <Start>08:00</Start>
+          <Ende>09:30</Ende>
+          <Dauer>01:30</Dauer>
+          <Anfangsdatum>07.09.2011</Anfangsdatum>
+          <Endedatum>00.00.0000</Endedatum>
+          <Saison></Saison>
+          <Nutzer-NutzergruppenNr></Nutzer-NutzergruppenNr>
+          <Nutzer-Nutzergruppe></Nutzer-Nutzergruppe>
+          <Nutzer-NutzergruppeKng>V</Nutzer-NutzergruppeKng>
+          <Taetigkeit></Taetigkeit>
+          <Bereich>Schulsport</Bereich>
+          <BelegungstypKey></BelegungstypKey>
+          <Belegungstyp></Belegungstyp>
+          <Kommentar1></Kommentar1>
+          <Kommentar2></Kommentar2>
+          <Kng>P</Kng>
+          <DatumGeaendert>00.00.0000</DatumGeaendert>
+          <DatumErstellt>00.00.0000</DatumErstellt>
+          <TeilnehmerzahlGesamt>0</TeilnehmerzahlGesamt>
+          <TeilnehmerzahlMax>0</TeilnehmerzahlMax>
+          <SegNr1>G</SegNr1>
+          <SegNr2>S1</SegNr2>
+          <SegNr3></SegNr3>
+          <SegName>Segment 1</SegName>
+        </Belegung>
+        <Belegung ID="2">
+            <Datum>13.10.2017</Datum>
+            <Wochentag>Fr</Wochentag>
+            <Start>08:00</Start>
+            <Ende>10:30</Ende>
+            <Dauer>02:30</Dauer>
+            <Anfangsdatum>26.08.2015</Anfangsdatum>
+            <Endedatum>00.00.0000</Endedatum>
+            <Saison></Saison>
+            <Nutzer-NutzergruppenNr></Nutzer-NutzergruppenNr>
+            <Nutzer-Nutzergruppe></Nutzer-Nutzergruppe>
+            <Nutzer-NutzergruppeKng>V</Nutzer-NutzergruppeKng>
+            <Taetigkeit></Taetigkeit>
+            <Bereich>Schulsport</Bereich>
+            <BelegungstypKey></BelegungstypKey>
+            <Belegungstyp></Belegungstyp>
+            <Kommentar1></Kommentar1>
+            <Kommentar2></Kommentar2>
+            <Kng>P</Kng>
+            <DatumGeaendert>00.00.0000</DatumGeaendert>
+            <DatumErstellt>00.00.0000</DatumErstellt>
+            <TeilnehmerzahlGesamt>0</TeilnehmerzahlGesamt>
+            <TeilnehmerzahlMax>0</TeilnehmerzahlMax>
+            <SegNr1>G</SegNr1>
+            <SegNr2>S3</SegNr2>
+            <SegNr3></SegNr3>
+            <SegName>Segment 3</SegName>
+          </Belegung>
+<Belegung ID="5">
+    <Datum>13.10.2017</Datum>
+    <Wochentag>Fr</Wochentag>
+    <Start>10:30</Start>
+    <Ende>11:45</Ende>
+    <Dauer>01:15</Dauer>
+    <Anfangsdatum>27.06.2001</Anfangsdatum>
+    <Endedatum>00.00.0000</Endedatum>
+    <Saison></Saison>
+    <Nutzer-NutzergruppenNr></Nutzer-NutzergruppenNr>
+    <Nutzer-Nutzergruppe></Nutzer-Nutzergruppe>
+    <Nutzer-NutzergruppeKng>V</Nutzer-NutzergruppeKng>
+    <Taetigkeit>Kinderturnen</Taetigkeit>
+    <Bereich>Breitensport</Bereich>
+    <BelegungstypKey></BelegungstypKey>
+    <Belegungstyp></Belegungstyp>
+    <Kommentar1></Kommentar1>
+    <Kommentar2></Kommentar2>
+    <Kng>P</Kng>
+    <DatumGeaendert>07.07.2009</DatumGeaendert>
+    <DatumErstellt>00.00.0000</DatumErstellt>
+    <TeilnehmerzahlGesamt>0</TeilnehmerzahlGesamt>
+    <TeilnehmerzahlMax>0</TeilnehmerzahlMax>
+    <SegNr1>G</SegNr1>
+    <SegNr2>S3</SegNr2>
+    <SegNr3></SegNr3>
+    <SegName>Segment 3</SegName>
+  </Belegung>
+<Belegung ID="7">
+    <Datum>13.10.2017</Datum>
+    <Wochentag>Fr</Wochentag>
+    <Start>14:30</Start>
+    <Ende>16:00</Ende>
+    <Dauer>01:30</Dauer>
+    <Anfangsdatum>00.00.0000</Anfangsdatum>
+    <Endedatum>00.00.0000</Endedatum>
+    <Saison></Saison>
+    <Nutzer-NutzergruppenNr>003130</Nutzer-NutzergruppenNr>
+    <Nutzer-Nutzergruppe>Sportverein Blau-Weiß Aasee e.V.</Nutzer-Nutzergruppe>
+    <Nutzer-NutzergruppeKng>V</Nutzer-NutzergruppeKng>
+    <Taetigkeit>Turnen</Taetigkeit>
+    <Bereich>Breitensport</Bereich>
+    <BelegungstypKey></BelegungstypKey>
+    <Belegungstyp></Belegungstyp>
+    <Kommentar1>sportmotorische Grundausbildung</Kommentar1>
+    <Kommentar2></Kommentar2>
+    <Kng>P</Kng>
+    <DatumGeaendert>00.00.0000</DatumGeaendert>
+    <DatumErstellt>00.00.0000</DatumErstellt>
+    <TeilnehmerzahlGesamt>0</TeilnehmerzahlGesamt>
+    <TeilnehmerzahlMax>0</TeilnehmerzahlMax>
+    <SegNr1>G</SegNr1>
+    <SegNr2>S1</SegNr2>
+    <SegNr3></SegNr3>
+    <SegName>Segment 1</SegName>
+  </Belegung>
+      </Einrichtungsbelegungen>
+  </Einrichtung>
+</Belegungen>

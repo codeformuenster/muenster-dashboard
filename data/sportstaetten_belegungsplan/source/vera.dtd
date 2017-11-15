@@ -1,0 +1,10 @@
+<!ELEMENT Datumvon (#PCDATA)>
+<!ELEMENT Datumbis (#PCDATA)>
+<!ELEMENT VeranstaltungArt (#PCDATA)>
+<!ELEMENT Veranstalter (#PCDATA)>
+<!ELEMENT Veranstaltungsort (#PCDATA)>
+<!ELEMENT Beschreibung (#PCDATA)>
+<!ELEMENT Start (#PCDATA)>
+<!ELEMENT Ende (#PCDATA)>
+<!ELEMENT Veranstaltungen (Veranstaltung*)>
+<!ELEMENT Veranstaltung (Datumvon?,Datumbis?,VeranstaltungArt?,Veranstalter?,Veranstaltungsort?,Beschreibung?,Start?,Ende?)>
