@@ -62,9 +62,6 @@ def main():
             with open('target/sportstaette_' + number_tag.text + '.json', 'w') as outfile:
                 json.dump(output, outfile)
 
-        # df = pd.DataFrame(json).drop_duplicates(keep='first')
-        # print(df)
-
 
 if __name__ == '__main__':
     main()
