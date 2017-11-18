@@ -1,0 +1,9 @@
+version: '2'
+services:
+    cli:
+        build:
+            context: ./
+            dockerfile: ./cli.docker
+        volumes:
+            - ./:/code
+

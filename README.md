@@ -5,7 +5,7 @@ https://github.com/Microsoft/TypeScript-React-Starter
 
     npm install
 
-## Running elasticsearch
+## Running elasticsearch and the react dev tool
 
     sudo docker-compose up
 
@@ -13,17 +13,26 @@ If you get problems with file permissions on startup, check that the mounted dir
 
 Great Elasticsearch JS documentation is linked here: https://github.com/elastic/elasticsearch-js
 
-## Initialize the Database
+
+
+## Running only the react app
+
+    npm run start
+
+
+# Initialize the Database
 
     cd src/scripts
     ../../node_modules/typescript/bin/tsc initialize-database.ts && node ./initialize-database.js  
 
-## Running the react app
+## Importing data
 
-    # start elasticsearch (if not already running)
-    sudo docker-compose up
+    # Aufgrabungen und similar things
+    See README in `import-scripts`
 
-    npm run start
+    # Wn events and news, and stadt münster webcams:
+    See README in `import-scripts/wn-events-news-cams`
+
 
 ## Deployment auf Ubuntu 16.04
 
@@ -52,7 +61,7 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
  - WN News:  https://elasticsearch.codeformuenster.org/news/_search
  - Alle locations (Aufgrabungsmeldungen, Kindergärten, etc..): places
  - WN Events: events
- - Stadtteile geojson shapes: stadtteile 
+ - Stadtteile geojson shapes: stadtteile
 
 
 ## Playing with the data
@@ -240,6 +249,3 @@ Open kibana:
         }
       }
     }
-
-# Importing data
-See README in `import-scripts`

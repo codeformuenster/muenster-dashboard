@@ -1,0 +1,27 @@
+{
+    "name": "mshack/data-scraper",
+    "description": "Data scraper component",
+    "authors": [
+        {
+            "name": "Uwe Trotzek",
+            "email": "trotzek@citeq.de"
+        }
+    ],
+    "require": {
+        "guzzle/guzzle": "^3.9",
+        "symfony/console": "^3.3",
+        "soundasleep/html2text": "^0.5.0",
+        "willdurand/geocoder": "^3.3",
+        "simplepie/simplepie": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "MSHACK\\DataScraper\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "5.6"
+        }
+    }
+}
