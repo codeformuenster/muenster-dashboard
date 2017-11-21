@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
+import { IDistrictResultSlim } from '../Services/districtService';
 
 // for custom markers
 import { divIcon, Point } from 'leaflet';
@@ -14,6 +15,7 @@ interface ILunchMapProps {
     results: Array<ISearchResult>;
     updateHandler: any;
     searchParams: ISearchParams;
+    districtPolygon?: IDistrictResultSlim;
 }
 
 class LunchMap extends React.Component<ILunchMapProps, any> {
@@ -34,6 +36,12 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
       }
 
       this.centerPosition = null;
+
+      let highlightedDistrict;
+      if (this.props.districtPolygon) {
+       highlightedDistrict = <GeoJSON data={this.props.districtPolygon.polygon} />;
+      }
+
       const map = (
 
             <Map center={position} zoom={13} ref={(el: any) => {this.mapRef = el; }}>
@@ -46,6 +54,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
                 </Popup>
               </Marker>
               {this.getAllMarkers(this.props.results)}
+              {highlightedDistrict}
             </Map>
 
         );
