@@ -23,8 +23,8 @@ class GeoSelector extends React.Component<IGeoSelectorProps, any> {
       {this.state.showInfoBox && (
           <div className="notification is-danger">
           <button className="delete" onClick={() => {this.setState({showInfoBox: false}); }}></button>
-          Diese Anwendung funktioniert am besten, wenn Du die Übermittelung Deiner Standort-Daten zulässt.
-          Alternativ kannst Du Deine Postleitzahl eingeben, dann versuchen wir ungefähr die von Dir am wenigsten weit entfernten Lokale zu finden. 
+          Diese Anwendung funktioniert am besten, wenn Du die Übermittlung Deiner Standort-Daten zulässt.
+          Alternativ kannst Du Deine Postleitzahl eingeben, dann versuchen wir ungefähr die von Dir am wenigsten weit entfernten Lokale zu finden.
         </div>
       )}
 
