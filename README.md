@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/codeformuenster/familien-dashboard.svg)](https://gemnasium.com/codeformuenster/familien-dashboard)
+
 This project was bootstrapped with
 https://github.com/Microsoft/TypeScript-React-Starter
 
