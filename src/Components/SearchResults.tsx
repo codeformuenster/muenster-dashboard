@@ -11,6 +11,7 @@ import SearchResultsWifi from './SearchResults/SearchResultsWifi';
 import SearchResultsWebcam from './SearchResults/SearchResultsWebcam';
 import SearchResultsDefault from './SearchResults/SearchResultsDefault';
 import SearchResultsEvent from './SearchResults/SearchResultsEvent';
+import SearchResultDetailled from './SearchResultDetailled';
 
 import './SearchResults.css';
 
@@ -27,12 +28,24 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
     let results = this.props.results || [];
     const searchParams = this.props.searchParams;
 
+    if (searchParams.selectedId) {
+      const result = results.find((element: ISearchResult) => searchParams.selectedId === element.id);
+      if (result) {
+        return (
+          <SearchResultDetailled
+            result={result}
+            searchParams={this.props.searchParams}
+            updateHandler={this.props.updateHandler}
+          />
+        );
+      }
+    }
+
     const limit = this.props.limit ? this.props.limit : 100;
     if (results && results.length > limit) {
       results = results.slice(0, this.props.limit);
     }
 
-    console.log('Rendering results');
     return (
       <div className="search_results">
           {results.map((result: ISearchResult) => {

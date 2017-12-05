@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsKindergarden.css';
-
 class SearchResultsKindergarden extends SearchResults {
 
   render() {

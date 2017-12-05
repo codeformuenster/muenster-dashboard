@@ -60,17 +60,25 @@ class App extends React.Component<IAppProps, any> {
           <div className="tile is-parent">
 
             <div className="tile">
-              <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+              <LunchMap
+                results={this.state.results}
+                updateHandler={this.updateSearchParams}
+                searchParams={this.state.searchParams}
+              />
             </div>
           </div>
           <div className="tile is-parent">
             <div className="tile">
               <div className="article mainContent">
-                <div className="innerContent">
+                <div className="innerContent detailedItem">
                   {/* Geoselector will only be shown if you forbid GEO position access in your browser */}
                   {this.hasGeoSelector
                     && <GeoSelector updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />}
-                  <SearchResults updateHandler={this.updateSearchParams} results={this.state.results} searchParams={this.state.searchParams} />
+                  <SearchResults
+                    updateHandler={this.updateSearchParams}
+                    results={this.state.results}
+                    searchParams={this.state.searchParams}
+                  />
                 </div>
               </div>
             </div>

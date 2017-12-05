@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsLunch.css';
-
 class SearchResultsLunch extends SearchResults {
 
   render() {

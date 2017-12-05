@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsPlayground.css';
-
 class SearchResultsPlayground extends SearchResults {
 
   render() {

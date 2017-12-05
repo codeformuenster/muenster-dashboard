@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsWifi.css';
-
 class SearchResultsWifi extends SearchResults {
 
   render() {
