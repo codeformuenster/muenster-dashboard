@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsPool.css';
-
 class SearchResultsDefault extends SearchResults {
 
   render() {

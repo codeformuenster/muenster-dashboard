@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsWc.css';
-
 class SearchResultsWc extends SearchResults {
 
   render() {

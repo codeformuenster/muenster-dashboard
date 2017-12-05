@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ISearchResult } from '../../App';
 
-interface ISearchResultsProps {
+export interface ISearchResultsProps {
     result: ISearchResult;
 }
 

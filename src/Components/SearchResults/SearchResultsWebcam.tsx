@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsWebcam.css';
-
 class SearchResultsWebcam extends SearchResults {
 
   render() {

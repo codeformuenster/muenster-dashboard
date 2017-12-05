@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { SearchResults } from './SearchResults';
 
-import './SearchResultsPool.css';
-
 class SearchResultsEvent extends SearchResults {
 
   render() {
