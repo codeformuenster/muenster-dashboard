@@ -1,7 +1,7 @@
-
 import * as Elasticsearch from 'elasticsearch';
+import { Polygon } from 'geojson';
 
-let client = new Elasticsearch.Client({
+const client = new Elasticsearch.Client({
   host: 'https://elasticsearch.codeformuenster.org:443',
   log: 'trace'
 });
@@ -12,6 +12,7 @@ export interface IDistrictResultSlim {
   id: number;
   centerLat: number;
   centerLon: number;
+  polygon: Polygon;
 }
 
 /**
@@ -28,7 +29,7 @@ export class DistrictService {
       index: 'stadtteile',
       body: {
         'size' : 100,
-        '_source': [ 'properties', 'center' ]
+        '_source': [ 'properties', 'center', 'geometry' ]
       }
     };
 
@@ -45,13 +46,14 @@ export class DistrictService {
           if (body && body.hits) {
             console.log('hits', body.hits.total);
             const results = body.hits.hits;
-            for (const { _id, _source: { properties: district, center: { coordinates } } } of results) {
+            for (const { _id, _source: { properties: district, center: { coordinates }, geometry } } of results) {
               districts.push({
                 id: _id,
                 name: district.Name,
                 number: district.Nr,
                 centerLat: coordinates[1],
-                centerLon: coordinates[0]
+                centerLon: coordinates[0],
+                polygon: geometry
               });
             }
           }

@@ -4,7 +4,9 @@ import SearchBar from './Components/SearchBar';
 import LunchMap from './Components/LunchMap';
 import GeoSelector from './Components/GeoSelector';
 import SearchService from './Services/SearchService';
+import { DistrictService } from './Services/districtService';
 import './App.css';
+import { IDistrictResultSlim } from './FrontPage';
 
 export interface ISearchParams {
   latitude: number;
@@ -47,20 +49,27 @@ class App extends React.Component<IAppProps, any> {
     this.searchService = new SearchService();
     this.state = {
       results: [],
-      searchParams: {}
+      searchParams: {},
+      districts: [],
+      district: {}
     };
+    new DistrictService().loadDistricts(
+      (results: any) => {
+        this.setState({districts: results});
+      }
+    );
   }
 
   public render() {
     return (
       <div className="container is-fluid">
-        <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+        <SearchBar updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} districts={this.state.districts} />
 
         <div className="tile is-ancestor">
           <div className="tile is-parent">
 
             <div className="tile">
-              <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
+              <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} districtPolygon={this.state.district} />
             </div>
           </div>
           <div className="tile is-parent">
@@ -90,9 +99,14 @@ class App extends React.Component<IAppProps, any> {
    * - and restart search if necessary
    * - and also update this.state.results
    */
-  private updateSearchParams = (searchParams: ISearchParams) => {
+  private updateSearchParams = (searchParams: ISearchParams, district?: IDistrictResultSlim) => {
 
-    this.setState({ searchParams: searchParams });
+    const newState: { searchParams: ISearchParams, district: null | IDistrictResultSlim } = { searchParams: searchParams, district: null };
+
+    if (district) {
+      newState.district = district;
+    }
+    this.setState(newState);
 
     const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
