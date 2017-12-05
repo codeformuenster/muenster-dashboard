@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { ISearchParams } from '../App';
-import { DistrictService, IDistrictResultSlim } from '../Services/districtService';
+import { IDistrictResultSlim } from '../Services/districtService';
 
 interface ISearchBarProps {
     results?: any;
+    districts: Array<IDistrictResultSlim>;
     updateHandler: any;
     searchParams: ISearchParams;
 }
@@ -12,21 +13,13 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
 
   constructor(props: ISearchBarProps) {
     super(props);
-    this.state = {
-      districts: []
-    };
-    new DistrictService().loadDistricts(
-      (results: any) => {
-        this.setState({districts: results});
-      }
-    );
   }
 
   render() {
 
     const DebounceInput = require('react-debounce-input');
 
-    let districtList = this.state.districts.map((d: IDistrictResultSlim) => {
+    let districtList = this.props.districts.map((d: IDistrictResultSlim) => {
       return <option key={d.number} value={d.number}>{d.name}</option>
     });
 
@@ -104,17 +97,19 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     let searchParams = this.props.searchParams;
     const district = event.currentTarget.value;
     searchParams.district = district;
+    let selectedDistrict;
 
-    if (this.state.districts) {
+    if (this.props.districts) {
       /*const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });*/
-      const found = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
+      const found = this.props.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
       if (found) {
         const { centerLat, centerLon } = found;
         searchParams.centerLat = Number(centerLat);
         searchParams.centerLon = Number(centerLon);
+        selectedDistrict = found;
       }
     }
-    this.props.updateHandler(searchParams);
+    this.props.updateHandler(searchParams, selectedDistrict);
   }
 
   private onTypeChange = (event: React.FormEvent<HTMLSelectElement>) => {
