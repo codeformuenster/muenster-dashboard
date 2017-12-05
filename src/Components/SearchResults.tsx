@@ -1,16 +1,7 @@
 import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
 
-import SearchResultsConstruction from './SearchResults/SearchResultsConstruction';
-import SearchResultsKindergarden from './SearchResults/SearchResultsKindergarden';
-import SearchResultsLunch from './SearchResults/SearchResultsLunch';
-import SearchResultsPlayground from './SearchResults/SearchResultsPlayground';
-import SearchResultsPool from './SearchResults/SearchResultsPool';
-import SearchResultsWc from './SearchResults/SearchResultsWc';
-import SearchResultsWifi from './SearchResults/SearchResultsWifi';
-import SearchResultsWebcam from './SearchResults/SearchResultsWebcam';
-import SearchResultsDefault from './SearchResults/SearchResultsDefault';
-import SearchResultsEvent from './SearchResults/SearchResultsEvent';
+import { MeinItems } from './SearchResults/MeinItem';
 import SearchResultDetailled from './SearchResultDetailled';
 
 import './SearchResults.css';
@@ -49,44 +40,15 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
     return (
       <div className="search_results">
           {results.map((result: ISearchResult) => {
-            let searchResultComponent;
 
-            switch (result.type) {
-            case 'construction':
-                searchResultComponent = <SearchResultsConstruction result={result}/>;
-                break;
-            case 'kindergarden':
-                searchResultComponent = <SearchResultsKindergarden result={result}/>;
-                break;
-            case 'lunch':
-                searchResultComponent = <SearchResultsLunch result={result}/>;
-                break;
-            case 'playground':
-                searchResultComponent = <SearchResultsPlayground result={result}/>;
-                break;
-            case 'pool':
-                searchResultComponent = <SearchResultsPool result={result}/>;
-                break;
-            case 'wc':
-                searchResultComponent = <SearchResultsWc result={result}/>;
-                break;
-            case 'wifi':
-                searchResultComponent = <SearchResultsWifi result={result}/>;
-                break;
-            case 'webcam':
-                searchResultComponent = <SearchResultsWebcam result={result}/>;
-                break;
-            case 'event':
-                searchResultComponent = <SearchResultsEvent result={result}/>;
-                break;
-            default:
-                searchResultComponent = <SearchResultsDefault result={result}/>;
-            }
+            const meinItem = MeinItems.getItem(result.type);
+            const ComponentClass = meinItem.component;
+            const searchResultComponent = <ComponentClass result={result} icon={meinItem.icon}/>;
 
             return (
               <article
                 key={result.id}
-                className={'notification' + ((searchParams.selectedId === result.id) ? ' ' + this.getSearchResultColor(result.type) : '')}
+                className={'notification' + ((searchParams.selectedId === result.id) ? ' ' + meinItem.color : '')}
                 onClick={e => this.toggleSelection(e, result.id)}
               >
                 {searchResultComponent}
@@ -157,40 +119,6 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
       searchParams.selectedId = id;
     }
     this.props.updateHandler(searchParams);
-  }
-
-  private getSearchResultColor(type: string): string {
-    let result = '';
-
-    switch (type) {
-    case 'construction':
-        result = 'is-danger'
-        break;
-    case 'kindergarden':
-        result = 'is-primary'
-        break;
-    case 'lunch':
-        result = 'is-link'
-        break;
-    case 'playground':
-        result = 'is-warning'
-        break;
-    case 'pool':
-        result = 'is-info'
-        break;
-    case 'wc':
-        result = 'is-light'
-        break;
-    case 'wifi':
-        result = 'is-dark'
-        break;
-    case 'webcam':
-        result = 'is-success'
-        break;
-    default:
-    }
-
-    return result;
   }
 }
 

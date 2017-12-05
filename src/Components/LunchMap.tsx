@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { IDistrictResultSlim } from '../Services/districtService';
+import { MeinItems } from './SearchResults/MeinItem';
 
 // for custom markers
 import { divIcon, Point, GeoJSON } from 'leaflet';
@@ -104,24 +105,11 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
    */
   private getAllMarkers(locations: Array<ISearchResult>) {
 
-    var iconDefault = this.getIcon('paw');
-
-    const categoryIcons = {
-      'kindergarden': this.getIcon('baby-buggy', 'kindergarden'),
-      'construction': this.getIcon('vlc', 'construction'),
-      'event': this.getIcon('calendar-text', 'event'),
-      'lunch': this.getIcon('food', 'lunch'),
-      'playground': this.getIcon('castle', 'playground'),
-      'pool': this.getIcon('pool', 'pool'),
-      'wc': this.getIcon('human-male-female', 'wc'),
-      'webcam': this.getIcon('camera', 'webcam'),
-      'wifi': this.getIcon('wifi', 'wifji')
-    };
-
     var rows = [];
     for (let location of locations) {
+        const meinItem = MeinItems.getItem(location.type);
 
-        const currentIcon = categoryIcons[location.type] ? categoryIcons[location.type] : iconDefault;
+        const currentIcon = this.getIcon(meinItem.icon, location.type);
         const locationPos = new LatLng(location.lat, location.lon);
 
         const markerOpenPopup = () => {
@@ -147,7 +135,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
             <Popup
               closeButton={false}
             >
-              <span>{location.name}</span>
+              <span>{meinItem.name}:<br /> <b>{location.name}</b></span>
             </Popup>
           </Marker>
         );
@@ -159,7 +147,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     return divIcon({
       className: 'lu-icon ' + extraClass,
       iconSize: new Point(40, 40),
-      html: '<i class="mdi mdi-' + name + ' is-info"></i>'
+      html: '<i class="mdi ' + name + ' is-info"></i>'
     });
   }
 
