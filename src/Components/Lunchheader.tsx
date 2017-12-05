@@ -32,9 +32,9 @@ class Lunchheader extends React.Component<any,any> {
   }
 
   render() {
-    let currentDistrict = <p></p>
+    let currentDistrict = <p></p>;
     if (this.state.district) {
-      currentDistrict = <p className="control">Du bist hier: {this.state.district}</p>
+      currentDistrict = <p className="control">Du bist hier: <span className="lunchtext">{this.state.district}</span></p>;
     }
     return (
       <div>
@@ -86,9 +86,9 @@ class Lunchheader extends React.Component<any,any> {
                   <a className="navbar-item" href="/copyright">
                     Copyright
                   </a>
-                  <a className="navbar-item" href="/team">
+                  {/*<a className="navbar-item" href="/team">
                     Team
-                  </a>
+                  </a>*/}
                   <a className="navbar-item" href="/impressum">
                     Kontakt &amp; Impressum
                   </a>
