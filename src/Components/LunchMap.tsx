@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ISearchParams, ISearchResult } from '../App';
-import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { IDistrictResultSlim } from '../Services/districtService';
 
 // for custom markers
-import { divIcon, Point } from 'leaflet';
+import { divIcon, Point, GeoJSON } from 'leaflet';
 
 // for map positions
 import { LatLng } from 'leaflet';
@@ -24,6 +24,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
   private mapRef: Map;
   private centerPosition: LatLng|null;
   private districtCenterPosition: LatLng|null;
+  private districtLayer: GeoJSON|null;
 
   render() {
 
@@ -37,11 +38,6 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
 
       this.centerPosition = null;
 
-      let highlightedDistrict;
-      if (this.props.districtPolygon) {
-       highlightedDistrict = <GeoJSON data={this.props.districtPolygon.polygon} />;
-      }
-
       const map = (
 
             <Map center={position} zoom={13} ref={(el: any) => {this.mapRef = el; }}>
@@ -54,7 +50,6 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
                 </Popup>
               </Marker>
               {this.getAllMarkers(this.props.results)}
-              {highlightedDistrict}
             </Map>
 
         );
@@ -92,6 +87,16 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
       zoom,
       { animate: true, duration: 1}
     );
+
+    // update the Polygon of the currently selected district
+    if (this.props.districtPolygon) {
+      if (!this.districtLayer) {
+        this.districtLayer = new GeoJSON(this.props.districtPolygon.polygon)
+          .addTo(this.mapRef.leafletElement);
+      }
+      this.districtLayer.clearLayers();
+      this.districtLayer.addData(this.props.districtPolygon.polygon);
+    }
   }
 
   /**
