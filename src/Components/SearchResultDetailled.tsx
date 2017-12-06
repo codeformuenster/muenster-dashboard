@@ -2,6 +2,7 @@ import * as React from 'react';
 // import { SearchResults } from './SearchResults/SearchResults';
 import { ISearchParams, ISearchResult } from '../App';
 import './SearchResultDetailled.css';
+import { MeinItems } from './SearchResults/MeinItem';
 
 interface ISearchResultDetailledProps {
     result: ISearchResult;
@@ -16,20 +17,24 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
 
     const result = this.props.result;
     console.log('Detailled result:', result);
+    const meinItem = MeinItems.getItem(result.type);
 
     return (
       <article
         key={result.id}
-        className="notification detailedItem"
+        className={'notification detailedItem'}
       >
         <div className="media">
           <div className="media-left">
             <p>
-              <span className="icon is-large">
-                <i className="mdi mdi-48px mdi-calendar-text"></i>
+              <span className={'icon detailIcon notification is-large ' + meinItem.color}>
+                <i className={'mdi mdi-48px ' + meinItem.icon}></i>
               </span>
             </p>
             <div className="distanceDiv has-text-centered">
+
+              <span className={'tag ' + meinItem.color}>{meinItem.name}</span>
+              <br />
               <span className="tag is-white">{this.distancePrettifier(result.distance)}</span>
             </div>
           </div>
@@ -40,7 +45,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
               </div>
               <span className="title">
                 <span>{result.name} &nbsp; </span>
-                <span className="tag is-dark">{result.type}</span> &nbsp;
+
               </span>
               <div className="is-clearfix">
 
@@ -71,7 +76,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
                   )}
 
                   <div className="properties">
-                    <span><i>Typ:</i> {this.props.result.type}</span>
+                    <span><i>Typ:</i> {meinItem.name}</span>
                     {this.renderProperties(result.properties)}
                   </div>
               </div>

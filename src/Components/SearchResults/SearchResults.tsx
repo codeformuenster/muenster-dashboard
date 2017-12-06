@@ -3,6 +3,7 @@ import { ISearchResult } from '../../App';
 
 export interface ISearchResultsProps {
     result: ISearchResult;
+    icon?: string;
 }
 
 export abstract class SearchResults extends React.Component<ISearchResultsProps, any> {
