@@ -1,9 +1,12 @@
-FROM node:9.0-alpine
-RUN npm install --global yarn create-react-app
+FROM node:8-alpine as build
 
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
+RUN npm run build
 
-CMD [ "npm", "run", "start" ]
+FROM abiosoft/caddy:0.10.10
+
+COPY --from=build /usr/src/app/build /srv
+

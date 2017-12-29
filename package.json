@@ -12,7 +12,7 @@
     "react-dom": "^16.0.0",
     "react-leaflet": "^1.7.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts-ts": "2.7.0"
+    "react-scripts-ts": "2.8.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -27,6 +27,9 @@
     "@types/node": "^8.0.34",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
-    "@types/react-leaflet": "^1.1.4"
+    "@types/react-leaflet": "^1.1.4",
+    "leaflet.awesome-markers": "^2.0.4",
+    "prop-types": "^15.6.0",
+    "typescript": "^2.6.2"
   }
 }
