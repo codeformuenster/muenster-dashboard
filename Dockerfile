@@ -8,14 +8,11 @@ RUN npm run build
 
 FROM golang as packer
 
-WORKDIR /go/src/assets-server
+RUN go get github.com/ubergesundheit/assets-server/cmd/as-builder
 
-COPY --from=build /usr/src/app/build /go/src/assets-server/files
-COPY server.go /go/src/assets-server/main.go
+COPY --from=build /usr/src/app/build /assets
 
-RUN go get github.com/rakyll/statik && \
-  statik -src=/go/src/assets-server/files && \
-  CGO_ENABLED=0 go build -a -tags netgo -ldflags "-extldflags -static" -o /assets-server main.go
+RUN as-builder -debug -src /assets -dest /assets-server -port 8080 -url /
 
 FROM scratch
 
