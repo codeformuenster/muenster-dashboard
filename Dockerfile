@@ -6,9 +6,7 @@ RUN npm install
 COPY . /usr/src/app
 RUN npm run build
 
-FROM golang as packer
-
-RUN go get github.com/ubergesundheit/assets-server/cmd/as-builder
+FROM quay.io/geraldpape/as-builder:latest as packer
 
 COPY --from=build /usr/src/app/build /assets
 
