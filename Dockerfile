@@ -6,7 +6,7 @@ RUN npm install
 COPY . /usr/src/app
 RUN npm run build
 
-FROM quay.io/geraldpape/as-builder:latest as packer
+FROM quay.io/geraldpape/as-builder:v1 as packer
 
 COPY --from=build /usr/src/app/build /assets
 
