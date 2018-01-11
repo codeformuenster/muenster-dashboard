@@ -1,4 +1,5 @@
 [![Dependency Status](https://gemnasium.com/codeformuenster/familien-dashboard.svg)](https://gemnasium.com/codeformuenster/familien-dashboard)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcodeformuenster%2Ffamilien-dashboard.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcodeformuenster%2Ffamilien-dashboard?ref=badge_shield)
 
 This project was bootstrapped with
 https://github.com/Microsoft/TypeScript-React-Starter
@@ -251,3 +252,7 @@ Open kibana:
         }
       }
     }
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcodeformuenster%2Ffamilien-dashboard.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcodeformuenster%2Ffamilien-dashboard?ref=badge_large)
