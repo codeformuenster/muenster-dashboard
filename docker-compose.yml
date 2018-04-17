@@ -10,10 +10,10 @@ services:
       - .:/usr/src/app
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
     volumes:
       - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - esdata:/usr/share/elasticsearch/data
+      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -21,7 +21,7 @@ services:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.0.0-rc2
+    image: docker.elastic.co/kibana/kibana-oss:6.2.3
     volumes:
       - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:

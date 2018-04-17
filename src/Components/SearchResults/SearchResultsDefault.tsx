@@ -13,7 +13,7 @@ class SearchResultsDefault extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-pool"></i>
+              <i className="mdi mdi-48px mdi-pool" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -29,7 +29,7 @@ class SearchResultsDefault extends SearchResults {
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
                 <span className="icon is-large">
-                  <i className="mdi mdi-16px mdi-web"></i>
+                  <i className="mdi mdi-16px mdi-web" />
                 </span>
                 Webseite besuchen</a>
             </div>

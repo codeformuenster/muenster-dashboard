@@ -9,18 +9,20 @@
         ],
         "ban": false,
         "class-name": true,
-        "comment-format": false,
+        "comment-format": [
+            true,
+            "check-space"
+        ],
         "curly": true,
         "eofline": false,
         "forin": true,
         "indent": [ true, "spaces" ],
-        "interface-name": false,
+        "interface-name": [false],
         "jsdoc-format": true,
         "jsx-no-lambda": false,
-        "jsx-self-close": false,
         "jsx-no-multiline-js": false,
         "label-position": true,
-        "max-line-length": [ true, 160 ],
+        "max-line-length": [ false ],
         "member-ordering": [
             true,
             "public-before-private",
@@ -30,12 +32,14 @@
         "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
-        "no-console": false,
+        "no-console": [
+            false
+        ],
         "no-consecutive-blank-lines": true,
         "no-construct": true,
-        "no-debugger": false,
+        "no-debugger": true,
         "no-duplicate-variable": true,
-        "no-empty": true,
+        "no-empty": false,
         "no-eval": true,
         "no-shadowed-variable": true,
         "no-string-literal": true,
@@ -55,7 +59,7 @@
         "semicolon": [true, "always"],
         "switch-default": true,
 
-        "trailing-comma": [false],
+        "trailing-comma": false,
 
         "triple-equals": [ true, "allow-null-check" ],
         "typedef": [

@@ -13,7 +13,7 @@ class SearchResultsLunch extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-food"></i>
+              <i className="mdi mdi-48px mdi-food" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -36,7 +36,7 @@ class SearchResultsLunch extends SearchResults {
 
                 <div className="tag is-warning">
                   <span className="icon" data-balloon={result.properties.phone} data-balloon-pos="up">
-                    <i className="fa fa-cutlery"></i>
+                    <i className="fa fa-cutlery" />
                   </span> {result.properties.openToday}
                 </div>
 
@@ -47,7 +47,7 @@ class SearchResultsLunch extends SearchResults {
                 {result.properties.phone && (
                   <div className="tag is-warning">
                     <span className="icon" data-balloon={result.properties.phone} data-balloon-pos="up">
-                      <i className="fa fa-phone"></i>
+                      <i className="fa fa-phone" />
                     </span>
                     <span className="is-hidden-mobile">
                       {result.properties.phone}
@@ -61,7 +61,7 @@ class SearchResultsLunch extends SearchResults {
                 {result.properties.url && (
                     <div className="column">
                       <a className="button is-link" href={result.properties.url} target="_blank">
-                        <i className="fa fa-home"></i>
+                        <i className="fa fa-home" />
                         <span className="is-hidden-mobile">&nbsp;Homepage</span>
                       </a>
                     </div>
@@ -75,12 +75,12 @@ class SearchResultsLunch extends SearchResults {
               </div>
               <p className="has-text-danger">
                 <span className="icon">
-                  <i className="mdi mdi-walk"></i>
+                  <i className="mdi mdi-walk" />
                 </span>
                 {this.getMinutesByFeet(result.distance)}
                 &bull;
                 <span className="icon">
-                  <i className="mdi mdi-car"></i>
+                  <i className="mdi mdi-car" />
                 </span>
                 {this.getMinutesByCar(result.distance)}
               </p>
@@ -111,7 +111,7 @@ class SearchResultsLunch extends SearchResults {
     if (iconSettings) {
       return (
         <span className="icon" data-balloon={iconSettings[1]} data-balloon-pos="up">
-          <i className={'fa fa-' + iconSettings[0]}></i>
+          <i className={'fa fa-' + iconSettings[0]} />
         </span>
       );
     }

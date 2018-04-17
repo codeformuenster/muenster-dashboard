@@ -13,7 +13,7 @@ class SearchResultsConstruction extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className={'mdi mdi-48px ' + this.props.icon}></i>
+              <i className={'mdi mdi-48px ' + this.props.icon} />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -34,7 +34,7 @@ class SearchResultsConstruction extends SearchResults {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-timetable"></i>
+                <i className="mdi mdi-timetable" />
               </span>
               ab {this.toHumanReadableDate(result.dateStart)}
             </p>

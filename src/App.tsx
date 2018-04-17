@@ -16,8 +16,8 @@ export interface ISearchParams {
   selectedId: number;
   category: string;
   district: string;
-  centerLat?: number
-  centerLon?: number
+  centerLat?: number;
+  centerLon?: number;
 }
 
 export interface ISearchResult {

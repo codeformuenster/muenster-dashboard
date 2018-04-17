@@ -1,4 +1,4 @@
 {
-  "url": "",
-  "eSurl": ""
+  "url": "https://www.stadt-muenster.de/ows/mapserv621/odaufgrabserv?REQUEST=GetFeature&SERVICE=WFS&VERSION=1.1.0&TYPENAME=aufgrabungen&OUTPUTFORMAT=csv&EXCEPTIONS=XML&SRSNAME=EPSG:4326",
+  "eSurl": "https://elasticsearch.codeformuenster.org/places/place"
 }

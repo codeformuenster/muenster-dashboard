@@ -13,7 +13,7 @@ class SearchResultsKindergarden extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-baby-buggy"></i>
+              <i className="mdi mdi-48px mdi-baby-buggy" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -30,19 +30,19 @@ class SearchResultsKindergarden extends SearchResults {
               {result.properties.ADRESSE}
               <a href={result.properties.HOMEPAGE} target="_blank">
                 <span className="icon is-large">
-                  <i className="mdi mdi-16px mdi-web"></i>
+                  <i className="mdi mdi-16px mdi-web" />
                 </span>
                 Website besuchen
               </a>
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"></i>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"></i>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>

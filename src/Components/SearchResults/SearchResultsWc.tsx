@@ -13,7 +13,7 @@ class SearchResultsWc extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-human-male-female"></i>
+              <i className="mdi mdi-48px mdi-human-male-female" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -26,7 +26,7 @@ class SearchResultsWc extends SearchResults {
               <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">WC</span> &nbsp;
               {this.isAccessibleWithWheelchair(result.properties.BARRIEREFREI) && <span className="tag is-success">
-                <span className="icon"> <i className="mdi mdi-24px mdi-wheelchair-accessibility"></i> </span>
+                <span className="icon"> <i className="mdi mdi-24px mdi-wheelchair-accessibility" /> </span>
               </span>}
             </span>
             <div className="is-clearfix">
@@ -34,12 +34,12 @@ class SearchResultsWc extends SearchResults {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"></i>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"></i>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>
