@@ -28,7 +28,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
           <div className="media-left">
             <p>
               <span className={'icon detailIcon notification is-large ' + meinItem.color}>
-                <i className={'mdi mdi-48px ' + meinItem.icon}></i>
+                <i className={'mdi mdi-48px ' + meinItem.icon} />
               </span>
             </p>
             <div className="distanceDiv has-text-centered">
@@ -41,7 +41,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
           <div className="media-content">
             <div className="content">
               <div className="pull-right closeBtn">
-                <button onClick={e => this.toggleSelection()} className="delete" aria-label="delete"></button>
+                <button onClick={e => this.toggleSelection()} className="delete" aria-label="delete" />
               </div>
               <span className="title">
                 <span>{result.name} &nbsp; </span>
@@ -52,7 +52,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
                   {result.url && (
                     <a href={result.url} target="_blank">
                       <span className="icon is-large">
-                        <i className="mdi mdi-16px mdi-web"></i>
+                        <i className="mdi mdi-16px mdi-web" />
                       </span>
                       Webseite besuchen
                     </a>
@@ -62,13 +62,13 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
                     <div>
                       <p className="has-text-danger">
                         <span className="icon">
-                          <i className="mdi mdi-timetable"></i>
+                          <i className="mdi mdi-timetable" />
                         </span>
                         Startdatum: {this.toHumanReadableDate(result.dateStart)}
                       </p>
                       <p className="has-text-danger">
                         <span className="icon">
-                          <i className="mdi mdi-timetable"></i>
+                          <i className="mdi mdi-timetable" />
                         </span>
                         Enddatum: {result.dateEnd ? this.toHumanReadableDate(result.dateEnd) : 'unbekannt'}
                       </p>

@@ -22,7 +22,7 @@ class GeoSelector extends React.Component<IGeoSelectorProps, any> {
 
       {this.state.showInfoBox && (
           <div className="notification is-danger">
-          <button className="delete" onClick={() => {this.setState({showInfoBox: false}); }}></button>
+          <button className="delete" onClick={() => {this.setState({showInfoBox: false}); }} />
           Diese Anwendung funktioniert am besten, wenn Du die Übermittlung Deiner Standort-Daten zulässt.
           Alternativ kannst Du Deine Postleitzahl eingeben, dann versuchen wir ungefähr die von Dir am wenigsten weit entfernten Lokale zu finden.
         </div>
@@ -32,10 +32,10 @@ class GeoSelector extends React.Component<IGeoSelectorProps, any> {
         <div className="control has-icons-left has-icons-right">
           <input className="input is-large" type="text" onChange={this.handleChange} placeholder="Postleitzahl" />
           <span className="icon is-small is-left">
-            <i className="fa fa-location-arrow"></i>
+            <i className="fa fa-location-arrow" />
           </span>
           <span className="icon is-small is-right">
-            <i className="fa fa-search"></i>
+            <i className="fa fa-search" />
           </span>
         </div>
       </div>

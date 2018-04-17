@@ -66,7 +66,7 @@ class SearchService {
     // }
     // else
     // if (centerLat && centerLon) {
-    //   console.log("TEST");
+    //   console.log('TEST');
     //   if (!searchQuery.body.query.bool.must) {
     //     searchQuery.body.query.bool.must = []
     //   };
@@ -103,32 +103,32 @@ class SearchService {
 
       // searchQuery.body.query.bool.should.push(
       if (!searchQuery.body.query.bool.should) {
-        searchQuery.body.query.bool.should = []
-      };
+        searchQuery.body.query.bool.should = [];
+      }
       // searchQuery.body.query.bool.should.push(
       searchQuery.body.query.bool.should.push(
             {
-              "bool": {
-                "must": [
+              'bool': {
+                'must': [
                   {
-                    "term": {
-                      "type": "construction"
+                    'term': {
+                      'type': 'construction'
                     }
                   },
                   {
-                    "range": {
-                      "date_start": {
-                        "gte": "now",
-                        "lte": "now+10d"
+                    'range': {
+                      'date_start': {
+                        'gte': 'now',
+                        'lte': 'now+10d'
                       }
                     }
                   },
                   {
-                    "geo_distance": {
-                      "distance": "2km",
-                      "address.geo": {
-                        "lat": centerLat ? centerLat: latitude,
-                        "lon": centerLon ? centerLon: longitude
+                    'geo_distance': {
+                      'distance': '2km',
+                      'address.geo': {
+                        'lat': centerLat ? centerLat : latitude,
+                        'lon': centerLon ? centerLon : longitude
                       }
                     }
                   }
@@ -136,21 +136,21 @@ class SearchService {
               }
             },
             {
-              "bool": {
-                "must_not": [
+              'bool': {
+                'must_not': [
                   {
-                    "term": {
-                      "type": "construction"
+                    'term': {
+                      'type': 'construction'
                     }
                   }
                 ],
-                "must": [
+                'must': [
                   {
-                    "geo_distance": {
-                      "distance": "2km",
-                      "address.geo": {
-                        "lat": centerLat ? centerLat: latitude,
-                        "lon": centerLon ? centerLon: longitude
+                    'geo_distance': {
+                      'distance': '2km',
+                      'address.geo': {
+                        'lat': centerLat ? centerLat : latitude,
+                        'lon': centerLon ? centerLon : longitude
                       }
                     }
                   }
@@ -158,24 +158,22 @@ class SearchService {
               }
             });
 
-
-
       // searchQuery.body.query.bool.filter = {
-      //   "bool": {
-      //     "should": [
+      //   'bool': {
+      //     'should': [
       //       {
-      //         "bool": {
-      //           "must": [
+      //         'bool': {
+      //           'must': [
       //             {
-      //               "term": {
-      //                 "type": "construction"
+      //               'term': {
+      //                 'type': 'construction'
       //               }
       //             },
       //             {
-      //               "range": {
-      //                 "date_start": {
-      //                   "gte": "now",
-      //                   "lte": "now+10d"
+      //               'range': {
+      //                 'date_start': {
+      //                   'gte': 'now',
+      //                   'lte': 'now+10d'
       //                 }
       //               }
       //             }
@@ -183,11 +181,11 @@ class SearchService {
       //         }
       //       },
       //       {
-      //         "bool": {
-      //           "must_not": [
+      //         'bool': {
+      //           'must_not': [
       //             {
-      //               "term": {
-      //                 "type": "construction"
+      //               'term': {
+      //                 'type': 'construction'
       //               }
       //             }
       //           ]

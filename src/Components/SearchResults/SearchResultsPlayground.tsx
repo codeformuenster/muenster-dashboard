@@ -13,7 +13,7 @@ class SearchResultsPlayground extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-castle"></i>
+              <i className="mdi mdi-48px mdi-castle" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -33,7 +33,7 @@ class SearchResultsPlayground extends SearchResults {
                   data-balloon-pos="up"
                   className="icon"
                 >
-                    <i className="mdi mdi-soccer"></i>
+                    <i className="mdi mdi-soccer" />
                 </span>
               } &nbsp;
               {this.displaySkater(result.properties.Skater) && <span> <img className="tag-image" src="/media/skateboard.png"/> </span>} &nbsp;
@@ -44,12 +44,12 @@ class SearchResultsPlayground extends SearchResults {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"></i>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"></i>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>
@@ -63,10 +63,9 @@ class SearchResultsPlayground extends SearchResults {
     let result = '';
     result = name.slice(3);
 
-    return result.toLowerCase().replace(/\b\w/g, function(txt: any){
+    return result.toLowerCase().replace(/\b\w/g, function(txt: any) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      }
-    );
+    });
   }
 
   private displayArea(area: string): string {

@@ -1,4 +1,4 @@
 {
-  "baseUrl": "",
-  "eSurl": ""
+  "baseUrl": "https://www.stadt-muenster.de/ows/mapserv706",
+  "eSurl": "https://elasticsearch.codeformuenster.org/places/place"
 }

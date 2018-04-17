@@ -13,7 +13,7 @@ class SearchResultsEvent extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-calendar-text"></i>
+              <i className="mdi mdi-48px mdi-calendar-text" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -29,13 +29,13 @@ class SearchResultsEvent extends SearchResults {
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
                 <span className="icon is-large">
-                  <i className="mdi mdi-16px mdi-web"></i>
+                  <i className="mdi mdi-16px mdi-web" />
                 </span>
                 Webseite besuchen</a>
 
                 <p className="has-text-danger">
                   <span className="icon">
-                    <i className="mdi mdi-timetable"></i>
+                    <i className="mdi mdi-timetable" />
                   </span>
                   am {this.toHumanReadableDate(result.dateStart)}
                 </p>

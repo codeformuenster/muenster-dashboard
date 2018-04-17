@@ -66,7 +66,7 @@ export class DistrictService {
       );
   }
 
-  public queryDistrictByCoordinates({ latitude, longitude }: { latitude:number, longitude:number }) {
+  public queryDistrictByCoordinates({ latitude, longitude }: { latitude: number, longitude: number }) {
     const searchQuery: any = {
       index: 'stadtteile',
       body: {
@@ -79,7 +79,7 @@ export class DistrictService {
               'shape': {
                 'type': 'point',
                 'coordinates': [
-                    longitude,latitude
+                    longitude, latitude
                   ]
               }
             }
@@ -88,7 +88,7 @@ export class DistrictService {
       }
     };
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve: (value?: any | PromiseLike<any>) => void, reject: (reason?: any) => void) {
       client
         .search(
           searchQuery,

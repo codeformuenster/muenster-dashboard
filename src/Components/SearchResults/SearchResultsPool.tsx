@@ -13,7 +13,7 @@ class SearchResultsPool extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-pool"></i>
+              <i className="mdi mdi-48px mdi-pool" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -29,18 +29,18 @@ class SearchResultsPool extends SearchResults {
             <div className="is-clearfix">
               <a href={result.properties.LINK1} target="_blank">
                 <span className="icon is-large">
-                  <i className="mdi mdi-16px mdi-web"></i>
+                  <i className="mdi mdi-16px mdi-web" />
                 </span>
                 Website besuchen</a>
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"></i>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"></i>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>

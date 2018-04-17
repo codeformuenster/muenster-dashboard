@@ -13,7 +13,7 @@ class SearchResultsWifi extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-wifi"></i>
+              <i className="mdi mdi-48px mdi-wifi" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -34,12 +34,12 @@ class SearchResultsWifi extends SearchResults {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"></i>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"></i>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>

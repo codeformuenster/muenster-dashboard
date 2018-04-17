@@ -5,7 +5,7 @@ import { DistrictService } from '../Services/districtService';
 
 const logo = require('./Logo.svg');
 
-class Lunchheader extends React.Component<any,any> {
+class Lunchheader extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);
@@ -20,7 +20,7 @@ class Lunchheader extends React.Component<any,any> {
 
     const success = (position: any) => {
       new DistrictService().queryDistrictByCoordinates(position.coords)
-        .then((district:string) => {
+        .then((district: string) => {
           this.setState({ district });
         })
         .catch(() => {});
@@ -32,13 +32,13 @@ class Lunchheader extends React.Component<any,any> {
   }
 
   render() {
-    let currentDistrict = <p></p>;
+    let currentDistrict = <p />;
     if (this.state.district) {
       currentDistrict = <p className="control">Du bist hier: <span className="lunchtext">{this.state.district}</span></p>;
     }
     return (
       <div>
-        <div className="Lunchheader"></div>
+        <div className="Lunchheader" />
         <nav className="navbar is-dark msRed">
           <div className="navbar-brand">
             <Link className="App-logo" to="/">
@@ -58,9 +58,9 @@ class Lunchheader extends React.Component<any,any> {
             </Link>
 
             <div className="navbar-burger burger" data-target="lunchMenuDropdown">
-              <span> </span>
-              <span> </span>
-              <span> </span>
+              <span />
+              <span />
+              <span />
             </div>
 
           </div>
@@ -72,7 +72,7 @@ class Lunchheader extends React.Component<any,any> {
               </Link>
               <Link className="navbar-item" to="/stadtviertel">
                 <span className="icon msIcon">
-                  <i className="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                  <i className="fa fa-map-marker fa-2x" aria-hidden="true" />
                 </span>
                 Erkunde Dein Stadtviertel
               </Link>

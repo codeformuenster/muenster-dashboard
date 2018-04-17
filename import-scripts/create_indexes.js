@@ -2,7 +2,8 @@
 
 const request = require('request-promise-native');
 
-const baseUrl = '';
+// const baseUrl = '';
+const baseUrl = 'https://elasticsearch.codeformuenster.org';
 
 const placesIndex = {
   "mappings": {
@@ -60,4 +61,3 @@ for (const [indexName, mapping] of Object.entries(indexes)) {
       console.log(err.message);
     });
 }
-

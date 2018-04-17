@@ -20,7 +20,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     const DebounceInput = require('react-debounce-input');
 
     let districtList = this.props.districts.map((d: IDistrictResultSlim) => {
-      return <option key={d.number} value={d.number}>{d.name}</option>
+      return <option key={d.number} value={d.number}>{d.name}</option>;
     });
 
     return (
@@ -36,10 +36,10 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                 placeholder="Suchbegriff"
               />
               <span className="icon is-small is-left">
-                <i className="fa fa-cutlery"></i>
+                <i className="fa fa-cutlery" />
               </span>
               <span className="icon is-small is-right">
-                <i className="fa fa-search"></i>
+                <i className="fa fa-search" />
               </span>
             </div>
           </div>
@@ -101,7 +101,7 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
 
     if (this.props.districts) {
       /*const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });*/
-      const found = this.props.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });
+      const found = this.props.districts.find((d: IDistrictResultSlim) => { return d.number === Number(district); });
       if (found) {
         const { centerLat, centerLon } = found;
         searchParams.centerLat = Number(centerLat);
