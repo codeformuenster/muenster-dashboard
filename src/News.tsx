@@ -4,7 +4,7 @@ import LunchMap from './Components/LunchMap';
 import GeoSelector from './Components/GeoSelector';
 import NewsList from './Components/NewsList';
 import SearchService from './Services/SearchService';
-import './FrontPage.css';
+import './News.css';
 
 export interface ISearchParams {
   latitude: number;
@@ -40,7 +40,7 @@ export interface IDistrictResultSlim {
 interface IAppProps {
 }
 
-class FrontPage extends React.Component<IAppProps, any> {
+class News extends React.Component<IAppProps, any> {
 
   private lastSearchHash = '-';
   private searchService: SearchService;
@@ -65,7 +65,7 @@ class FrontPage extends React.Component<IAppProps, any> {
           <div className="tile is-ancestor limitedHeight">
             <div className="tile is-parent">
 
-              <div className="tile frontpageMap">
+              <div className="tile newsMap">
 
                 <LunchMap results={this.state.results} updateHandler={this.updateSearchParams} searchParams={this.state.searchParams} />
 
@@ -115,7 +115,7 @@ class FrontPage extends React.Component<IAppProps, any> {
     const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
     if (searchHash !== this.lastSearchHash) {
-      this.searchService.sendFrontpageSearchToServer(
+      this.searchService.sendNewsSearchToServer(
         searchParams,
         (locations: ISearchResult[]) => {
           this.setState({ results: locations });
@@ -155,4 +155,4 @@ class FrontPage extends React.Component<IAppProps, any> {
 
 }
 
-export default FrontPage;
+export default News;

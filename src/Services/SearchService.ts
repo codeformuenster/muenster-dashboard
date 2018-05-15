@@ -13,16 +13,16 @@ let client = new Elasticsearch.Client({
 class SearchService {
 
   /**
-   * Frontpage has a modified search query
+   * News has a modified search query
    */
-  public sendFrontpageSearchToServer(searchParams: ISearchParams, callback: any) {
+  public sendNewsSearchToServer(searchParams: ISearchParams, callback: any) {
     this.sendSearchToServer(searchParams, callback, true);
   }
 
   /*
    * Execute search
    */
-  public sendSearchToServer(searchParams: ISearchParams, callback: any, isFrontPageSearch: boolean = false) {
+  public sendSearchToServer(searchParams: ISearchParams, callback: any, isNewsSearch: boolean = false) {
 
     const { latitude, longitude } = searchParams;
     const { centerLat, centerLon } = searchParams;
@@ -30,7 +30,7 @@ class SearchService {
     let searchQuery: any = {
       index: 'places',
       body: {
-        size : isFrontPageSearch ? 15 : 100,
+        size : isNewsSearch ? 15 : 100,
         query: {
           bool: {
             // filter: {},

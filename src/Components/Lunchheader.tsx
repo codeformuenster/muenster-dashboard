@@ -70,11 +70,11 @@ class Lunchheader extends React.Component<any, any> {
               <Link className="navbar-item" to="/">
                 Startseite
               </Link>
-              <Link className="navbar-item" to="/stadtviertel">
+              <Link className="navbar-item" to="/aktuelles">
                 <span className="icon msIcon">
                   <i className="fa fa-map-marker fa-2x" aria-hidden="true" />
                 </span>
-                Erkunde Dein Stadtviertel
+                Aktuell im Viertel
               </Link>
 
               <div className="navbar-item has-dropdown is-hoverable">
