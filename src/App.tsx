@@ -6,7 +6,7 @@ import GeoSelector from './Components/GeoSelector';
 import SearchService from './Services/SearchService';
 import { DistrictService } from './Services/districtService';
 import './App.css';
-import { IDistrictResultSlim } from './FrontPage';
+import { IDistrictResultSlim } from './News';
 
 export interface ISearchParams {
   latitude: number;
