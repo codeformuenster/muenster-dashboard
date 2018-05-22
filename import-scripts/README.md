@@ -28,3 +28,6 @@ Inserts the following feature classes into the places index.
 - kindergarden
 
 Execute with `node index.js`
+
+## `sportstaetten-belegungsplan`
+Inserts the booking plans of sports facilities in Münster. You need to pass the environment parameter `GOOGLE_API_KEY` (Google Maps API key) when running the import script `import_hallenbelegung.py`
