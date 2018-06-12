@@ -4,6 +4,8 @@
 This project was bootstrapped with
 https://github.com/Microsoft/TypeScript-React-Starter
 
+Current uptime status for mein-ms.de: https://uptime.codeformuenster.org/
+
 ## Installing
 
     npm install
