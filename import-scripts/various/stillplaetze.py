@@ -4,14 +4,17 @@
 import json
 import os
 import datetime as dt
+import csv
+import re
 
 # import pandas as pd
-from bs4 import BeautifulSoup
-import csv
+# from bs4 import BeautifulSoup
+
 from elasticsearch import Elasticsearch
 
 
 def main():
+    """The class's docstring"""
 
     elastic = Elasticsearch()
 
@@ -21,17 +24,18 @@ def main():
             delimiter=','
         )
         for row in spamreader:
-            name = row[0]
-            address = row[1]
-            desc = row[2]
-            lat = row[3]
-            lon = row[4]
+            name = row[0].strip()
+            address = row[1].strip()
+            desc = row[2].strip()
+            lat = row[3].strip()
+            lon = row[4].strip()
+            slug = re.sub('[^a-z]', '_', name.lower())
 
             print(', '.join(row))
 
             output = {
                 "name": name,
-                "slug": name.toLowerCase().replace(" ", "-"),
+                "slug": slug,
                 "type": "Wickelraum",
                 "description": desc,
                 "address": {
@@ -47,7 +51,7 @@ def main():
 
             print(output)
 
-            res = elastic.index(index="other", doc_type='place', body=output)
+            res = elastic.index(index="other", doc_type='place', id=slug, body=output)
             print(res)
 
 
