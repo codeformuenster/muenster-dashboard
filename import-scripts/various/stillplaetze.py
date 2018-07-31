@@ -26,18 +26,21 @@ def main():
         for row in spamreader:
             name = row[0].strip()
             address = row[1].strip()
-            desc = row[2].strip()
+            place = row[2].strip()
             lat = row[3].strip()
             lon = row[4].strip()
             slug = re.sub('[^a-z]', '_', name.lower())
+            placetype = row[5].strip()
+            source = row[6].strip()
+            desc =row[7].strip()
 
             print(', '.join(row))
 
             output = {
                 "name": name,
                 "slug": slug,
-                "type": "Wickelraum",
-                "description": desc,
+                "type": "babychange",
+                "description": placetype,
                 "address": {
                     "street": address,
                     # "zip": 48145,
@@ -46,12 +49,18 @@ def main():
                         "lat": lat,
                         "lon": lon
                     }
+                },
+                "properties": {
+                    "Stockwerk": place,
+                    "Beschreibung": placetype,
+                    "Quelle": source,
+                    "Hinweis": desc
                 }
             }
 
             print(output)
 
-            res = elastic.index(index="other", doc_type='place', id=slug, body=output)
+            res = elastic.index(index="places", doc_type='place', id=slug, body=output)
             print(res)
 
 

@@ -22,6 +22,12 @@ export interface IMeinItem {
 export abstract class MeinItems {
 
     public static items: {[id: string]: IMeinItem} = {
+      babychange: {
+        name: 'Wickelraum',
+        icon: 'mdi-baby-buggy',
+        color: 'is-link',
+        component: SearchResultsDefault
+      },
       construction: {
         name: 'Baustelle',
         icon: 'mdi-vlc',
@@ -30,7 +36,7 @@ export abstract class MeinItems {
       },
       kindergarden: {
         name: 'Kindergarten',
-        icon: 'mdi-baby-buggy',
+        icon: 'mdi-baby',
         color: 'is-primary',
         component: SearchResultsKindergarden
       },
