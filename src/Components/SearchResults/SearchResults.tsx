@@ -6,6 +6,11 @@ export interface ISearchResultsProps {
     icon?: string;
 }
 
+/**
+ * Base class for the various types of possible search results.
+ *
+ * TODO: class name is used twice. Consider renaming one of them.
+ */
 export abstract class SearchResults extends React.Component<ISearchResultsProps, any> {
   protected isoDateStringToDate(date: string): any {
     return new Date(Date.parse(date));
@@ -15,14 +20,23 @@ export abstract class SearchResults extends React.Component<ISearchResultsProps,
     return this.isoDateStringToDate(date).toLocaleDateString('de-DE');
   }
 
+  /**
+   * Add 'm' to the end of the number and return as string
+   */
   protected distancePrettifier(dist: number): string {
     return '' + Math.round(dist) + 'm';
   }
 
+  /**
+   * Get the approximate time to arrive via foot in minutes, assuming a speed of 80 metres / minute.
+   */
   protected getMinutesByFeet(dist: number): string {
     return Math.round(dist / 80) + ' Min.';
   }
 
+  /**
+   * Get the approximate time to arrive via car in minutes, assuming a speed of 250 metres / minute.
+   */
   protected getMinutesByCar(dist: number): string {
     return Math.round(dist / 250) + ' Min.';
   }

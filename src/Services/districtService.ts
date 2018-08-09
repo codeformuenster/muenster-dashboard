@@ -6,6 +6,9 @@ const client = new Elasticsearch.Client({
   log: 'trace'
 });
 
+/**
+ * Data about one district
+ */
 export interface IDistrictResultSlim {
   name: string;
   number: number;
@@ -16,13 +19,15 @@ export interface IDistrictResultSlim {
 }
 
 /**
- * General search handling
+ * General search handling. This class acts as a wrapper around the Elasticsearch client.
  */
 export class DistrictService {
 
-  /*
-   * Execute search
-   */
+    /**
+     * Query the first 100 entries on the 'stadtteile'-index.
+     * @param callback a function with one parameter, that will be called when the results are ready. The first parameter
+     * will be an array containing the district results of type IDistrictResultSlim.
+     */
   public loadDistricts(callback: any) {
 
     let searchQuery: any = {
@@ -66,6 +71,12 @@ export class DistrictService {
       );
   }
 
+    /**
+     * Query the 'stadtteile'-index for the geometry that contains the given geo position.
+     *
+     * @return a Promise that will return the one matching district name or an empty string, if no matching district
+     * was found
+     */
   public queryDistrictByCoordinates({ latitude, longitude }: { latitude: number, longitude: number }) {
     const searchQuery: any = {
       index: 'stadtteile',

@@ -19,6 +19,9 @@ interface ILunchMapProps {
     districtPolygon?: IDistrictResultSlim;
 }
 
+/**
+ * This component wraps the LeafLet map. It displays the current position and the various search results as markers.
+ */
 class LunchMap extends React.Component<ILunchMapProps, any> {
 
   private markerRef: Marker|null;
@@ -61,6 +64,12 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
     }
   }
 
+    /**
+     * componentDidUpdate() is invoked immediately after updating occurs. This method is not called for the initial render.
+     *
+     * Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network
+     * requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+     */
   componentDidUpdate() {
     if (this.markerRef) {
       // This  seems to be the only way to open a marker popup programmatically:

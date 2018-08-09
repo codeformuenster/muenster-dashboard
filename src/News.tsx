@@ -40,6 +40,10 @@ export interface IDistrictResultSlim {
 interface IAppProps {
 }
 
+/**
+ * This high level component is displayed when the sub path /aktuelles is called. It's supposed to show current events as scraped from the newspaper WN and the weather forecast
+ * as provided by yr.no.
+ */
 class News extends React.Component<IAppProps, any> {
 
   private lastSearchHash = '-';
@@ -98,8 +102,11 @@ class News extends React.Component<IAppProps, any> {
     );
   }
 
+  /**
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load
+   * data from a remote endpoint, this is a good place to instantiate the network request.
+   */
   public componentDidMount() {
-
     this.getBrowserLocation();
   }
 
@@ -125,6 +132,12 @@ class News extends React.Component<IAppProps, any> {
     this.lastSearchHash = searchHash;
   }
 
+  /**
+   * Try getting the device's current position and update the position in the latitude/longitude. If the position cannot
+   * be determined use a standard position.
+   *
+   * TODO: This functionality is implemented at multiple locations. Consider collecting it into one place.
+   */
   private getBrowserLocation() {
 
     if (!navigator.geolocation) {
