@@ -13,6 +13,12 @@ interface ISearchResultsProps {
     limit?: number;
 }
 
+/**
+ * This component contains the various search results, displaying one SearchResults-component (not this one, but the one in sub folder SearchResults) for each one.
+ * If a result was selected, display a SearchResultDetailled for that result.
+ *
+ * TODO: class name is used twice. Consider renaming one of them
+ */
 class SearchResults extends React.Component<ISearchResultsProps, any> {
 
   render() {
@@ -32,6 +38,7 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
       }
     }
 
+    // limit the number of displayed results. If none was given display the first 100
     const limit = this.props.limit ? this.props.limit : 100;
     if (results && results.length > limit) {
       results = results.slice(0, this.props.limit);

@@ -9,6 +9,10 @@ interface ISearchBarProps {
     searchParams: ISearchParams;
 }
 
+/**
+ * This component encompasses the search bar, consisting of a text field for searching, a selection box for choosing a
+ * target category and a selection box for choosing a district
+ */
 class SearchBar extends React.Component<ISearchBarProps, any> {
 
   constructor(props: ISearchBarProps) {
@@ -16,9 +20,11 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
   }
 
   render() {
-
+    // the DebounceInput is a drop-in replacement for <input ..> elements that debounces the input, which means that
+    // quick consecutive changes only cause one onChange() call
     const DebounceInput = require('react-debounce-input');
 
+    // create an <option .. />-element for each district. This list will will the district selection box
     let districtList = this.props.districts.map((d: IDistrictResultSlim) => {
       return <option key={d.number} value={d.number}>{d.name}</option>;
     });
@@ -86,6 +92,9 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     );
   }
 
+  /**
+   * onChange()-callback for the search term field
+   */
   private onSearchTermChange = (event: any) => {
     const searchQuery = event.target.value;
     let searchParams = this.props.searchParams;
@@ -93,12 +102,17 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     this.props.updateHandler(searchParams);
   }
 
+  /**
+   * onChange()-callback for the district selection box
+   */
   private onDistrictChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    // replace the district in the search params with the selected district
     let searchParams = this.props.searchParams;
     const district = event.currentTarget.value;
     searchParams.district = district;
-    let selectedDistrict;
+    let selectedDistrict; // this will hold the corresponding IDistrictResultSlim of the selected district, or None if none is found
 
+    // try finding the corresponding IDistrictResultSlim by the district's number and update the coordinates in the searchParams
     if (this.props.districts) {
       /*const { centerLat, centerLon } = this.state.districts.find((d:IDistrictResultSlim) => { return d.number === Number(district) });*/
       const found = this.props.districts.find((d: IDistrictResultSlim) => { return d.number === Number(district); });
@@ -112,6 +126,9 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
     this.props.updateHandler(searchParams, selectedDistrict);
   }
 
+  /**
+   * onChange()-callback for the target category selection box
+   */
   private onTypeChange = (event: React.FormEvent<HTMLSelectElement>) => {
     let searchParams = this.props.searchParams;
     searchParams.category = event.currentTarget.value;

@@ -10,6 +10,9 @@ interface ISearchResultDetailledProps {
     searchParams: ISearchParams;
 }
 
+/**
+ * This component displays detailed information about one search result, like the distance and approximate arrival times.
+ */
 class SearchResultDetailled extends React.Component<ISearchResultDetailledProps, any> {
 
   render() {
@@ -87,6 +90,10 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
     );
   }
 
+    /**
+     * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here.
+     * If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+     */
   componentDidMount () {
     window.scrollTo(0, 0);
   }

@@ -7,6 +7,10 @@ interface IGeoSelectorProps {
     searchParams: ISearchParams;
 }
 
+/**
+ * This component is usually displayed above the search results and contains a text field which can be used to manually input a postcode. It can also contain a info box that
+ * informs the user about allowing the site to use the device's position automatically.
+ */
 class GeoSelector extends React.Component<IGeoSelectorProps, any> {
 
   constructor(props: any) {

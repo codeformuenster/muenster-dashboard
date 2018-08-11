@@ -118,8 +118,10 @@ class App extends React.Component<IAppProps, any> {
     }
     this.setState(newState);
 
+    // note: not an actual hash, this is just for checking if the query has been done before. Consider renaming it
     const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
+    // only query/update the locations if the search hash is different from the last one
     if (searchHash !== this.lastSearchHash) {
       this.searchService.sendSearchToServer(
         searchParams,
@@ -131,6 +133,12 @@ class App extends React.Component<IAppProps, any> {
     this.lastSearchHash = searchHash;
   }
 
+  /**
+   * Try getting the device's current position and update the position in the latitude/longitude. If the position cannot
+   * be determined use a standard position.
+   *
+   * TODO: This functionality is implemented at multiple locations. Consider collecting it into one place.
+   */
   private getBrowserLocation() {
 
     if (!navigator.geolocation) {
@@ -138,6 +146,7 @@ class App extends React.Component<IAppProps, any> {
       return;
     }
 
+    // define the callback functions that are called when the device's position could / could not be determined
     let success = (position: any) => {
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;

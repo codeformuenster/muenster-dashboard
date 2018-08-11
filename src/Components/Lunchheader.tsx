@@ -5,6 +5,10 @@ import { DistrictService } from '../Services/districtService';
 
 const logo = require('./Logo.svg');
 
+/**
+ * This component encompasses the header which contains the logo and the navigation bar. On small screens, the menu items
+ * collapse to a hamburger icon.
+ */
 class Lunchheader extends React.Component<any, any> {
 
   constructor(props: any) {
@@ -18,6 +22,7 @@ class Lunchheader extends React.Component<any, any> {
       return;
     }
 
+    // define a callback function that is called with the device's position when it could be determined
     const success = (position: any) => {
       new DistrictService().queryDistrictByCoordinates(position.coords)
         .then((district: string) => {
@@ -26,8 +31,10 @@ class Lunchheader extends React.Component<any, any> {
         .catch(() => {});
     };
 
+    // if the position could not be determined just do nothing here
     const error = () => {};
 
+    // try determining the current position of the device
     navigator.geolocation.getCurrentPosition(success, error);
   }
 

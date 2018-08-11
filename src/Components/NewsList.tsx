@@ -10,6 +10,9 @@ interface INewsListState {
     news: Array<INewsResult>;
 }
 
+/**
+ * This component displays the various news results as retrieved from the newspaper WN.
+ */
 class NewsList extends React.Component<INewsListProps, INewsListState> {
 
   constructor(props: INewsListProps) {
