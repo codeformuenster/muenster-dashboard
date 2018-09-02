@@ -1,5 +1,19 @@
 # Import WFS to Elasticsearch
 
+
+cd mapping \
+  && sudo docker-compose up && cd ..
+
+cd districts \
+  && sudo docker-compose up && cd ..
+
+cd geojsonwfs \
+  && sudo docker-compose up && cd ..
+
+
+---
+[old]
+
 Before doing anything, you should do:
 - fill the `config.json` file in their respective directories with life
   - `url`: the URL to the WFS 1.1.0 aufgrabungen server

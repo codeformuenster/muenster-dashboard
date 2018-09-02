@@ -1,77 +1,40 @@
 'use strict';
 
-const request = require('request-promise-native'),
-  parse = require('csv-parse'),
-  wkt = require('wellknown'),
-  centerOfMass = require('@turf/center-of-mass'),
-  queue = require('async/queue');
-
 const { url, eSurl } = require('./config.json');
 
-const handleCSV = function handleCSV (err, rows) {
-  if (err) {
-    console.log(err);
-    return;
+console.log('https://elasticsearch.codeformuenster.org')
+
+var elasticsearch = require('elasticsearch');
+var client = new elasticsearch.Client({
+  host: 'https://elasticsearch.codeformuenster.org',
+  log: 'trace'
+});
+
+client.ping({
+  requestTimeout: 30000,
+}, function (error) {
+  if (error) {
+    console.error('elasticsearch cluster is down!');
+  } else {
+    console.log('All is well');
   }
+});
 
-  const q = queue(postToElasticSearch, 15);
-
-  for (const { WKT, id, beginn, spuren, vtraeger, strassen } of rows) {
-    const geometry = wkt.parse(WKT);
-
-    const { geometry: { coordinates: [lon, lat] }} = centerOfMass(geometry);
-
-    const lanes = spuren.split(',').map(t => t.trim());
-
-    let  [ year, month, day ]  = beginn.split(" ")[0].split("/");
-    year = Number(year);
-    month = Number(month);
-    day = Number(day);
-
-    q.push({
-      address: {
-        geo: {
-          lat, lon
-        },
-        geometry,
-      },
-      type: 'construction',
-      id: parseInt(id, 10),
-      date_start: new Date(Date.UTC(year, month, day)).toISOString(),
-      lanes,
-      name: vtraeger,
-      description: strassen
-    });
+client.search({
+  index: 'places',
+  type: 'place',
+  body: {
+    query: {
+      match: {
+        body: '*'
+      }
+    }
   }
-
-};
-
-const postToElasticSearch = function postToElasticSearch (json, cb) {
-  request.put({
-    url: `${eSurl}/${json.id}`,
-    json: true,
-    body: json
-  }).then(function (result) {
-    console.log(`successfully created ${json.id}`);
-    cb(null);
-  })
-  .catch(function (err) {
-    console.log('-------------------------------');
-    console.log(`Error for ${json.id}`);
-    console.log(err.message);
-    cb(err);
-  })
-};
-
-request(url)
-  .then(function (result) {
-    parse(result,
-      { columns: true },
-      handleCSV);
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+}).then(function (resp) {
+    var hits = resp.hits.hits;
+}, function (err) {
+    console.trace(err.message);
+});
 
 
-
+module.exports = () => 'Hello world'
