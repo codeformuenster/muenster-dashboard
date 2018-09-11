@@ -10,6 +10,9 @@ cd districts \
 cd geojsonwfs \
   && sudo docker-compose up && cd ..
 
+cd various \
+  && python3 stillplaetze.py && cd ..
+
 
 ---
 [old]
