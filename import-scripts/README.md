@@ -13,6 +13,8 @@ cd geojsonwfs \
 cd various \
   && python3 stillplaetze.py && cd ..
 
+cd various \
+  && python3 container.py && cd ..
 
 ---
 [old]
