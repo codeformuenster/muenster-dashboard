@@ -2,8 +2,8 @@
 
 const request = require('request-promise-native');
 
-// const baseUrl = '';
-const baseUrl = 'https://elasticsearch.codeformuenster.org';
+const baseUrl = process.env.ELASTICSEARCH_URL;
+const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
 
 const placesIndex = {
   "mappings": {
@@ -42,11 +42,15 @@ const districtIndex = {
 };
 
 const indexes = {
-  "places": placesIndex,
-  "stadtteile": districtIndex
+  [`${prefix}places`]: placesIndex,
+  [`${prefix}stadtteile`]: districtIndex,
 };
+console.log(Object.keys(indexes));
+
 
 for (const [indexName, mapping] of Object.entries(indexes)) {
+  console.log(`${baseUrl}/${indexName}`);
+
   request.put({
       url: `${baseUrl}/${indexName}`,
       json: true,
