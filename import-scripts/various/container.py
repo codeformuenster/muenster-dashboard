@@ -9,7 +9,6 @@ import os
 import re
 
 from elasticsearch import Elasticsearch
-import numpy as np
 import pandas as pd
 
 

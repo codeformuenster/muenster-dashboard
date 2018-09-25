@@ -28,6 +28,12 @@ export abstract class MeinItems {
         color: 'is-link',
         component: SearchResultsDefault
       },
+      container: {
+        name: 'Recycling-Container',
+        icon: 'mdi-recycle',
+        color: 'is-link',
+        component: SearchResultsDefault
+      },      
       construction: {
         name: 'Baustelle',
         icon: 'mdi-vlc',
