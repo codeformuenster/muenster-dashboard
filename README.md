@@ -19,17 +19,6 @@ If you get problems with file permissions on startup, check that the mounted dir
 Great Elasticsearch JS documentation is linked here: https://github.com/elastic/elasticsearch-js
 
 
-
-## Running only the react app
-
-    npm run start
-
-
-# Initialize the Database
-
-    cd src/scripts
-    ../../node_modules/typescript/bin/tsc initialize-database.ts && node ./initialize-database.js  
-
 ## Importing data
 
     # Aufgrabungen und similar things
@@ -37,6 +26,13 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
 
     # Wn events and news, and stadt münster webcams:
     See README in `import-scripts/wn-events-news-cams`
+
+
+## Running only the react app
+
+    sudo docker-compose stop dashboard
+
+    npm run start
 
 
 ## Deployment auf Ubuntu 16.04
