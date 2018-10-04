@@ -5,9 +5,12 @@ const request = require('request-promise-native');
 const baseUrl = process.env.ELASTICSEARCH_URL;
 const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
 
+// console.log(`baseUrl: ${baseUrl}`);
+// console.log(`prefix: ${prefix}`);
+
 const placesIndex = {
   "mappings": {
-    "place": {
+    "_doc": {
       "properties": {
         "date_start": {
           "type": "date"
@@ -32,7 +35,7 @@ const placesIndex = {
 
 const districtIndex = {
   "mappings": {
-    "stadtteil": {
+    "_doc": {
       "properties": {
         "geometry": { "type": "geo_shape" },
         "center": { "type": "geo_shape" }

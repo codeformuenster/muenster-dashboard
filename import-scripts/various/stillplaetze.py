@@ -16,7 +16,7 @@ from elasticsearch import Elasticsearch
 def main():
     """The class's docstring"""
 
-    elastic = Elasticsearch()
+    elastic = Elasticsearch(os.environ['ELASTICSEARCH_URL'])
 
     with open('stillplaetze.csv', 'r') as csvfile:
         spamreader = csv.reader(
@@ -32,7 +32,7 @@ def main():
             slug = re.sub('[^a-z]', '_', name.lower())
             placetype = row[5].strip()
             source = row[6].strip()
-            desc =row[7].strip()
+            desc = row[7].strip()
 
             print(', '.join(row))
 
@@ -60,7 +60,7 @@ def main():
 
             print(output)
 
-            res = elastic.index(index="places", doc_type='place', id=slug, body=output)
+            res = elastic.index(index=f"{os.environ['ELASTICSEARCH_INDEX_PREFIX']}places", doc_type='_doc', id=slug, body=output)
             print(res)
 
 

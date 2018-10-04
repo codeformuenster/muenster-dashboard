@@ -3,9 +3,7 @@
 
 import json
 import os
-
 from elasticsearch import Elasticsearch
-from pprint import pprint
 
 DIR = 'target/'
 
@@ -22,4 +20,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

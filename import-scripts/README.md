@@ -1,17 +1,19 @@
 # Import WFS to Elasticsearch
 
 
-cd mapping \
-  && sudo docker-compose up && cd ..
+```bash
+export ELASTICSEARCH_URL=https://elasticsearch.codeformuenster.org
+export ELASTICSEARCH_INDEX_PREFIX=""
+# export BUILD="--build"
+export BUILD=""
 
-cd districts \
-  && sudo docker-compose up && cd ..
+sudo \
+  ELASTICSEARCH_URL="https://elasticsearch.codeformuenster.org" \
+  ELASTICSEARCH_INDEX_PREFIX="" \
+  BUILD="" \
+  ./import.sh
 
-cd geojsonwfs \
-  && sudo docker-compose up && cd ..
-
-cd various \
-  && python3 stillplaetze.py && cd ..
+```
 
 
 ---

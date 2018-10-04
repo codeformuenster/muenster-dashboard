@@ -3,7 +3,9 @@
 const request = require('request-promise-native'),
   queue = require('async/queue');
 
-const { baseUrl, eSurl } = require('./config.json');
+const { sourceUrl } = require('./config.json');
+const baseUrl = process.env.ELASTICSEARCH_URL;
+const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
 
 const parameters = 'REQUEST=GetFeature&SERVICE=WFS&VERSION=2.0.0&OUTPUTFORMAT=GEOJSON&EXCEPTIONS=XML&MAXFEATURES=10000&SRSNAME=EPSG:4326'
 
@@ -32,7 +34,7 @@ const handleGeoJSON = function handleGeoJSON ({ result, type }) {
 
 const postToElasticSearch = function postToElasticSearch (json, cb) {
   return request.put({
-    url: `${eSurl}/${json.id}`,
+    url: `${baseUrl}/${prefix}places/_doc/${json.id}`,
     json: true,
     body: json
   }).then(function (result) {
@@ -48,7 +50,7 @@ const postToElasticSearch = function postToElasticSearch (json, cb) {
 };
 
 module.exports = function worker ({ servName, typeName, type }) {
-  const url = `${baseUrl}/${servName}?${parameters}&TYPENAME=${typeName}`;
+  const url = `${sourceUrl}/${servName}?${parameters}&TYPENAME=${typeName}`;
   console.log(`Importing ${servName}/${typeName} from ${url}`);
 
   return request(url, { auth: { user: 'mshack', pass: 'jovelms' } })
@@ -59,4 +61,3 @@ module.exports = function worker ({ servName, typeName, type }) {
       console.log(err);
     });
 };
-

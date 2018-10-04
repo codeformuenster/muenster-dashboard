@@ -5,3 +5,6 @@ services:
     build: .
     # volumes:
     #   - .:/usr/src/app
+    environment:
+      - ELASTICSEARCH_URL
+      - ELASTICSEARCH_INDEX_PREFIX
