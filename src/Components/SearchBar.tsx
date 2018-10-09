@@ -60,13 +60,15 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                   <option value=""> Was suchst Du? </option>
                   <option value="construction"> Baustellen </option>
                   <option value="pool"> Bäder </option>
-                  <option value="lunch"> Mittagstische </option>
-                  <option value="playground"> Spielplätze </option>
-                  <option value="event"> Termine </option>
-                  <option value="wifi"> WLANs </option>
                   <option value="kindergarden"> Kitas </option>
+                  <option value="lunch"> Mittagstische </option>
+                  <option value="container"> Recycling-Container </option>
+                  <option value="playground"> Spielplätze </option>
+                  <option value="kindergarden"> Stillplätze </option>
+                  <option value="event"> Termine </option>
                   <option value="wc"> WCs </option>
                   <option value="webcam"> Webcams </option>
+                  <option value="wifi"> WLANs </option>
                 </select>
 
               </div>

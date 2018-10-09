@@ -15,6 +15,8 @@ sudo \
 
 ```
 
+cd various \
+  && python3 container.py && cd ..
 
 ---
 [old]
@@ -50,3 +52,21 @@ Execute with `node index.js`
 
 ## `sportstaetten-belegungsplan`
 Inserts the booking plans of sports facilities in Münster. You need to pass the environment parameter `GOOGLE_API_KEY` (Google Maps API key) when running the import script `import_hallenbelegung.py`
+
+## `container`
+To update the JSON file with new container data to the following:
+- Go to https://overpass-turbo.eu
+- Execute the script:
+[out:json][timeout:25];
+// gather results
+(
+  // query part for: “"recycling:glass"=yes”
+  node["recycling:glass"="yes"]({{bbox}});
+  way["recycling:glass"="yes"]({{bbox}});
+  relation["recycling:glass"="yes"]({{bbox}});
+);
+// print results
+out body;
+>;
+out skel qt;
+- Find the JSON in the "data" tab
