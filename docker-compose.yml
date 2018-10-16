@@ -13,7 +13,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
     volumes:
       - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
+#      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
