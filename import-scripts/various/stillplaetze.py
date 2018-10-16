@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+"""Some docstring"""
+
 # -*- coding: utf-8 -*-
 
-import json
-import os
-import datetime as dt
 import csv
 import re
 
@@ -16,7 +15,13 @@ from elasticsearch import Elasticsearch
 def main():
     """The class's docstring"""
 
-    elastic = Elasticsearch(os.environ['ELASTICSEARCH_URL'])
+    elastic = Elasticsearch(
+        ['elasticsearch.codeformuenster.org'],
+        scheme="https",
+        port=443)
+
+    # Import into local instance instead
+    # elastic = Elasticsearch()
 
     with open('stillplaetze.csv', 'r') as csvfile:
         spamreader = csv.reader(
@@ -60,7 +65,11 @@ def main():
 
             print(output)
 
-            res = elastic.index(index=f"{os.environ['ELASTICSEARCH_INDEX_PREFIX']}places", doc_type='_doc', id=slug, body=output)
+            res = elastic.index(
+                index="places",
+                doc_type='place',
+                id=slug,
+                body=output)
             print(res)
 
 

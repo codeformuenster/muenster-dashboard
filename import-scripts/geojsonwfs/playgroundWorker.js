@@ -15,7 +15,9 @@ const handleGeoJSON = function handleGeoJSON ({ result, type }) {
   const q = queue(postToElasticSearch, 5);
 
   for (const { geometry, properties } of features) {
+
     const { coordinates: [lon, lat] } = geometry;
+    const propName = properties.Name;
 
     q.push({
       address: {
@@ -25,7 +27,7 @@ const handleGeoJSON = function handleGeoJSON ({ result, type }) {
         geometry,
       },
       type: type,
-      name: properties.Name,
+      name: propName.string.charAt(0).toUpperCase() + propName.slice(1).toLowerCase(),
       id: properties.ID,
       properties
     });

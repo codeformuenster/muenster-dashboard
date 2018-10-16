@@ -5,7 +5,7 @@ namespace MSHACK\DataScraper\Indexer;
 use Guzzle\Http\Client;
 
 class ElasticSearch {
-	protected $url = "https://elasticsearch.codeformuenster.org/###TYPE###";
+	protected $url = "http://familiendashboard_elasticsearch_1:9200/###TYPE###";
 
 	/**
 	 * Indexes the given geo object to the elastic search index

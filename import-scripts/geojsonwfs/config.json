@@ -1,3 +1,4 @@
 {
-  "sourceUrl": "https://www.stadt-muenster.de/ows/mapserv706"
+  "baseUrl": "https://www.stadt-muenster.de/ows/mapserv706",
+  "eSurl": "http://localhost:9200/places/place"
 }

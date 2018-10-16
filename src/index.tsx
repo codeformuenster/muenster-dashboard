@@ -10,6 +10,7 @@ import Lunchheader from './Components/Lunchheader';
 import Impressum from './Pages/Impressum';
 import WorkInProgress from './Pages/WorkInProgress';
 import Copyright from './Pages/Copyright';
+import LinkListe from './Pages/LinkListe';
 
 ReactDOM.render(
   <Router>
@@ -22,6 +23,7 @@ ReactDOM.render(
 
         <Route path="/team" component={WorkInProgress} />
         <Route path="/copyright" component={Copyright} />
+        <Route path="/linkliste" component={LinkListe} />
     </div>
   </Router>,
   document.getElementById('root') as HTMLElement
