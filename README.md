@@ -59,10 +59,10 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
 
 ## Indexes
 
- - WN News:  https://elasticsearch.codeformuenster.org/news/_search
+ - WN News: news
  - Alle locations (Aufgrabungsmeldungen, Kindergärten, etc..): places
  - WN Events: events
- - Stadtteile geojson shapes: stadtteile
+ - Stadtteile geojson shapes: districts
 
 
 ## Playing with the data

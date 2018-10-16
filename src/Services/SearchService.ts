@@ -1,9 +1,10 @@
 
 import * as Elasticsearch from 'elasticsearch';
 import { ISearchParams, ISearchResult } from '../App';
+import { baseUrl, placesIndex } from '../Constants/Elasticsearch';
 
 let client = new Elasticsearch.Client({
-  host: 'https://elasticsearch.codeformuenster.org:443',
+  host: baseUrl,
   log: 'trace'
 });
 
@@ -28,7 +29,7 @@ class SearchService {
     const { centerLat, centerLon } = searchParams;
 
     let searchQuery: any = {
-      index: 'places',
+      index: placesIndex,
       body: {
         size : isNewsSearch ? 15 : 100,
         query: {
