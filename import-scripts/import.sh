@@ -8,7 +8,7 @@
 # # export build=""
 
 echo "deleting indices"
-curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""stadtteile"
+curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""districts"
 curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""places"
 
 echo

@@ -1,8 +1,8 @@
-
 import * as Elasticsearch from 'elasticsearch';
+import { baseUrl } from '../Constants/Elasticsearch';
 
 let client = new Elasticsearch.Client({
-  host: 'https://elasticsearch.codeformuenster.org:443',
+  host: baseUrl,
   log: 'trace'
 });
 
