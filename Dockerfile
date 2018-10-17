@@ -16,4 +16,7 @@ COPY . /usr/src/app
 
 #COPY --from=1 /assets-server /assets-server
 #CMD ["/assets-server"]
+
+ENV ELASTICSEARCH_URL http://127.0.0.1:9200
+ENV ELASTICSEARCH_INDEX_PREFIX mein-ms-
 CMD ["npm", "start"]
