@@ -6,3 +6,4 @@ services:
     environment:
       - ELASTICSEARCH_URL
       - ELASTICSEARCH_INDEX_PREFIX
+    network_mode: "container:familiendashboard_elasticsearch_1"

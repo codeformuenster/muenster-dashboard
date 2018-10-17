@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# export ELASTICSEARCH_URL=https://elasticsearch.codeformuenster.org
+export ELASTICSEARCH_URL="http://127.0.0.1:9200"
 # # export ELASTICSEARCH_INDEX_PREFIX="meinms-"
-# export ELASTICSEARCH_INDEX_PREFIX=""
+ export ELASTICSEARCH_INDEX_PREFIX=""
 #
 # export BUILD="--build"
 # # export build=""
