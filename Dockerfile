@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
+COPY ./env.js /usr/src/app/node_modules/react-scripts-ts/config/env.js
 #RUN npm run build
 
 #FROM quay.io/geraldpape/as-builder:v1
