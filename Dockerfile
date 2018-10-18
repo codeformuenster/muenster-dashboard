@@ -4,16 +4,20 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
-RUN npm run build
+COPY ./env.js /usr/src/app/node_modules/react-scripts-ts/config/env.js
+#RUN npm run build
+
+#FROM quay.io/geraldpape/as-builder:v1
+
+#COPY --from=0 /usr/src/app/build /assets
+#RUN as-builder -debug -src /assets -dest /assets-server -port 8080 -url /
 
 
-FROM quay.io/geraldpape/as-builder:v1
+#FROM scratch
 
-COPY --from=0 /usr/src/app/build /assets
-RUN as-builder -debug -src /assets -dest /assets-server -port 8080 -url /
+#COPY --from=1 /assets-server /assets-server
+#CMD ["/assets-server"]
 
-
-FROM scratch
-
-COPY --from=1 /assets-server /assets-server
-CMD ["/assets-server"]
+ENV ELASTICSEARCH_URL http://127.0.0.1:9200
+ENV ELASTICSEARCH_INDEX_PREFIX mein-ms-
+CMD ["npm", "start"]

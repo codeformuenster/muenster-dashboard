@@ -14,19 +14,27 @@ Current uptime status for mein-ms.de: https://uptime.codeformuenster.org/
 
     sudo docker-compose up
 
+Point your browser towards http://localhost:3000. You should be able to see the basic interface. However, since the Elasticsearch has no data yet, you will not see any entries. See the section 'Importing data' to learn how to do that. The Elasticsearch is available at http://localhost:9200 and Kibana at http://localhost:5601 .
+
 If you get problems with file permissions on startup, check that the mounted directory ./elasticsearch/data has correct permissions.
 
 Great Elasticsearch JS documentation is linked here: https://github.com/elastic/elasticsearch-js
 
-
 ## Importing data
 
-    # Aufgrabungen und similar things
-    See README in `import-scripts`
+Quickstart:
 
-    # Wn events and news, and stadt münster webcams:
-    See README in `import-scripts/wn-events-news-cams`
+    cd import-scripts
+    sudo ./import.sh 
 
+By default the data is not persisted across container restarts. See the README in `import-scripts` .
+The Elasticsearch URL and the index-prefix can be configured in the `Dockerfile`.
+
+### Aufgrabungen und similar things
+See README in `import-scripts`
+
+### Wn events and news, and stadt münster webcams:
+See README in `import-scripts/wn-events-news-cams`
 
 ## Running only the react app
 
@@ -59,10 +67,10 @@ Great Elasticsearch JS documentation is linked here: https://github.com/elastic/
 
 ## Indexes
 
- - WN News:  https://elasticsearch.codeformuenster.org/news/_search
+ - WN News: news
  - Alle locations (Aufgrabungsmeldungen, Kindergärten, etc..): places
  - WN Events: events
- - Stadtteile geojson shapes: stadtteile
+ - Stadtteile geojson shapes: districts
 
 
 ## Playing with the data

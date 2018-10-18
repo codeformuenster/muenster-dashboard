@@ -10,6 +10,7 @@ services:
       # ELASTICSEARCH_INDEX_PREFIX: "meinms-"
       # - ELASTICSEARCH_INDEX_PREFIX=${ELASTICSEARCH_INDEX_PREFIX}
       - ELASTICSEARCH_INDEX_PREFIX
+    network_mode: "container:familiendashboard_elasticsearch_1"
 
 # networks:
 #   default:
