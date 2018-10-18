@@ -27,14 +27,14 @@ Quickstart:
     cd import-scripts
     sudo ./import.sh 
 
-By default the data is not persisted across container restarts. See the README in `import-scripts`
- 
+By default the data is not persisted across container restarts. See the README in `import-scripts` .
+The Elasticsearch URL and the index-prefix can be configured in the `Dockerfile`.
+
 ### Aufgrabungen und similar things
 See README in `import-scripts`
 
 ### Wn events and news, and stadt münster webcams:
 See README in `import-scripts/wn-events-news-cams`
-
 
 ## Running only the react app
 
