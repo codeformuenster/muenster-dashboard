@@ -1,22 +1,17 @@
 # Import WFS to Elasticsearch
 
 
-```bash
-export ELASTICSEARCH_URL=https://elasticsearch.codeformuenster.org
-export ELASTICSEARCH_INDEX_PREFIX=""
-# export BUILD="--build"
-export BUILD=""
+```sudo ./import.sh```
 
-sudo \
-  ELASTICSEARCH_URL="https://elasticsearch.codeformuenster.org" \
-  ELASTICSEARCH_INDEX_PREFIX="" \
-  BUILD="" \
-  ./import.sh
+The target Elasticsearch-URL and index prefix can be configured at the top of the file. 
 
-```
+By default the data is not persisted across container restarts. To enable this, you need to these actions, all from the base folder, not import-scripts:
 
-cd various \
-  && python3 container.py && cd ..
+-In the file `./docker-compose.yml`, uncomment this line: `# - ./docker/elasticsearch/data:/usr/share/elasticsearch/data`.
+
+-Create the folder `./docker/elasticsearch/data`, if it does not exist: From the base folder: `sudo mkdir docker/elasticsearch/data`.
+
+-Grant group write rights: `sudo chmod g+w docker/elasticsearch/data`
 
 ---
 [old]
