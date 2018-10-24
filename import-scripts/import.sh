@@ -29,6 +29,11 @@ cd geojsonwfs; \
   docker-compose up $BUILD; cd ..
 
 echo
-echo "importing various"
-cd various; \
+echo "importing stillplaetze"
+cd stillplaetze; \
+  docker-compose up $BUILD; cd ..
+
+echo
+echo "importing container"
+cd container; \
   docker-compose up $BUILD; cd ..

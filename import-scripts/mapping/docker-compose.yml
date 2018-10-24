@@ -4,19 +4,5 @@ services:
   app:
     build: .
     environment:
-      # ELASTICSEARCH_URL: "http://elasticsearch:9200"
       - ELASTICSEARCH_URL
-      # - ELASTICSEARCH_URL
-      # ELASTICSEARCH_INDEX_PREFIX: "meinms-"
-      # - ELASTICSEARCH_INDEX_PREFIX=${ELASTICSEARCH_INDEX_PREFIX}
       - ELASTICSEARCH_INDEX_PREFIX
-    network_mode: "container:familiendashboard_elasticsearch_1"
-
-# networks:
-#   default:
-#     external:
-#       name: familiendashboard
-
-
-# sudo ELASTICSEARCH_URL="$ELASTICSEARCH" ELASTICSEARCH_INDEX_PREFIX="$ELASTICSEARCH_INDEX_PREFIX" \
-#   docker-compose config

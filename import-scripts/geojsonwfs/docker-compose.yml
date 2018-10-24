@@ -3,9 +3,6 @@ version: '2'
 services:
   app:
     build: .
-    # volumes:
-    #   - .:/usr/src/app
     environment:
       - ELASTICSEARCH_URL
       - ELASTICSEARCH_INDEX_PREFIX
-    network_mode: "container:familiendashboard_elasticsearch_1"

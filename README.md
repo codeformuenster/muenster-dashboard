@@ -5,15 +5,16 @@
 ## Run development environment locally
 
 ```bash
-COMPOSE_PROJECT_NAME="familiendashboard" \
-  sudo --preserve-env docker-compose up
-```
+export COMPOSE_PROJECT_NAME="familiendashboard"
+export ELASTICSEARCH_URL="http://elasticsearch:9200"
+export ELASTICSEARCH_INDEX_PREFIX="mein-ms-"
+export BUILD="--build"
 
-```bash
+sudo --preserve-env docker-compose up -d
+sudo --preserve-env docker-compose logs -f
+
 cd import-scripts
-
-COMPOSE_PROJECT_NAME="familiendashboard" \
-  sudo --preserve-env ./import.sh
+sudo --preserve-env ./import.sh
 ```
 
 
