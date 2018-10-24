@@ -6,30 +6,31 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_ELASTICSEARCH_URL=http://localhost:9200
+      - REACT_APP_ELASTICSEARCH_INDEX_PREFIX=mein-ms-
+      # - REACT_APP_ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+      # - REACT_APP_ELASTICSEARCH_INDEX_PREFIX=${ELASTICSEARCH_INDEX_PREFIX}
     volumes:
       - ./usr/src/app
     depends_on:
       - elasticsearch
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
     volumes:
       - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-#      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
+      # - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-      - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.2.3
+    image: docker.elastic.co/kibana/kibana-oss:6.4.2
     volumes:
       - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch
-
-volumes:
-  esdata:

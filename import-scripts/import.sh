@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-export ELASTICSEARCH_URL="http://127.0.0.1:9200"
-# # export ELASTICSEARCH_INDEX_PREFIX="meinms-"
+export ELASTICSEARCH_URL="http://elasticsearch:9200"
 export ELASTICSEARCH_INDEX_PREFIX="mein-ms-"
-#
+
 export BUILD="--build"
-# # export build=""
+# export build=""
+
 
 echo "deleting indices"
-curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""districts"
-curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""places"
+docker run --network familiendashboard_default buildpack-deps:18.10-curl sh -c "
+  curl -sSf --request DELETE $ELASTICSEARCH_URL/${ELASTICSEARCH_INDEX_PREFIX}districts ;
+  curl -sSf --request DELETE $ELASTICSEARCH_URL/${ELASTICSEARCH_INDEX_PREFIX}places"
+
 
 echo
 echo "importing mappings"
