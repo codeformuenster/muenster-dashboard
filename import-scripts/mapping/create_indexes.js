@@ -46,7 +46,7 @@ const districtIndex = {
 
 const indexes = {
   [`${prefix}places`]: placesIndex,
-  [`${prefix}stadtteile`]: districtIndex,
+  [`${prefix}districts`]: districtIndex,
 };
 console.log(Object.keys(indexes));
 

@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-# export ELASTICSEARCH_URL=https://elasticsearch.codeformuenster.org
-# # export ELASTICSEARCH_INDEX_PREFIX="meinms-"
-# export ELASTICSEARCH_INDEX_PREFIX=""
-#
-# export BUILD="--build"
-# # export build=""
+export ELASTICSEARCH_URL="http://elasticsearch:9200"
+export ELASTICSEARCH_INDEX_PREFIX="mein-ms-"
+
+export BUILD="--build"
+# export build=""
+
 
 echo "deleting indices"
-curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""stadtteile"
-curl --request DELETE "$ELASTICSEARCH_URL/""$ELASTICSEARCH_INDEX_PREFIX""places"
+docker run --network familiendashboard_default buildpack-deps:18.10-curl sh -c "
+  curl -sSf --request DELETE $ELASTICSEARCH_URL/${ELASTICSEARCH_INDEX_PREFIX}districts ;
+  curl -sSf --request DELETE $ELASTICSEARCH_URL/${ELASTICSEARCH_INDEX_PREFIX}places"
+
 
 echo
 echo "importing mappings"
@@ -27,6 +29,11 @@ cd geojsonwfs; \
   docker-compose up $BUILD; cd ..
 
 echo
-echo "importing various"
-cd various; \
+echo "importing stillplaetze"
+cd stillplaetze; \
+  docker-compose up $BUILD; cd ..
+
+echo
+echo "importing container"
+cd container; \
   docker-compose up $BUILD; cd ..

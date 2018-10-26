@@ -1,8 +1,10 @@
 import * as Elasticsearch from 'elasticsearch';
 import { Polygon } from 'geojson';
 
+import { baseUrl, districtIndex } from '../Constants/Elasticsearch';
+
 const client = new Elasticsearch.Client({
-  host: 'https://elasticsearch.codeformuenster.org:443',
+  host: baseUrl,
   log: 'trace'
 });
 
@@ -22,16 +24,15 @@ export interface IDistrictResultSlim {
  * General search handling. This class acts as a wrapper around the Elasticsearch client.
  */
 export class DistrictService {
-
     /**
-     * Query the first 100 entries on the 'stadtteile'-index.
+     * Query the first 100 entries on the district index.
      * @param callback a function with one parameter, that will be called when the results are ready. The first parameter
      * will be an array containing the district results of type IDistrictResultSlim.
      */
   public loadDistricts(callback: any) {
 
     let searchQuery: any = {
-      index: 'stadtteile',
+      index: districtIndex,
       body: {
         'size' : 100,
         '_source': [ 'properties', 'center', 'geometry' ]
@@ -72,14 +73,14 @@ export class DistrictService {
   }
 
     /**
-     * Query the 'stadtteile'-index for the geometry that contains the given geo position.
+     * Query the district index for the geometry that contains the given geo position.
      *
      * @return a Promise that will return the one matching district name or an empty string, if no matching district
      * was found
      */
   public queryDistrictByCoordinates({ latitude, longitude }: { latitude: number, longitude: number }) {
     const searchQuery: any = {
-      index: 'stadtteile',
+      index: districtIndex,
       body: {
         'size' : 1,
         '_source': [ 'properties.Name' ],

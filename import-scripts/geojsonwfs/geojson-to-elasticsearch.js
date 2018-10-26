@@ -13,7 +13,8 @@ const parameters = 'REQUEST=GetFeature&SERVICE=WFS&VERSION=2.0.0&OUTPUTFORMAT=GE
 const url = `${baseUrl}/${servName}?${parameters}&TYPENAME=${typeName}`;
 console.log(`Importing ${servName}/${typeName} from ${url}`);
 
-const eSurl = 'https://elasticsearch.codeformuenster.org/places/place';
+const esBaseUrl = process.env.ELASTICSEARCH_URL;
+const eSurl = esBaseUrl + '/places/place';
 
 const handleGeoJSON = function handleGeoJSON (result) {
   const { features } = JSON.parse(result);
