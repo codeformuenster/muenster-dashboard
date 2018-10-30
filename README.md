@@ -6,7 +6,8 @@
 
 ```bash
 export COMPOSE_PROJECT_NAME="familiendashboard"
-export ELASTICSEARCH_URL="http://elasticsearch:9200"
+# export ELASTICSEARCH_URL="http://elasticsearch:9200"
+export ELASTICSEARCH_URL="https://elasticsearch.codeformuenster.org"
 export ELASTICSEARCH_INDEX_PREFIX="mein-ms-"
 export BUILD="--build"
 
