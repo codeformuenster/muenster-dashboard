@@ -1,14 +1,10 @@
 'use strict';
 
 const request = require('request-promise-native');
+const elasticsearchUrlPrefix = process.env.ELASTICSEARCH_URL_PREFIX;
+const indices = {}
 
-const baseUrl = process.env.ELASTICSEARCH_URL;
-const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
-
-// console.log(`baseUrl: ${baseUrl}`);
-// console.log(`prefix: ${prefix}`);
-
-const placesIndex = {
+indices["places"] = {
   "mappings": {
     "_doc": {
       "properties": {
@@ -33,7 +29,7 @@ const placesIndex = {
   }
 };
 
-const districtIndex = {
+indices["districts"] = {
   "mappings": {
     "_doc": {
       "properties": {
@@ -44,27 +40,36 @@ const districtIndex = {
   }
 };
 
-const indexes = {
-  [`${prefix}places`]: placesIndex,
-  [`${prefix}districts`]: districtIndex,
-};
-console.log(Object.keys(indexes));
 
+console.log("Deleting and recreating indices with mapping..");
 
-for (const [indexName, mapping] of Object.entries(indexes)) {
-  console.log(`${baseUrl}/${indexName}`);
+for (const [indexName, mapping] of Object.entries(indices)) {
+  const indexUrl = `${elasticsearchUrlPrefix}${indexName}`
+
+  request.delete({
+      url: `${indexUrl}`,
+      json: true
+    })
+    .then(function (response) {
+      // console.log(`Success: ${indexUrl}`);
+      // console.log(response);
+    })
+    .catch(function (err) {
+      console.log(`Error deleting: ${indexUrl}`);
+      console.log(err.message);
+    });
 
   request.put({
-      url: `${baseUrl}/${indexName}`,
+      url: `${indexUrl}`,
       json: true,
       body: mapping
     })
     .then(function (response) {
-      console.log(`Successfully created index ${indexName}`);
-      console.log(response);
+      console.log(`Success: ${indexUrl}`);
+      // console.log(response);
     })
     .catch(function (err) {
-      console.log(`Error creating index ${indexName}`);
+      console.log(`Error: ${indexUrl}`);
       console.log(err.message);
     });
 }

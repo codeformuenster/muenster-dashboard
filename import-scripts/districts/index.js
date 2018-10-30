@@ -4,17 +4,15 @@ const request = require('request-promise-native'),
   center = require('@turf/center-of-mass');
 
 const districts = require('./data/districts.json');
-
-const baseUrl = process.env.ELASTICSEARCH_URL;
-const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
+const elasticsearchUrlPrefix = process.env.ELASTICSEARCH_URL_PREFIX;
 
 
-console.log(`${baseUrl}/${prefix}`);
+console.log(`${elasticsearchUrlPrefix}`);
 
 for (const feature of districts.features) {
   feature.center = center(feature).geometry;
   request.put({
-    url: `${baseUrl}/${prefix}districts/_doc/${feature.properties.Nr}`,
+    url: `${elasticsearchUrlPrefix}districts/_doc/${feature.properties.Nr}`,
     json: true,
     body: feature
   }).then(function (result) {

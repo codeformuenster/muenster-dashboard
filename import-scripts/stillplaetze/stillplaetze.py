@@ -1,22 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json
 import os
-import datetime as dt
 import csv
 import re
-
-# import pandas as pd
-# from bs4 import BeautifulSoup
-
 from elasticsearch import Elasticsearch
 
 
 def main():
     """The class's docstring"""
 
-    elastic = Elasticsearch(os.environ['ELASTICSEARCH_URL'])
+    elasticsearch_url, index_prefix = os.environ['ELASTICSEARCH_URL_PREFIX'].rsplit("/", maxsplit=1)
+    elastic = Elasticsearch(elasticsearch_url)
 
     with open('stillplaetze.csv', 'r') as csvfile:
         spamreader = csv.reader(
@@ -60,7 +55,7 @@ def main():
 
             print(output)
 
-            res = elastic.index(index=f"{os.environ['ELASTICSEARCH_INDEX_PREFIX']}places", doc_type='_doc', id=slug, body=output)
+            res = elastic.index(index=f"{index_prefix}places", doc_type='_doc', id=slug, body=output)
             print(res)
 
 
