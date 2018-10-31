@@ -19,6 +19,5 @@ RUN REACT_APP_ELASTICSEARCH_URL_PREFIX=$elasticsearch_url_prefix npm run build
 
 # ---
 
-# FROM giantswarm/caddy:0.11.0-test2-slim
-FROM giantswarm/caddy:v0.11.0-test2
+FROM giantswarm/caddy:0.11.0-test2-slim
 COPY --from=prod /usr/src/app/build /var/www
