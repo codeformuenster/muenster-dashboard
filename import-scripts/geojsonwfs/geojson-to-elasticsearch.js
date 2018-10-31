@@ -13,8 +13,9 @@ const parameters = 'REQUEST=GetFeature&SERVICE=WFS&VERSION=2.0.0&OUTPUTFORMAT=GE
 const url = `${baseUrl}/${servName}?${parameters}&TYPENAME=${typeName}`;
 console.log(`Importing ${servName}/${typeName} from ${url}`);
 
-const esBaseUrl = process.env.ELASTICSEARCH_URL;
-const eSurl = esBaseUrl + '/places/place';
+const elasticsearchUrlPrefix = process.env.ELASTICSEARCH_URL_PREFIX;
+// const esBaseUrl = process.env.ELASTICSEARCH_URL;
+// const eSurl = esBaseUrl + '/places/place';
 
 const handleGeoJSON = function handleGeoJSON (result) {
   const { features } = JSON.parse(result);
@@ -42,7 +43,7 @@ const handleGeoJSON = function handleGeoJSON (result) {
 
 const postToElasticSearch = function postToElasticSearch (json, cb) {
   request.post({
-    url: `${eSurl}`,
+    url: `${elasticsearchUrlPrefix}places/_doc`,
     json: true,
     body: json
   }).then(function (result) {

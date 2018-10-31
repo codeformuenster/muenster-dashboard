@@ -13,7 +13,8 @@ import pandas as pd
 
 
 def main():
-    elastic = Elasticsearch(os.environ['ELASTICSEARCH_URL'])
+    elasticsearch_url, index_prefix = os.environ['ELASTICSEARCH_URL_PREFIX'].rsplit("/", maxsplit=1)
+    elastic = Elasticsearch(elasticsearch_url)
 
     df = pd.read_json('container.json')
 
@@ -55,7 +56,7 @@ def main():
             container['address']['geo']['lon'] = row.lon
 
         print(container)
-        res = elastic.index(index=f"{os.environ['ELASTICSEARCH_INDEX_PREFIX']}places", doc_type='_doc', id=container['slug'], body=container)
+        res = elastic.index(index=f"{index_prefix}places", doc_type='_doc', id=container['slug'], body=container)
         print(res)
 
 

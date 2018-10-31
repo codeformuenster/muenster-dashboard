@@ -6,13 +6,16 @@
 
 ```bash
 export COMPOSE_PROJECT_NAME="familiendashboard"
-# export ELASTICSEARCH_URL="http://elasticsearch:9200"
-export ELASTICSEARCH_URL="https://elasticsearch.codeformuenster.org"
-export ELASTICSEARCH_INDEX_PREFIX="mein-ms-"
+export ELASTICSEARCH_URL_PREFIX="http://localhost:9200/mein-ms2-"
 export BUILD="--build"
 
-sudo --preserve-env docker-compose up -d
-sudo --preserve-env docker-compose logs -f
+sudo --preserve-env docker-compose up $BUILD
+```
+
+```bash
+export COMPOSE_PROJECT_NAME="familiendashboard"
+export ELASTICSEARCH_URL_PREFIX="http://elasticsearch:9200/mein-ms2-"
+export BUILD="--build"
 
 cd import-scripts
 sudo --preserve-env ./import.sh

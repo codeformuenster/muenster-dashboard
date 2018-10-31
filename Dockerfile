@@ -1,4 +1,4 @@
-FROM node:10.12-alpine as dev
+FROM node:10-alpine as dev
 
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
@@ -10,15 +10,14 @@ CMD ["npm", "start"]
 
 # ---
 
-FROM node:10.12-alpine as prod
+FROM node:10-alpine as prod
 WORKDIR /usr/src/app
 COPY --from=dev /usr/src/app /usr/src/app
 
-ARG elasticsearch_url
-ARG elasticsearch_index_prefix
-RUN REACT_APP_ELASTICSEARCH_URL=$elasticsearch_url REACT_APP_ELASTICSEARCH_INDEX_PREFIX=$elasticsearch_index_prefix npm run build
+ARG elasticsearch_url_prefix
+RUN REACT_APP_ELASTICSEARCH_URL_PREFIX=$elasticsearch_url_prefix npm run build
 
 # ---
 
-FROM giantswarm/caddy:0.11.0-test1-slim
+FROM giantswarm/caddy:0.11.0-test2-slim
 COPY --from=prod /usr/src/app/build /var/www

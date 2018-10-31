@@ -4,8 +4,9 @@ const request = require('request-promise-native'),
   queue = require('async/queue');
 
 const { sourceUrl } = require('./config.json');
-const baseUrl = process.env.ELASTICSEARCH_URL;
-const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
+const elasticsearchUrlPrefix = process.env.ELASTICSEARCH_URL_PREFIX;
+// const baseUrl = process.env.ELASTICSEARCH_URL;
+// const prefix = process.env.ELASTICSEARCH_INDEX_PREFIX;
 
 const parameters = 'REQUEST=GetFeature&SERVICE=WFS&VERSION=2.0.0&OUTPUTFORMAT=GEOJSON&EXCEPTIONS=XML&MAXFEATURES=10000&SRSNAME=EPSG:4326'
 
@@ -34,7 +35,7 @@ const handleGeoJSON = function handleGeoJSON ({ result, type }, cb) {
 
 const postToElasticSearch = function postToElasticSearch (json, cb) {
   return request.post({
-    url: `${baseUrl}/${prefix}places/_doc`,
+    url: `${elasticsearchUrlPrefix}places/_doc`,
     json: true,
     body: json
   }).then(function (result) {
