@@ -5,7 +5,7 @@
 ## Run development environment locally
 
 ```bash
-export COMPOSE_PROJECT_NAME="familiendashboard"
+export COMPOSE_PROJECT_NAME="muenster-dashboard"
 export ELASTICSEARCH_URL_PREFIX="http://localhost:9200/mein-ms2-"
 export BUILD="--build"
 
@@ -13,7 +13,7 @@ sudo --preserve-env docker-compose up $BUILD
 ```
 
 ```bash
-export COMPOSE_PROJECT_NAME="familiendashboard"
+export COMPOSE_PROJECT_NAME="muenster-dashboard"
 export ELASTICSEARCH_URL_PREFIX="http://elasticsearch:9200/mein-ms2-"
 export BUILD="--build"
 

@@ -5,7 +5,7 @@ services:
   dashboard:
     build:
       context: .
-      target: dev
+      # target: dev
       args:
         elasticsearch_url_prefix: ${ELASTICSEARCH_URL_PREFIX}
     ports:
