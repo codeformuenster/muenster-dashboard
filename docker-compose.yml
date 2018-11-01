@@ -5,31 +5,47 @@ services:
   dashboard:
     build:
       context: .
-      target: dev
+      # target: dev
       args:
         elasticsearch_url_prefix: ${ELASTICSEARCH_URL_PREFIX}
     ports:
-      - "8080:8080"
+      - 8080:8080
     environment:
-      - REACT_APP_ELASTICSEARCH_URL_PREFIX=${ELASTICSEARCH_URL_PREFIX}
+      REACT_APP_ELASTICSEARCH_URL_PREFIX: ${ELASTICSEARCH_URL_PREFIX}
     # volumes:
     #   - .:/usr/src/app
     depends_on:
+      # - kinto
       - elasticsearch
+
+  # kinto:
+  #   image: kinto/kinto-server:11.1.0
+  #   ports:
+  #     - 8888:8888
+  #   volumes:
+  #     - ./docker/kinto-config:/etc/kinto
+  #   depends_on:
+  #     - postgres
+  #     - elasticsearch
+  #
+  # postgres:
+  #   image: postgres:10-alpine
+  #   environment:
+  #     POSTGRES_USER: weihnachtsmarkt
+  #     POSTGRES_PASSWORD: PASSWORD
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
-    volumes:
-      - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      # - ./docker/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
+      - 9200:9200
+    environment:
+      discovery.type: single-node
+    # volumes:
+    #   - ./docker/elasticsearch-data:/usr/share/elasticsearch/data
 
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:6.4.2
-    volumes:
-      - ./docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
-      - "5601:5601"
+      - 5601:5601
     depends_on:
       - elasticsearch
