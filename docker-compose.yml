@@ -40,6 +40,9 @@ services:
       - 9200:9200
     environment:
       discovery.type: single-node
+      http.cors.enabled: true
+      http.cors.allow-origin: /https?:\/\/localhost(:[0-9]+)?/
+
     # volumes:
     #   - ./docker/elasticsearch-data:/usr/share/elasticsearch/data
 
