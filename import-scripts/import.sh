@@ -31,3 +31,9 @@ echo
 echo "importing container"
 cd container; \
   docker-compose up $BUILD; cd ..
+
+echo
+echo "importing events"
+cd events; \
+  docker-compose up $BUILD; cd ..
+
