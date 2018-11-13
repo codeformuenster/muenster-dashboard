@@ -51,11 +51,12 @@ class App extends React.Component<IAppProps, any> {
       results: [],
       searchParams: {},
       districts: [],
-      district: {}
+      district: {},
+      searchCache: {}
     };
     new DistrictService().loadDistricts(
       (results: any) => {
-        this.setState({ districts: results, searchCache: {} });
+        this.setState({ ...this.state, districts: results });
       }
     );
   }
