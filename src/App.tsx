@@ -55,7 +55,7 @@ class App extends React.Component<IAppProps, any> {
     };
     new DistrictService().loadDistricts(
       (results: any) => {
-        this.setState({districts: results});
+        this.setState({ districts: results, searchCache: {} });
       }
     );
   }
@@ -111,7 +111,10 @@ class App extends React.Component<IAppProps, any> {
    */
   private updateSearchParams = (searchParams: ISearchParams, district?: IDistrictResultSlim) => {
 
-    const newState: { searchParams: ISearchParams, district: null | IDistrictResultSlim } = { searchParams: searchParams, district: null };
+    const newState: {
+      searchParams: ISearchParams,
+      district: null | IDistrictResultSlim
+    } = { ...this.state, searchParams: searchParams, district: null };
 
     if (district) {
       newState.district = district;
@@ -122,11 +125,14 @@ class App extends React.Component<IAppProps, any> {
     const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
 
     // only query/update the locations if the search hash is different from the last one
-    if (searchHash !== this.lastSearchHash) {
+    if (this.state.searchCache[searchHash]) {
+      this.setState({ ...this.state, results: this.state.searchCache[searchHash] });
+    } else if (searchHash !== this.lastSearchHash) {
       this.searchService.sendSearchToServer(
         searchParams,
         (locations: ISearchResult[]) => {
-          this.setState({ results: locations });
+          this.state.searchCache[searchHash] = locations;
+          this.setState({ ...this.state, results: locations });
         }
       );
     }
@@ -148,7 +154,7 @@ class App extends React.Component<IAppProps, any> {
 
     // define the callback functions that are called when the device's position could / could not be determined
     let success = (position: any) => {
-      const latitude  = position.coords.latitude;
+      const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       let searchParams = this.state.searchParams;
       searchParams.latitude = latitude;
@@ -157,7 +163,7 @@ class App extends React.Component<IAppProps, any> {
     };
 
     let error = () => {
-      console.log( 'Es war nicht möglich Sie zu lokalisieren');
+      console.log('Es war nicht möglich Sie zu lokalisieren');
       let searchParams = this.state.searchParams;
       searchParams.latitude = 51.9624047;
       searchParams.longitude = 7.6255008;
