@@ -5,9 +5,9 @@ import './SearchResultDetailled.css';
 import { MeinItems } from './SearchResults/MeinItem';
 
 interface ISearchResultDetailledProps {
-    result: ISearchResult;
-    updateHandler: any;
-    searchParams: ISearchParams;
+  result: ISearchResult;
+  updateHandler: any;
+  searchParams: ISearchParams;
 }
 
 /**
@@ -52,36 +52,36 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
               </span>
               <div className="is-clearfix">
 
-                  {result.url && (
-                    <a href={result.url} target="_blank">
-                      <span className="icon is-large">
-                        <i className="mdi mdi-16px mdi-web" />
-                      </span>
-                      Webseite besuchen
+                {result.url && (
+                  <a href={result.url} target="_blank">
+                    <span className="icon is-large">
+                      <i className="mdi mdi-16px mdi-web" />
+                    </span>
+                    Webseite besuchen
                     </a>
-                  )}
+                )}
 
-                  {result.dateStart && (
-                    <div>
-                      <p className="has-text-danger">
-                        <span className="icon">
-                          <i className="mdi mdi-timetable" />
-                        </span>
-                        Startdatum: {this.toHumanReadableDate(result.dateStart)}
-                      </p>
-                      <p className="has-text-danger">
-                        <span className="icon">
-                          <i className="mdi mdi-timetable" />
-                        </span>
-                        Enddatum: {result.dateEnd ? this.toHumanReadableDate(result.dateEnd) : 'unbekannt'}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="properties">
-                    <span><i>Typ:</i> {meinItem.name}</span>
-                    {this.renderProperties(result.properties)}
+                {result.dateStart && (
+                  <div>
+                    <p className="has-text-danger">
+                      <span className="icon">
+                        <i className="mdi mdi-timetable" />
+                      </span>
+                      Startdatum: {this.toHumanReadableDate(result.dateStart)}
+                    </p>
+                    <p className="has-text-danger">
+                      <span className="icon">
+                        <i className="mdi mdi-timetable" />
+                      </span>
+                      Enddatum: {result.dateEnd ? this.toHumanReadableDate(result.dateEnd) : 'unbekannt'}
+                    </p>
                   </div>
+                )}
+
+                <div className="properties">
+                  <span><i>Typ:</i> {meinItem.name}</span>
+                  {this.renderProperties(result.properties)}
+                </div>
               </div>
             </div>
           </div>
@@ -90,11 +90,11 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
     );
   }
 
-    /**
-     * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here.
-     * If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
-     */
-  componentDidMount () {
+  /**
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here.
+   * If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+   */
+  componentDidMount() {
     window.scrollTo(0, 0);
   }
 
@@ -103,7 +103,12 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
   }
 
   protected toHumanReadableDate(date: any): string {
-    return this.isoDateStringToDate(date).toLocaleDateString('de-DE');
+    let isoDate = this.isoDateStringToDate(date);
+    if (isoDate.getHours() > 0) {
+      return isoDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    } else {
+      return isoDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit' });
+    }
   }
 
   protected distancePrettifier(dist: number): string {
@@ -123,7 +128,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
   }
 
   private capitalizeFirstLetter(str: string) {
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
   private renderProperties(properties: any) {

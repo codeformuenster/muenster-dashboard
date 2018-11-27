@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  crawler:
+    build: https://github.com/codeformuenster/MS-Event-Scrapy.git
+    environment:
+      - ELASTICSEARCH_URL_PREFIX
+      - MAPQUEST_KEY
