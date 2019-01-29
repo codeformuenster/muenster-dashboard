@@ -38,8 +38,17 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
       }
     }
 
-    // limit the number of displayed results. If none was given display the first 100
-    const limit = this.props.limit ? this.props.limit : 100;
+    results = results.filter(element => {
+        let date = null;
+        if (element.dateStart !== null) {
+            date = new Date(element.dateStart);
+        }
+
+        return element.type !== 'event' || (date === null || date.getDay() === new Date().getDay());
+    });
+
+    // limit the number of displayed results. If none was given display the first 200
+    const limit = this.props.limit ? this.props.limit : 200;
     if (results && results.length > limit) {
       results = results.slice(0, this.props.limit);
     }
