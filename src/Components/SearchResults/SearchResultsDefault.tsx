@@ -13,7 +13,7 @@ class SearchResultsDefault extends SearchResults {
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-pool" />
+              <i className="mdi mdi-48px mdi-home" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -24,7 +24,6 @@ class SearchResultsDefault extends SearchResults {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">Termin</span> &nbsp;
             </span>
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
