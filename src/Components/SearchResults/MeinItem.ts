@@ -8,12 +8,6 @@ import SearchResultsWifi from './SearchResultsWifi';
 import SearchResultsWebcam from './SearchResultsWebcam';
 import SearchResultsDefault from './SearchResultsDefault';
 import SearchResultsEvent from './SearchResultsEvent';
-import SearchResultsSchool from './SearchResultsSchool';
-import SearchResultsSport from './SearchResultsSport';
-import SearchResultsAgency from './SearchResultsAgency';
-import SearchResultsBook from './SearchResultsBook';
-import SearchResultsContainer from './SearchResultsContainer';
-import SearchResultsBabyChange from './SearchResultsBabyChange';
 
 export interface IMeinItem {
     name: string;
@@ -32,13 +26,13 @@ export abstract class MeinItems {
         name: 'Wickelraum',
         icon: 'mdi-baby-buggy',
         color: 'is-link',
-        component: SearchResultsBabyChange
+        component: SearchResultsDefault
       },
       container: {
         name: 'Recycling-Container',
         icon: 'mdi-recycle',
         color: 'is-link',
-        component: SearchResultsContainer
+        component: SearchResultsDefault
       },      
       construction: {
         name: 'Baustelle',
@@ -98,25 +92,25 @@ export abstract class MeinItems {
         name: 'Schule',
         icon: 'mdi-school',
         color: 'is-light',
-        component: SearchResultsSchool
+        component: SearchResultsDefault
       },
       sport: {
         name: 'Sportstätte',
         icon: 'mdi-soccer',
         color: 'is-success',
-        component: SearchResultsSport
+        component: SearchResultsDefault
       },
       agencies: {
         name: 'Amt',
         icon: 'mdi-briefcase',
         color: 'is-danger',
-        component: SearchResultsAgency
+        component: SearchResultsDefault
       },
       library: {
         name: 'Bücherei',
         icon: 'mdi-book',
         color: 'is-warning',
-        component: SearchResultsBook
+        component: SearchResultsDefault
       }
     };
 

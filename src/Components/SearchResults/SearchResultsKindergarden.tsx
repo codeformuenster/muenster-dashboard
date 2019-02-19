@@ -4,7 +4,7 @@ import { SearchResults } from './SearchResults';
 class SearchResultsKindergarden extends SearchResults {
 
   render() {
-    // console.log('Rendering pool search result');
+    console.log('Rendering pool search result');
 
     const result = this.props.result;
 
