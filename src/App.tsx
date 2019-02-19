@@ -75,6 +75,7 @@ class App extends React.Component<IAppProps, any> {
                 updateHandler={this.updateSearchParams}
                 searchParams={this.state.searchParams}
                 districtPolygon={this.state.district}
+                districts={this.state.districts}
               />
             </div>
           </div>

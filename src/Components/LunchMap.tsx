@@ -11,12 +11,14 @@ import { divIcon, Point, GeoJSON } from 'leaflet';
 import { LatLng } from 'leaflet';
 
 import './LunchMap.css';
+import { GeoJsonObject, GeoJsonProperties } from 'geojson';
 
 interface ILunchMapProps {
     results: Array<ISearchResult>;
     updateHandler: any;
     searchParams: ISearchParams;
     districtPolygon?: IDistrictResultSlim;
+    districts?: Array<IDistrictResultSlim>;
 }
 
 /**
@@ -29,6 +31,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
   private centerPosition: LatLng|null;
   private districtCenterPosition: LatLng|null;
   private districtLayer: GeoJSON|null;
+  private districtsLayer: GeoJSON|null;
 
   render() {
 
@@ -99,11 +102,72 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
       { animate: true, duration: 1}
     );
 
+    // Function for each district overlay
+    const onEachFeature = (feature: any, layer: any) => {
+      layer.on({
+        mouseover: ((lay: any) => {
+          lay.target.setStyle({
+            color: '#23d160'
+          });
+        }),
+        mouseout: ((lay: any) => {
+          lay.target.setStyle({
+            color: '#B0B0B0'
+          });
+        }),
+        click: ((lay: any) => {
+          let searchParams = this.props.searchParams;
+          searchParams.district = lay.target.feature.properties.number;
+          let selectedDistrict; // this will hold the corresponding IDistrictResultSlim of the selected district, or None if none is found
+      
+          if (this.props.districts) {
+            const found = this.props.districts.find((d: IDistrictResultSlim) => { return d.number === Number(lay.target.feature.properties.number); });
+            if (found) {
+              const { centerLat, centerLon } = found;
+              searchParams.centerLat = Number(centerLat);
+              searchParams.centerLon = Number(centerLon);
+              selectedDistrict = found;
+            }
+          }
+          this.props.updateHandler(searchParams, selectedDistrict);
+          lay.target.setStyle({
+            color: '#BBBBB'
+          });
+        }),
+      });
+    };
+    // Add district overlays
+    if (this.props.districts) {
+      if (!this.districtsLayer) {
+        this.props.districts.forEach(district => {
+          const districtGeojson: GeoJsonObject&GeoJsonProperties = {
+            'type': 'Feature',
+            'properties': {
+              'district': district.name,
+              'centerLat': district.centerLat,
+              'centerLon': district.centerLon,
+              'id': district.id,
+              'number': district.number,
+            },
+            'geometry': {
+              ...district.polygon
+          }};
+            
+          this.districtsLayer = new GeoJSON(districtGeojson, {style: {
+            'color': '#B0B0B0'
+          },
+          onEachFeature: onEachFeature
+        }).addTo(this.mapRef.leafletElement);
+          this.districtsLayer.clearLayers();
+          this.districtsLayer.addData(districtGeojson);
+        });
+      }
+    }
+
     // update the Polygon of the currently selected district
     if (this.props.districtPolygon) {
       if (!this.districtLayer) {
-        this.districtLayer = new GeoJSON(this.props.districtPolygon.polygon)
-          .addTo(this.mapRef.leafletElement);
+        this.districtLayer = new GeoJSON(this.props.districtPolygon.polygon).addTo(this.mapRef.leafletElement);
       }
       this.districtLayer.clearLayers();
       this.districtLayer.addData(this.props.districtPolygon.polygon);
