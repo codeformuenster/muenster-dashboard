@@ -11,6 +11,7 @@ interface ISearchResultsProps {
     updateHandler: any;
     searchParams: ISearchParams;
     limit?: number;
+    district?: string;
 }
 
 /**
