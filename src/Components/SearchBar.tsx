@@ -81,10 +81,10 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
               <div className="select is-large is-fullwidth">
                 <select
                   onChange={this.onDistrictChange}
+                  value={this.props.searchParams.district}
                 >
                   <option value=""> - Stadtteil -  </option>
                   {districtList}
-
                 </select>
               </div>
             </div>
