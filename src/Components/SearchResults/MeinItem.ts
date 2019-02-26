@@ -115,8 +115,8 @@ export abstract class MeinItems {
     public static getItem(key: string): IMeinItem {
       return MeinItems.items[key] || {
         name: key,
-        icon: key,
-        color: key,
+        icon: null,
+        color: 'is-light',
         component: SearchResultsDefault
       };
     }

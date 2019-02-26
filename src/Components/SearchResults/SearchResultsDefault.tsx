@@ -29,7 +29,7 @@ class SearchResultsDefault extends SearchResults {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">{result.name ? result.name : capitalizeFirstLetter(result.type)}</span> &nbsp;
+              <span className="tag is-dark">{result.type ? result.name : capitalizeFirstLetter(result.type)}</span> &nbsp;
             </span>
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
@@ -61,17 +61,16 @@ class SearchResultsDefault extends SearchResults {
 }
 
 /*
-* This JavaScript function takes string as input parameter
-* and capitalizes the first letter
-* @parameter : string
-*
-*/
+  * This JavaScript function takes string as input parameter
+  * and capitalizes the first letter
+  * @parameter : string
+  */
 function capitalizeFirstLetter(word: String) {
-  if (typeof word === undefined) {
+  if (!word) {
     return;
   }
-  var firstLetter = word[0] || word.charAt(0);
-  return firstLetter ? firstLetter.toUpperCase() + word.substr(1) : '';
+  const [firstLetter, ...rest] = word.split('');
+  return [firstLetter.toUpperCase(), ...rest].join('');
 }
 
 export default SearchResultsDefault;

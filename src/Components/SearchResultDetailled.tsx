@@ -20,6 +20,12 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
     console.log('Detailled result:', result);
     const meinItem = MeinItems.getItem(result.type);
 
+    let icon = meinItem.icon;
+
+    if (!icon) {
+      icon = 'mdi-home';
+    }
+
     return (
       <article
         key={result.id}
@@ -29,12 +35,12 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
           <div className="media-left">
             <p>
               <span className={'icon detailIcon notification is-large ' + meinItem.color}>
-                <i className={'mdi mdi-48px ' + meinItem.icon} />
+                <i className={'mdi mdi-48px ' + icon} />
               </span>
             </p>
             <div className="distanceDiv has-text-centered">
 
-              <span className={'tag ' + meinItem.color}>{meinItem.name}</span>
+              <span className={'tag ' + meinItem.color}>{this.capitalizeFirstLetter(meinItem.name)}</span>
               <br />
               <span className="tag is-white">{this.distancePrettifier(result.distance)}</span>
             </div>
@@ -77,7 +83,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
                 )}
 
                 <div className="properties">
-                  <span><i>Typ:</i> {meinItem.name}</span>
+                  <span><i>Typ:</i> {this.capitalizeFirstLetter(meinItem.name)}</span>
                   {this.renderProperties(result.properties)}
                 </div>
               </div>
