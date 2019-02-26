@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsWebcam extends SearchResults {
+class SearchResultsWebcam extends SearchResultsBase {
 
   render() {
     console.log('Rendering webcams search result');

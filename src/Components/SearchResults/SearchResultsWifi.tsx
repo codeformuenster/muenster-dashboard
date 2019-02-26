@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsWifi extends SearchResults {
+class SearchResultsWifi extends SearchResultsBase {
 
   render() {
     const result = this.props.result;

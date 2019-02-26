@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsLunch extends SearchResults {
+class SearchResultsLunch extends SearchResultsBase {
 
   render() {
     console.log('Rendering lunch search result');

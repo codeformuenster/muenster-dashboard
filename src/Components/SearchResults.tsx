@@ -7,17 +7,15 @@ import SearchResultDetailled from './SearchResultDetailled';
 import './SearchResults.css';
 
 interface ISearchResultsProps {
-    results: Array<ISearchResult>;
-    updateHandler: any;
-    searchParams: ISearchParams;
-    limit?: number;
+  results: Array<ISearchResult>;
+  updateHandler: any;
+  searchParams: ISearchParams;
+  limit?: number;
 }
 
 /**
  * This component contains the various search results, displaying one SearchResults-component (not this one, but the one in sub folder SearchResults) for each one.
  * If a result was selected, display a SearchResultDetailled for that result.
- *
- * TODO: class name is used twice. Consider renaming one of them
  */
 class SearchResults extends React.Component<ISearchResultsProps, any> {
 
