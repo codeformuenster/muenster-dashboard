@@ -4,16 +4,21 @@ import { SearchResults } from './SearchResults';
 class SearchResultsDefault extends SearchResults {
 
   render() {
-    // console.log('Rendering pool search result');
-
     const result = this.props.result;
+    let icon = this.props.icon;
+
+    if (!icon) {
+      icon = 'mdi-home';
+    }
+
+    let iconClassName = 'mdi mdi-48px ' + icon.trim();
 
     return (
       <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-home" />
+              <i className={iconClassName} />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -24,7 +29,7 @@ class SearchResultsDefault extends SearchResults {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">{capitalizeFirstLetter(result.type)}</span> &nbsp;
+              <span className="tag is-dark">{result.name ? result.name : capitalizeFirstLetter(result.type)}</span> &nbsp;
             </span>
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
@@ -33,6 +38,17 @@ class SearchResultsDefault extends SearchResults {
                 </span>
                 Webseite besuchen</a>
             </div>
+            <p className="has-text-danger">
+              <span className="icon">
+                <i className="mdi mdi-walk" />
+              </span>
+              {this.getMinutesByFeet(result.distance)}
+              &bull;
+              <span className="icon">
+                <i className="mdi mdi-car" />
+              </span>
+              {this.getMinutesByCar(result.distance)}
+            </p>
           </div>
         </div>
       </div>
@@ -55,7 +71,7 @@ function capitalizeFirstLetter(word: String) {
     return;
   }
   var firstLetter = word[0] || word.charAt(0);
-  return firstLetter  ? firstLetter.toUpperCase() + word.substr(1) : '';
+  return firstLetter ? firstLetter.toUpperCase() + word.substr(1) : '';
 }
 
 export default SearchResultsDefault;
