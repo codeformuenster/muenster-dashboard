@@ -16,8 +16,6 @@ interface ISearchResultDetailledProps {
 class SearchResultDetailled extends React.Component<ISearchResultDetailledProps, any> {
 
   render() {
-    // console.log('Rendering pool search result');
-
     const result = this.props.result;
     console.log('Detailled result:', result);
     const meinItem = MeinItems.getItem(result.type);

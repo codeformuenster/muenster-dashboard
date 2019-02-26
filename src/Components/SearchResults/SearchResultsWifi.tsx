@@ -4,8 +4,6 @@ import { SearchResults } from './SearchResults';
 class SearchResultsWifi extends SearchResults {
 
   render() {
-    // console.log('Rendering wifi search result');
-
     const result = this.props.result;
 
     return (

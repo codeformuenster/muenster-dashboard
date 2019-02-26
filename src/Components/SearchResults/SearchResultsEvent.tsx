@@ -4,8 +4,6 @@ import { SearchResults } from './SearchResults';
 class SearchResultsEvent extends SearchResults {
 
   render() {
-    // console.log('Rendering pool search result');
-
     const result = this.props.result;
 
     return (

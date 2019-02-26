@@ -4,8 +4,6 @@ import { SearchResults } from './SearchResults';
 class SearchResultsWc extends SearchResults {
 
   render() {
-    // console.log('Rendering wc search result');
-
     const result = this.props.result;
 
     return (
