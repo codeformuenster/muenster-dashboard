@@ -37,12 +37,12 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
     }
 
     results = results.filter(element => {
-        let date = null;
-        if (element.dateStart !== null) {
-            date = new Date(element.dateStart);
-        }
+      let date = null;
+      if (element.dateStart !== null) {
+        date = new Date(element.dateStart);
+      }
 
-        return element.type !== 'event' || (date === null || date.getDay() === new Date().getDay());
+      return element.type !== 'event' || (date === null || date.getDay() === new Date().getDay());
     });
 
     // limit the number of displayed results. If none was given display the first 200
@@ -53,70 +53,22 @@ class SearchResults extends React.Component<ISearchResultsProps, any> {
 
     return (
       <div className="search_results">
-          {results.map((result: ISearchResult) => {
+        {results.map((result: ISearchResult) => {
 
-            const meinItem = MeinItems.getItem(result.type);
-            const ComponentClass = meinItem.component;
-            const searchResultComponent = <ComponentClass result={result} icon={meinItem.icon}/>;
+          const meinItem = MeinItems.getItem(result.type);
+          const ComponentClass = meinItem.component;
+          const searchResultComponent = <ComponentClass result={result} icon={meinItem.icon} />;
 
-            return (
-              <article
-                key={result.id}
-                className={'notification' + ((searchParams.selectedId === result.id) ? ' ' + meinItem.color : '')}
-                onClick={e => this.toggleSelection(e, result.id)}
-              >
-                {searchResultComponent}
-                {/*
-                <div className="media-left">
-                  <p className="image is-64x64">
-                    <img className="previewImage" src="/media/cafe-garbo.jpg" />
-                  </p>
-                  <div className="distanceDiv has-text-centered">
-                    <span className="tag is-white">{this.distancePrettifier(result.distance)}</span>
-                  </div>
-                </div>
-                <div className="media-content">
-                  <div className="content">
-
-                      <span className="lunchtitle">{result.name} &nbsp;   <span className="tag is-dark">{result.type}</span></span>
-
-                      <div className="is-clearfix">
-                        {result.description}
-                      </div>
-                    </div>
-                      <div className="tags is-pulled-left">
-
-                        <span className="tag is-success">ab {result.dateEnd}€</span>
-
-                        <div className="tag is-warning">
-                          <span className="icon" data-balloon={result.url} data-balloon-pos="up">
-                            <i className="fa fa-cutlery"></i>
-                          </span> {result.dateStart}
-                        </div>
-
-                      </div>
-                      <div className="is-pulled-right columns is-mobile is-1 is-variable">
-
-                        {result.url && (
-                            <div className="column">
-                              <a className="button is-link" href={result.url}>
-                                <i className="fa fa-home"></i>
-                                <span className="is-hidden-mobile">&nbsp;Homepage</span>
-                              </a>
-                            </div>
-                        )}
-
-                        {result.url && (
-                            <div className="column">
-                              <a className="button is-link" href={result.url}>Menu</a>
-                            </div>
-                        )}
-                      </div>
-
-                  </div>*/}
-              </article>
-            );
-          })}
+          return (
+            <article
+              key={result.id}
+              className={'notification' + ((searchParams.selectedId === result.id) ? ' ' + meinItem.color : '')}
+              onClick={e => this.toggleSelection(e, result.id)}
+            >
+              {searchResultComponent}
+            </article>
+          );
+        })}
       </div>
     );
   }
