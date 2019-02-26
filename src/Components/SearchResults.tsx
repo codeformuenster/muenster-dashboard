@@ -7,10 +7,11 @@ import SearchResultDetailled from './SearchResultDetailled';
 import './SearchResults.css';
 
 interface ISearchResultsProps {
-  results: Array<ISearchResult>;
-  updateHandler: any;
-  searchParams: ISearchParams;
-  limit?: number;
+    results: Array<ISearchResult>;
+    updateHandler: any;
+    searchParams: ISearchParams;
+    limit?: number;
+    district?: string;
 }
 
 /**
