@@ -31,13 +31,25 @@ class SearchResultsEvent extends SearchResults {
                 </span>
                 Webseite besuchen</a>
 
-                <p className="has-text-danger">
+              <p className="has-text-danger">
+                <div>
                   <span className="icon">
                     <i className="mdi mdi-timetable" />
                   </span>
                   am {this.toHumanReadableDate(result.dateStart)}
-                </p>
-
+                </div>
+                <div className="has-text-danger">
+                  <span className="icon">
+                    <i className="mdi mdi-walk" />
+                  </span>
+                  {this.getMinutesByFeet(result.distance)}
+                  &bull;
+              <span className="icon">
+                    <i className="mdi mdi-car" />
+                  </span>
+                  {this.getMinutesByCar(result.distance)}
+                </div>
+              </p>
             </div>
           </div>
         </div>
