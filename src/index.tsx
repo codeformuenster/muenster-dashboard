@@ -18,9 +18,7 @@ ReactDOM.render(
       <Switch>
         <Route exact={true} path="/" component={App} />
         <Route path="/aktuelles" component={News} />
-
         <Route path="/impressum" component={Impressum} />
-
         <Route path="/team" component={WorkInProgress} />
         <Route path="/copyright" component={Copyright} />
         <Redirect from="*" to="/" />
