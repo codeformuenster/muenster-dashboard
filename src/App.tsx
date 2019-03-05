@@ -123,7 +123,7 @@ class App extends React.Component<IAppProps, any> {
     this.setState(newState);
 
     // note: not an actual hash, this is just for checking if the query has been done before. Consider renaming it
-    const searchHash = '' + searchParams.searchQuery + searchParams.latitude + searchParams.longitude + searchParams.category + searchParams.district;
+    const searchHash = [searchParams.searchQuery, searchParams.latitude, searchParams.longitude, searchParams.category, searchParams.district].join('');
 
     // only query/update the locations if the search hash is different from the last one
     if (this.state.searchCache[searchHash]) {
