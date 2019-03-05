@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsConstruction extends SearchResults {
+class SearchResultsConstruction extends SearchResultsBase {
 
   render() {
     console.log('Rendering construction search result');

@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsDefault extends SearchResults {
+class SearchResultsDefault extends SearchResultsBase {
 
   render() {
-    console.log('Rendering pool search result');
-
     const result = this.props.result;
+    let icon = this.props.icon;
+
+    if (!icon) {
+      icon = 'mdi-home';
+    }
+
+    let iconClassName = 'mdi mdi-48px ' + icon.trim();
 
     return (
       <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-pool" />
+              <i className={iconClassName} />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -24,7 +29,7 @@ class SearchResultsDefault extends SearchResults {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">Termin</span> &nbsp;
+              <span className="tag is-dark">{result.type ? result.name : capitalizeFirstLetter(result.type)}</span> &nbsp;
             </span>
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
@@ -33,6 +38,17 @@ class SearchResultsDefault extends SearchResults {
                 </span>
                 Webseite besuchen</a>
             </div>
+            <p className="has-text-danger">
+              <span className="icon">
+                <i className="mdi mdi-walk" />
+              </span>
+              {this.getMinutesByFeet(result.distance)}
+              &bull;
+              <span className="icon">
+                <i className="mdi mdi-car" />
+              </span>
+              {this.getMinutesByCar(result.distance)}
+            </p>
           </div>
         </div>
       </div>
@@ -42,6 +58,19 @@ class SearchResultsDefault extends SearchResults {
   protected isRunning(wlanStatus: string): boolean {
     return wlanStatus === 'in Bearbeitung';
   }
+}
+
+/*
+  * This JavaScript function takes string as input parameter
+  * and capitalizes the first letter
+  * @parameter : string
+  */
+function capitalizeFirstLetter(word: String) {
+  if (!word) {
+    return;
+  }
+  const [firstLetter, ...rest] = word.split('');
+  return [firstLetter.toUpperCase(), ...rest].join('');
 }
 
 export default SearchResultsDefault;

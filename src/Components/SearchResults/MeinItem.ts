@@ -1,8 +1,6 @@
 import SearchResultsConstruction from './SearchResultsConstruction';
-import SearchResultsKindergarden from './SearchResultsKindergarden';
 import SearchResultsLunch from './SearchResultsLunch';
 import SearchResultsPlayground from './SearchResultsPlayground';
-import SearchResultsPool from './SearchResultsPool';
 import SearchResultsWc from './SearchResultsWc';
 import SearchResultsWifi from './SearchResultsWifi';
 import SearchResultsWebcam from './SearchResultsWebcam';
@@ -44,7 +42,7 @@ export abstract class MeinItems {
         name: 'Kindergarten',
         icon: 'mdi-baby',
         color: 'is-primary',
-        component: SearchResultsKindergarden
+        component: SearchResultsDefault
       },
       lunch: {
         name: 'Mittagstisch',
@@ -56,7 +54,7 @@ export abstract class MeinItems {
         name: 'Bad',
         icon: 'mdi-pool',
         color: 'is-info',
-        component: SearchResultsPool
+        component: SearchResultsDefault
       },
       playground: {
         name: 'Spielplatz',
@@ -117,8 +115,8 @@ export abstract class MeinItems {
     public static getItem(key: string): IMeinItem {
       return MeinItems.items[key] || {
         name: key,
-        icon: key,
-        color: key,
+        icon: null,
+        color: 'is-light',
         component: SearchResultsDefault
       };
     }

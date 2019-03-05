@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { SearchResults } from './SearchResults';
+import { SearchResultsBase } from './SearchResultsBase';
 
-class SearchResultsWc extends SearchResults {
+class SearchResultsWc extends SearchResultsBase {
 
   render() {
-    console.log('Rendering wc search result');
-
     const result = this.props.result;
 
     return (

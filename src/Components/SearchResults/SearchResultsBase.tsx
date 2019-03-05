@@ -2,16 +2,14 @@ import * as React from 'react';
 import { ISearchResult } from '../../App';
 
 export interface ISearchResultsProps {
-    result: ISearchResult;
-    icon?: string;
+  result: ISearchResult;
+  icon?: string;
 }
 
 /**
  * Base class for the various types of possible search results.
- *
- * TODO: class name is used twice. Consider renaming one of them.
  */
-export abstract class SearchResults extends React.Component<ISearchResultsProps, any> {
+export abstract class SearchResultsBase extends React.Component<ISearchResultsProps, any> {
   protected isoDateStringToDate(date: string): any {
     return new Date(Date.parse(date));
   }
@@ -42,4 +40,4 @@ export abstract class SearchResults extends React.Component<ISearchResultsProps,
   }
 }
 
-export default SearchResults;
+export default SearchResultsBase;
