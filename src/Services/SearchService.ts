@@ -113,13 +113,13 @@ class SearchService {
                 'must': [
                   {
                     'term': {
-                      'type': 'construction'
+                      'type': 'event'
                     }
                   },
                   {
                     'range': {
                       'date_start': {
-                        'gte': 'now',
+                        'gte': 'now-1d',
                         'lte': 'now+10d'
                       }
                     }
@@ -141,9 +141,9 @@ class SearchService {
                 'must_not': [
                   {
                     'term': {
-                      'type': 'construction'
+                      'type': 'event'
                     }
-                  }
+                  },
                 ],
                 'must': [
                   {
