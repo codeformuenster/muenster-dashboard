@@ -17,6 +17,25 @@ sudo docker container stop muensterdashboard_dashboard_1
 export REACT_APP_ELASTICSEARCH_URL_PREFIX="http://localhost:9200/mein-ms2-"
 npm start
 ```
+### Debugging
+
+If "npm start" fails because of this error:
+
+    Error: ENOSPC: System limit for number of file watchers reached, watch '/home/thomas/git/familien-dashboard/public'
+
+Then you should try:
+```bash
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+### Debug kibana index content
+
+* Show indexes: https://elasticsearch.codeformuenster.org/mein-ms-places/_cat/indices
+* Show content of mein-ms-places index: https://elasticsearch.codeformuenster.org/mein-ms-places/_search
+* Show only events: https://elasticsearch.codeformuenster.org/mein-ms-places/_search?q=type:event
+
+
+## Data import
 
 For importing the data open a new terminal:
 
