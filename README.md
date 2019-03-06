@@ -34,6 +34,8 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 * Show content of mein-ms-places index: https://elasticsearch.codeformuenster.org/mein-ms-places/_search
 * Show only events: https://elasticsearch.codeformuenster.org/mein-ms-places/_search?q=type:event
 
+For offline debugging, exchange `elasticsearch.codeformuenster.org` with `localhost:9200`.
+
 
 ## Data import
 
