@@ -35,6 +35,9 @@
   background:#23d160;
   border: 4px solid #13b150
 }
+.lu-icon.bookbus {
+  background:hsl(217, 71%, 53%);
+}
 .lu-icon.construction {
   background:hsl(348, 100%, 61%);
 }

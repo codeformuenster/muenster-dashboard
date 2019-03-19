@@ -26,6 +26,12 @@ export abstract class MeinItems {
         color: 'is-link',
         component: SearchResultsDefault
       },
+      bookbus: {
+        name: 'Bücherbus',
+        icon: 'mdi-bus-clock',
+        color: 'is-link',
+        component: SearchResultsDefault
+      },
       cemetery: {
         name: 'Friedhof',
         icon: 'mdi-grave-stone',
