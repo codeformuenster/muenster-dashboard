@@ -7,6 +7,7 @@ import SearchService from './Services/SearchService';
 import { DistrictService } from './Services/districtService';
 import './App.css';
 import { IDistrictResultSlim } from './News';
+import { LatLng } from 'leaflet';
 
 export interface ISearchParams {
   latitude: number;
@@ -102,8 +103,56 @@ class App extends React.Component<IAppProps, any> {
   }
 
   public componentDidMount() {
-
     this.getBrowserLocation();
+  }
+
+  /**
+   * Try getting the device's current position and update the position in the latitude/longitude. If the position cannot
+   * be determined use a standard position.
+   *
+   * TODO: This functionality is implemented at multiple locations. Consider collecting it into one place.
+   */
+  public getBrowserLocation() {
+
+    let handleMissingCoordinate = () => {
+      // when the user coordinate is missing or invalid replace it with a default value
+      let searchParams = this.state.searchParams;
+      searchParams.latitude = 51.9624047;
+      searchParams.longitude = 7.6255008;
+      this.hasGeoSelector = true;
+      this.updateSearchParams(searchParams);
+    };
+
+    if (!navigator.geolocation) {
+      console.log('<p>Geolokation wird von ihrem Browser nicht unterstützt</p>');
+      return;
+    }
+
+    // define the callback functions that are called when the device's position could / could not be determined
+    let success = (position: any) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      let distance = new LatLng(latitude, longitude).distanceTo(new LatLng(51.9624047, 7.6255008));
+      console.log('Lokalisierung war erfolgreich: ' + latitude + ' ' + longitude + '; Distanz: ' + distance);
+
+      // if the distance of the user's position to the city center is over 15 km ignore it
+      if (distance > 15000) {
+        console.log('Benutzer-Koordinaten sind > 15 km von Stadtzentrum entfernt. Ignoriere dies.');
+        handleMissingCoordinate();
+      } else {
+        let searchParams = this.state.searchParams;
+        searchParams.latitude = latitude;
+        searchParams.longitude = longitude;
+        this.updateSearchParams(searchParams);
+      }
+    };
+
+    let error = () => {
+      console.log('Es war nicht möglich Sie zu lokalisieren');
+      handleMissingCoordinate();
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
   }
 
   /*
@@ -139,41 +188,6 @@ class App extends React.Component<IAppProps, any> {
       );
     }
     this.lastSearchHash = searchHash;
-  }
-
-  /**
-   * Try getting the device's current position and update the position in the latitude/longitude. If the position cannot
-   * be determined use a standard position.
-   *
-   * TODO: This functionality is implemented at multiple locations. Consider collecting it into one place.
-   */
-  private getBrowserLocation() {
-
-    if (!navigator.geolocation) {
-      console.log('<p>Geolokation wird von ihrem Browser nicht unterstützt</p>');
-      return;
-    }
-
-    // define the callback functions that are called when the device's position could / could not be determined
-    let success = (position: any) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      let searchParams = this.state.searchParams;
-      searchParams.latitude = latitude;
-      searchParams.longitude = longitude;
-      this.updateSearchParams(searchParams);
-    };
-
-    let error = () => {
-      console.log('Es war nicht möglich Sie zu lokalisieren');
-      let searchParams = this.state.searchParams;
-      searchParams.latitude = 51.9624047;
-      searchParams.longitude = 7.6255008;
-      this.hasGeoSelector = true;
-      this.updateSearchParams(this.state.searchParams);
-    };
-
-    navigator.geolocation.getCurrentPosition(success, error);
   }
 
 }
