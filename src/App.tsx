@@ -125,6 +125,7 @@ class App extends React.Component<IAppProps, any> {
 
     if (!navigator.geolocation) {
       console.log('<p>Geolokation wird von ihrem Browser nicht unterstützt</p>');
+      handleMissingCoordinate();
       return;
     }
 
