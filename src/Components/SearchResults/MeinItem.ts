@@ -41,7 +41,7 @@ export abstract class MeinItems {
       container: {
         name: 'Recycling-Container',
         icon: 'mdi-recycle',
-        color: 'is-link',
+        color: 'is-danger',
         component: SearchResultsDefault
       },      
       construction: {
@@ -95,7 +95,7 @@ export abstract class MeinItems {
       event: {
         name: 'Termin',
         icon: 'mdi-calendar-text',
-        color: 'is-success',
+        color: 'is-black',
         component: SearchResultsEvent
       },
       school: {
@@ -113,7 +113,7 @@ export abstract class MeinItems {
       agencies: {
         name: 'Amt',
         icon: 'mdi-briefcase',
-        color: 'is-danger',
+        color: 'is-black',
         component: SearchResultsDefault
       },
       library: {
