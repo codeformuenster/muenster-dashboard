@@ -26,6 +26,12 @@ export abstract class MeinItems {
         color: 'is-link',
         component: SearchResultsDefault
       },
+      cemetery: {
+        name: 'Friedhof',
+        icon: 'mdi-grave-stone',
+        color: 'is-light',
+        component: SearchResultsDefault
+      },
       container: {
         name: 'Recycling-Container',
         icon: 'mdi-recycle',
