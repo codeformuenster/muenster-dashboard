@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SearchResultsBase } from './SearchResultsBase';
+import { MeinItems } from './MeinItem';
 
 class SearchResultsDefault extends SearchResultsBase {
 
@@ -29,7 +30,7 @@ class SearchResultsDefault extends SearchResultsBase {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">{result.type ? result.name : capitalizeFirstLetter(result.type)}</span> &nbsp;
+              <span className="tag is-dark">{result.type ? capitalizeFirstLetter(MeinItems.getItem(result.type).name) : result.name}</span> &nbsp;
             </span>
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
