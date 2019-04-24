@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { ISearchParams } from '../App';
 import { IDistrictResultSlim } from '../Services/districtService';
+// the DebounceInput is a drop-in replacement for <input ..> elements that debounces the input, which means that
+// quick consecutive changes only cause one onChange() call
+import { DebounceInput } from 'react-debounce-input';
 
 interface ISearchBarProps {
     results?: any;
@@ -20,10 +23,6 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
   }
 
   render() {
-    // the DebounceInput is a drop-in replacement for <input ..> elements that debounces the input, which means that
-    // quick consecutive changes only cause one onChange() call
-    const DebounceInput = require('react-debounce-input');
-
     // create an <option .. />-element for each district. This list will will the district selection box
     let districtList = this.props.districts.map((d: IDistrictResultSlim) => {
       return <option key={d.number} value={d.number}>{d.name}</option>;
@@ -42,9 +41,6 @@ class SearchBar extends React.Component<ISearchBarProps, any> {
                 placeholder="Suchbegriff"
               />
               <span className="icon is-small is-left">
-                <i className="fa fa-cutlery" />
-              </span>
-              <span className="icon is-small is-right">
                 <i className="fa fa-search" />
               </span>
             </div>
