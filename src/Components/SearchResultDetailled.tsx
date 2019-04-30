@@ -192,6 +192,12 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
           displayKey = keyMap[key.toLowerCase().replace(':', '_')];
         }
 
+        // check if the value is a valid http address. If it is display as link
+        if (/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(properties[key])) {
+          response.push(<span><i>{this.capitalizeFirstLetter(displayKey)}:</i> <a target="_blank" rel="noopener noreferrer" href={properties[key]}>Webseite besuchen</a></span>);
+        } else {
+          response.push(<span><i>{this.capitalizeFirstLetter(displayKey)}:</i> {properties[key]}</span>);
+        }
       }
     }
     return response;
