@@ -10,6 +10,39 @@ interface ISearchResultDetailledProps {
   searchParams: ISearchParams;
 }
 
+// display keys for the detail page
+const keyMap = {
+  name: 'Name',
+  wlan_status: 'WLAN Status',
+  schooltype: 'Schulart',
+  url: 'Link',
+  link1: 'Link',
+  link1_txt: 'Linkbeschreibung',
+  groesse: 'Größe',
+  recycling_type: 'Recylingart',
+  recycling_glass: 'Für Glas geeignet',
+  recycling_glass_bottles: 'Für Glasflaschen geeignet',
+  amenity: 'Einrichtung',
+  plz: 'PLZ',
+  strname: 'Straße',
+  hsnr: 'Hausnummer',
+  subtitle: 'Untertitel',
+  description: 'Beschreibung',
+  location: 'Ort',
+  street: 'Straße',
+  adresse: 'Adresse',
+  homepage: 'Link',
+  opening_hours: 'Öffnungszeiten',
+  barrierefrei: 'Barrierefrei',
+  montag: 'Montag',
+  dienstag: 'Dienstag',
+  mittwoch: 'Mittwoch',
+  donnerstag: 'Donnerstag',
+  freitag: 'Freitag',
+  samstag: 'Samstag',
+  sonntag: 'Sonntag'
+};
+
 /**
  * This component displays detailed information about one search result, like the distance and approximate arrival times.
  */
@@ -132,7 +165,7 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
   }
 
   private capitalizeFirstLetter(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   private renderProperties(properties: any) {
@@ -152,7 +185,13 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
             continue;
           default:
         }
-        response.push(<span><i>{this.capitalizeFirstLetter(key)}:</i> {properties[key]}</span>);
+
+        // check if a readable key is available
+        let displayKey = key;
+        if (key.toLowerCase().replace(':', '_') in keyMap) {
+          displayKey = keyMap[key.toLowerCase().replace(':', '_')];
+        }
+
       }
     }
     return response;
