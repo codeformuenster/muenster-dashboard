@@ -183,6 +183,44 @@ class SearchResultDetailled extends React.Component<ISearchResultDetailledProps,
           case 'hoch':
           case 'id':
             continue;
+          case 'skater':
+          case 'streetball':
+            if (!properties[key]) {
+              continue;
+            }
+            break;
+          case 'bereich':
+            switch (properties[key]) {
+              case 'A':
+              case 'A+B/C':
+                properties[key] = 'Spielplatz für alle Altersklassen mit zentraler Versorgungsfunktion';
+                break;
+              case 'B':
+              case 'B/C':
+                properties[key] = 'Spielplatz für Kleinkinder sowie schulpflichtige Kinder und Jugendliche zur Versorgung eines Wohnbereiches';
+                break;
+              case 'C':
+                properties[key] = 'Spielplatz für Kleinkinder';
+                break;
+              default:
+                break;
+            }
+            break;
+          case 'ball':
+            switch (String(properties[key])) {
+              case '0':
+                properties[key] = 'kein Ballspielplatz';
+                break;
+              case '1':
+                properties[key] = 'seperater Ballspielplatz';
+                break;
+              case '2':
+                properties[key] = 'Spielplatz mit integriertem Ballspielplatz';
+                break;
+              default:
+                break;
+            }
+            break;
           default:
         }
 
