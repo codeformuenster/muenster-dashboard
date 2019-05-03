@@ -1,10 +1,10 @@
 
 import * as Elasticsearch from 'elasticsearch';
 import { ISearchParams, ISearchResult } from '../App';
-import { baseUrl, placesIndex } from '../Constants/Elasticsearch';
+import { getBaseUrl, switchElasticSearchHost, placesIndex } from '../Constants/Elasticsearch';
 
 let client = new Elasticsearch.Client({
-  host: baseUrl,
+  host: getBaseUrl(),
   log: 'trace'
 });
 
@@ -203,6 +203,7 @@ class SearchService {
         ((error: any, body: any) => {
           if (error) {
             console.trace('error', error.message);
+            switchElasticSearchHost();
           }
 
           let locations: Array<ISearchResult> = [];
