@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 import News from './News';
-import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -27,4 +26,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root') as HTMLElement
 );
-registerServiceWorker();
