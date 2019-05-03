@@ -126,6 +126,7 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
               const { centerLat, centerLon } = found;
               searchParams.centerLat = Number(centerLat);
               searchParams.centerLon = Number(centerLon);
+              searchParams.selectedId = 0;
               selectedDistrict = found;
             }
           }
@@ -172,6 +173,8 @@ class LunchMap extends React.Component<ILunchMapProps, any> {
       this.districtLayer.clearLayers();
       this.districtLayer.addData(this.props.districtPolygon.polygon);
     }
+
+    this.markerRef = null;
   }
 
   /**
