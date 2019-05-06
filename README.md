@@ -13,7 +13,7 @@ sudo --preserve-env docker-compose up $BUILD
 If you want to start React in developer mode open another terminal:
 
 ```bash
-sudo docker container stop muensterdashboard_dashboard_1
+sudo docker container stop muenster-dashboard_dashboard_1
 export REACT_APP_ELASTICSEARCH_URL_PREFIX="http://localhost:9200/mein-ms2-"
 npm start
 ```

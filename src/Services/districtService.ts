@@ -1,10 +1,10 @@
 import * as Elasticsearch from 'elasticsearch';
 import { Polygon } from 'geojson';
 
-import { baseUrl, districtIndex } from '../Constants/Elasticsearch';
+import { getBaseUrl, districtIndex } from '../Constants/Elasticsearch';
 
 const client = new Elasticsearch.Client({
-  host: baseUrl,
+  host: getBaseUrl(),
   log: 'trace'
 });
 

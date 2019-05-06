@@ -1,8 +1,8 @@
 import * as Elasticsearch from 'elasticsearch';
-import { baseUrl } from '../Constants/Elasticsearch';
+import { getBaseUrl } from '../Constants/Elasticsearch';
 
 let client = new Elasticsearch.Client({
-  host: baseUrl,
+  host: getBaseUrl(),
   log: 'trace'
 });
 
