@@ -41,6 +41,9 @@ For offline debugging, exchange `elasticsearch.codeformuenster.org` with `localh
 
 For importing the data open a new terminal:
 
+If you don't provide a mapquest key, *no events will be imported*.
+Get a mapquest key here (registration is quick and easy): https://developer.mapquest.com/user/me/apps
+
 ```bash
 export COMPOSE_PROJECT_NAME="muenster-dashboard"
 export ELASTICSEARCH_URL_PREFIX="http://elasticsearch:9200/mein-ms2-"
@@ -50,5 +53,3 @@ export MAPQUEST_KEY="<your mapquest key here>"
 cd import-scripts
 sudo --preserve-env ./import.sh
 ```
-
-You can leave the mapquest key away, but then no events will be imported.
