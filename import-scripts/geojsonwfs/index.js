@@ -14,6 +14,7 @@ const tasks = {
   cemeteries:    { worker: genericWorker, servName: 'poiserv', typeName: 'ms:friedhoefe', type: 'cemetery' },
   toiletten:     { worker: genericWorker, servName: 'poiserv', typeName: 'ms:Toiletten', type: 'wc' },
   wifiaps:       { worker: genericWorker, servName: 'poiserv', typeName: 'ms:WLAN-Standorte', type: 'wifi' },
+  papierkorb:    { worker: genericWorker, servName: 'poiserv', typeName: 'ms:papierkorb', type: 'papierkorb' },
   schulen:       { worker: genericWorker, servName: 'schulenserv', typeName: 'ms:schulen', type: 'school' },
 
   spielplaetze:  { worker: playgroundWorker, servName: 'odspielplserv', typeName: 'spielplaetze', type: 'playground' },

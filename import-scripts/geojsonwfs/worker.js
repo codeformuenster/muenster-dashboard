@@ -26,7 +26,7 @@ const handleGeoJSON = function handleGeoJSON ({ result, type }, cb) {
         geometry,
       },
       type: type,
-      name: properties.NAME,
+      name: properties.NAME || properties.standpunkt,
       properties
     });
   }

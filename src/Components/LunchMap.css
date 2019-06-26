@@ -54,6 +54,10 @@
   background:hsl(48, 100%, 67%);
   color:hsl(0, 0%, 21%);
 }
+.lu-icon.papierkorb {
+  background:hsl(193, 100%, 67%);
+  color:hsl(0, 0%, 21%);
+}
 .lu-icon.pool {
   background:hsl(204, 86%, 53%);
 }

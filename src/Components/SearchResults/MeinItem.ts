@@ -116,6 +116,12 @@ export abstract class MeinItems {
         color: 'is-black',
         component: SearchResultsDefault
       },
+      papierkorb: {
+        name: 'Papierkorb',
+        icon: 'mdi-trash-can-outline',
+        color: 'is-black',
+        component: SearchResultsDefault
+      },
       library: {
         name: 'Bücherei',
         icon: 'mdi-book',
