@@ -11,13 +11,13 @@ class Copyright extends React.Component<any, any> {
     const infos = [
       [ 'Datenquellen',
         (
-          <div>Wir nutzen Daten aus dem 
+          <div>Wir nutzen Daten aus dem{' '}
           <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a>.</div>
         )
       ],
       [ 'Nachrichten',
         (
-          <div>Auf unserer Startzeite erscheinen Nachrichten 
+          <div>Auf unserer Startzeite erscheinen Nachrichten{' '}
           <a href="http://www.wn.de">aus dem RSS Feed der westfälischen Nachrichten</a>.</div>
         )
       ],
