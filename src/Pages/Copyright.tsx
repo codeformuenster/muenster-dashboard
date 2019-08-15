@@ -12,7 +12,7 @@ class Copyright extends React.Component<any, any> {
       [ 'Datenquellen',
         (
           <div>Wir nutzen Daten aus dem 
-          <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a></div>
+          <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a>.</div>
         )
       ],
       [ 'Nachrichten',
