@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './WorkInProgress.css';
-
 const logo = require('./../Components/Logo.svg');
-
-class WorkInProgress extends React.Component<any, any> {
-  render() {
-    return (
-      <section className="section">
+class WorkInProgress extends React.Component {
+    render() {
+        return (<section className="section">
         <div className="container">
           <div className="content">
             <div className="columns">
@@ -15,12 +12,7 @@ class WorkInProgress extends React.Component<any, any> {
                 <div className="LogoBox is-pulled-left">
 
                   <Link className="App-logo is-pulled-left is-mobile" to="/">
-                    <img
-                      className="LogoImg"
-                      src={logo}
-                      width="150"
-                      alt="Lunchtimer"
-                    />
+                    <img className="LogoImg" src={logo} width="150" alt="Lunchtimer"/>
                   </Link>
 
                   <Link to="/">
@@ -31,7 +23,7 @@ class WorkInProgress extends React.Component<any, any> {
             </div>
             <div className="columns">
               <div className="SmileyIcon column is-narrow">
-                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/160/twitter/103/confused-face_1f615.png" />
+                <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/160/twitter/103/confused-face_1f615.png"/>
               </div>
               <div className="column has-text-left">
                 <h1>Wir arbeiten dran</h1>
@@ -40,9 +32,7 @@ class WorkInProgress extends React.Component<any, any> {
             </div>
           </div>
         </div>
-      </section>
-    );
-  }
-
+      </section>);
+    }
 }
 export default WorkInProgress;

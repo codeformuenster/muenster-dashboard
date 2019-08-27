@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { SearchResultsBase } from './SearchResultsBase';
-
 class SearchResultsEvent extends SearchResultsBase {
-
-  render() {
-    const result = this.props.result;
-
-    return (
-      <div className="media">
+    render() {
+        const result = this.props.result;
+        return (<div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-calendar-text" />
+              <i className="mdi mdi-48px mdi-calendar-text"/>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -27,25 +23,25 @@ class SearchResultsEvent extends SearchResultsBase {
             <div className="is-clearfix">
               <a href={result.url} target="_blank">
                 <span className="icon is-large">
-                  <i className="mdi mdi-16px mdi-web" />
+                  <i className="mdi mdi-16px mdi-web"/>
                 </span>
                 Webseite besuchen</a>
 
               <p className="has-text-danger">
                 <div>
                   <span className="icon">
-                    <i className="mdi mdi-timetable" />
+                    <i className="mdi mdi-timetable"/>
                   </span>
                   am {this.toHumanReadableDate(result.dateStart)}
                 </div>
                 <div className="has-text-danger">
                   <span className="icon">
-                    <i className="mdi mdi-walk" />
+                    <i className="mdi mdi-walk"/>
                   </span>
                   {this.getMinutesByFeet(result.distance)}
                   &bull;
               <span className="icon">
-                    <i className="mdi mdi-car" />
+                    <i className="mdi mdi-car"/>
                   </span>
                   {this.getMinutesByCar(result.distance)}
                 </div>
@@ -53,13 +49,10 @@ class SearchResultsEvent extends SearchResultsBase {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Bearbeitung';
-  }
+      </div>);
+    }
+    isRunning(wlanStatus) {
+        return wlanStatus === 'in Bearbeitung';
+    }
 }
-
 export default SearchResultsEvent;

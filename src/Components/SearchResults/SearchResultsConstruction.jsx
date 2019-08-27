@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { SearchResultsBase } from './SearchResultsBase';
-
 class SearchResultsConstruction extends SearchResultsBase {
-
-  render() {
-    console.log('Rendering construction search result');
-
-    const result = this.props.result;
-
-    return (
-      <div className="media">
+    render() {
+        console.log('Rendering construction search result');
+        const result = this.props.result;
+        return (<div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className={'mdi mdi-48px ' + this.props.icon} />
+              <i className={'mdi mdi-48px ' + this.props.icon}/>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -34,21 +29,17 @@ class SearchResultsConstruction extends SearchResultsBase {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-timetable" />
+                <i className="mdi mdi-timetable"/>
               </span>
               ab {this.toHumanReadableDate(result.dateStart)}
             </p>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  private isUnderConstruction(constructionStartDate: string): boolean {
-    let currentDate = new Date();
-
-    return this.isoDateStringToDate(constructionStartDate) <= currentDate;
-  }
+      </div>);
+    }
+    isUnderConstruction(constructionStartDate) {
+        let currentDate = new Date();
+        return this.isoDateStringToDate(constructionStartDate) <= currentDate;
+    }
 }
-
 export default SearchResultsConstruction;

@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { SearchResultsBase } from './SearchResultsBase';
-
 class SearchResultsLunch extends SearchResultsBase {
-
-  render() {
-    console.log('Rendering lunch search result');
-
-    const result = this.props.result;
-
-    return (
-      <div className="media">
+    render() {
+        console.log('Rendering lunch search result');
+        const result = this.props.result;
+        return (<div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-food" />
+              <i className="mdi mdi-48px mdi-food"/>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -36,7 +31,7 @@ class SearchResultsLunch extends SearchResultsBase {
 
                 <div className="tag is-warning">
                   <span className="icon" data-balloon={result.properties.phone} data-balloon-pos="up">
-                    <i className="fa fa-cutlery" />
+                    <i className="fa fa-cutlery"/>
                   </span> {result.properties.openToday}
                 </div>
 
@@ -44,80 +39,67 @@ class SearchResultsLunch extends SearchResultsBase {
                   {this.renderFeatures(result.properties.paymentMethods)}
                 </div>
 
-                {result.properties.phone && (
-                  <div className="tag is-warning">
+                {result.properties.phone && (<div className="tag is-warning">
                     <span className="icon" data-balloon={result.properties.phone} data-balloon-pos="up">
-                      <i className="fa fa-phone" />
+                      <i className="fa fa-phone"/>
                     </span>
                     <span className="is-hidden-mobile">
                       {result.properties.phone}
                     </span>
-                  </div>
-                )}
+                  </div>)}
 
               </div>
               <div className="is-pulled-right columns is-mobile is-1 is-variable">
 
-                {result.properties.url && (
-                    <div className="column">
+                {result.properties.url && (<div className="column">
                       <a className="button is-link" href={result.properties.url} target="_blank">
-                        <i className="fa fa-home" />
+                        <i className="fa fa-home"/>
                         <span className="is-hidden-mobile">&nbsp;Homepage</span>
                       </a>
-                    </div>
-                )}
+                    </div>)}
 
-                {result.properties.menu_url && (
-                    <div className="column">
+                {result.properties.menu_url && (<div className="column">
                       <a className="button is-link" href={result.properties.menu_url} target="_blank">Menu</a>
-                    </div>
-                )}
+                    </div>)}
               </div>
               <p className="has-text-danger">
                 <span className="icon">
-                  <i className="mdi mdi-walk" />
+                  <i className="mdi mdi-walk"/>
                 </span>
                 {this.getMinutesByFeet(result.distance)}
                 &bull;
                 <span className="icon">
-                  <i className="mdi mdi-car" />
+                  <i className="mdi mdi-car"/>
                 </span>
                 {this.getMinutesByCar(result.distance)}
               </p>
 
         </div>
-      </div>
-    );
-  }
-
-  private renderFeatures(features: string[]) {
-    let iconRows = [];
-
-    for (let feature of features) {
-      iconRows.push(this.getFeatureIcon(feature));
+      </div>);
     }
-    return iconRows;
-  }
-
-  private getFeatureIcon(feature: string) {
-    const iconList = {
-      wifi: ['wifi', 'W-Lan'],
-      cash: ['money', 'Barzahlung'],
-      debit_card: ['credit-card', 'EC-Karte'],
-      credit_card: ['cc-visa', 'Kreditkarte'],
-      special_card: ['warning', 'Bezahlen nur mit spezieller Karte. Automat am Eingang.']
-    };
-    const iconSettings = iconList[feature] ? iconList[feature] : null;
-    if (iconSettings) {
-      return (
-        <span className="icon" data-balloon={iconSettings[1]} data-balloon-pos="up">
-          <i className={'fa fa-' + iconSettings[0]} />
-        </span>
-      );
+    renderFeatures(features) {
+        let iconRows = [];
+        for (let feature of features) {
+            iconRows.push(this.getFeatureIcon(feature));
+        }
+        return iconRows;
     }
-    console.log('Unrecognized feature', feature);
-    return null;
-  }
+    getFeatureIcon(feature) {
+        const iconList = {
+            wifi: ['wifi', 'W-Lan'],
+            cash: ['money', 'Barzahlung'],
+            debit_card: ['credit-card', 'EC-Karte'],
+            credit_card: ['cc-visa', 'Kreditkarte'],
+            special_card: ['warning', 'Bezahlen nur mit spezieller Karte. Automat am Eingang.']
+        };
+        const iconSettings = iconList[feature] ? iconList[feature] : null;
+        if (iconSettings) {
+            return (<span className="icon" data-balloon={iconSettings[1]} data-balloon-pos="up">
+          <i className={'fa fa-' + iconSettings[0]}/>
+        </span>);
+        }
+        console.log('Unrecognized feature', feature);
+        return null;
+    }
 }
-
 export default SearchResultsLunch;

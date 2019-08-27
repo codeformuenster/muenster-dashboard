@@ -1,9 +1,7 @@
 import * as React from 'react';
-
-class Impressum extends React.Component<any, any> {
-  render() {
-    return (
-      <section className="section">
+class Impressum extends React.Component {
+    render() {
+        return (<section className="section">
         <div className="container">
           <div className="content">
           <h1>Impressum</h1>
@@ -143,9 +141,7 @@ class Impressum extends React.Component<any, any> {
           Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
         </div>
         </div>
-      </section>
-    );
-  }
-
+      </section>);
+    }
 }
 export default Impressum;

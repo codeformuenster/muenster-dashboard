@@ -1,10 +1,7 @@
-
 import * as React from 'react';
-
 class Lunchlist extends React.Component {
-  render() {
-    return (
-      <section className="section">
+    render() {
+        return (<section className="section">
         <div className="container">
           <h1 className="title">
             Hello World
@@ -13,9 +10,7 @@ class Lunchlist extends React.Component {
             My first website with <strong>Bulma</strong>!
           </p>
         </div>
-      </section>
-    );
-  }
+      </section>);
+    }
 }
-
 export default Lunchlist;

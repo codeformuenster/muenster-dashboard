@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { SearchResultsBase } from './SearchResultsBase';
-
 class SearchResultsWebcam extends SearchResultsBase {
-
-  render() {
-    console.log('Rendering webcams search result');
-
-    const result = this.props.result;
-
-    return (
-      <div className="media">
+    render() {
+        console.log('Rendering webcams search result');
+        const result = this.props.result;
+        return (<div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-camera" />
+              <i className="mdi mdi-48px mdi-camera"/>
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -31,20 +26,18 @@ class SearchResultsWebcam extends SearchResultsBase {
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk" />
+                <i className="mdi mdi-walk"/>
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car" />
+                <i className="mdi mdi-car"/>
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>
           </div>
         </div>
-      </div>
-    );
-  }
+      </div>);
+    }
 }
-
 export default SearchResultsWebcam;
