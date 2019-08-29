@@ -1,13 +1,15 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
-class SearchResultsWc extends SearchResultsBase {
-    render() {
-        const result = this.props.result;
-        return (<div className="media">
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
+
+class SearchResultsWifi extends SearchResultsBase {
+  render() {
+    const { result } = this.props
+    return (
+      <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className="mdi mdi-48px mdi-human-male-female"/>
+              <i className="mdi mdi-48px mdi-wifi" />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -18,31 +20,33 @@ class SearchResultsWc extends SearchResultsBase {
           <div className="content">
             <span className="title">
               <span>{result.name} &nbsp; </span>
-              <span className="tag is-dark">WC</span> &nbsp;
-              {this.isAccessibleWithWheelchair(result.properties.BARRIEREFREI) && <span className="tag is-success">
-                <span className="icon"> <i className="mdi mdi-24px mdi-wheelchair-accessibility"/> </span>
-              </span>}
+              <span className="tag is-dark">W-LAN</span> &nbsp;
+              <span className={`tag ${this.isRunning(result.properties.WLAN_STATUS) ? 'is-success' : 'is-danger'}`}>
+                {result.properties.WLAN_STATUS}
+              </span>
             </span>
             <div className="is-clearfix">
-              Friedenssaal, Prinzipalmarkt 10
+              {result.properties.ADRESSE}
             </div>
             <p className="has-text-danger">
               <span className="icon">
-                <i className="mdi mdi-walk"/>
+                <i className="mdi mdi-walk" />
               </span>
               {this.getMinutesByFeet(result.distance)}
               &bull;
               <span className="icon">
-                <i className="mdi mdi-car"/>
+                <i className="mdi mdi-car" />
               </span>
               {this.getMinutesByCar(result.distance)}
             </p>
           </div>
         </div>
-      </div>);
-    }
-    isAccessibleWithWheelchair(accessible) {
-        return accessible === 'J';
-    }
+      </div>
+    )
+  }
+
+  isRunning(wlanStatus) {
+    return wlanStatus === 'in Betrieb'
+  }
 }
-export default SearchResultsWc;
+export default SearchResultsWifi
