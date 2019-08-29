@@ -54,20 +54,22 @@ export class SearchResults extends React.Component {
     }
     return (
       <div className="search_results">
-        {results.map((result) => {
-          const meinItem = MeinItems.getItem(result.type)
-          const ComponentClass = meinItem.component
-          const searchResultComponent = <ComponentClass result={result} icon={meinItem.icon} />
-          return (
-            <article
-              key={result.id}
-              className={`notification${(searchParams.selectedId === result.id) ? ` ${meinItem.color}` : ''}`}
-              onClick={(e) => this.toggleSelection(e, result.id)}
-            >
-              {searchResultComponent}
-            </article>
-          )
-        })}
+        {
+          results.map((result) => {
+            const meinItem = MeinItems.getItem(result.type)
+            const ComponentClass = meinItem.component
+            const searchResultComponent = <ComponentClass result={result} icon={meinItem.icon} />
+            return (
+              <article
+                key={result.id}
+                className={`notification${(searchParams.selectedId === result.id) ? ` ${meinItem.color}` : ''}`}
+                onClick={(e) => this.toggleSelection(e, result.id)}
+              >
+                {searchResultComponent}
+              </article>
+            )
+          })
+        }
       </div>
     )
   }
