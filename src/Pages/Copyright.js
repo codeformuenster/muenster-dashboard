@@ -7,54 +7,38 @@ export const Copyright = () => {
   const numColors = 10
   const rainbowColors = Rainbow.create(numColors)
   const infos = [
-    [
-      'Datenquellen',
+    ['Datenquellen',
       (
-        <div>Wir nutzen Daten aus dem
-          <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a>
-        </div>
+        <div>Wir nutzen Daten aus dem{' '}
+        <a href="http://www.stadt-muenster.de/katasteramt/geodatenmanagement/open-data.html">Open Data Portal der Stadt Münster</a>.</div>
       ),
     ],
-    [
-      'Nachrichten',
+    ['Nachrichten',
       (
-        <div>Auf unserer Startzeite erscheinen Nachrichten
-          <a href="http://www.wn.de">aus dem RSS Feed der westfälischen Nachrichten</a>
-        </div>
+        <div>Auf unserer Startzeite erscheinen Nachrichten{' '}
+        <a href="http://www.wn.de">aus dem RSS Feed der westfälischen Nachrichten</a>.</div>
       ),
     ],
-    [
-      'Emoji-Icons',
-      (
-        <div>Alle Emojis auf dieser Seite stammen aus aus der <a href="https://github.com/twitter/twemoji">Twemoji 2.3 Bibliothek von Twitter</a></div>
-      ),
+
+    ['Emoji-Icons',
+      (<div>Alle Emojis auf dieser Seite stammen aus der <a href="https://github.com/twitter/twemoji">Twemoji 2.3 Bibliothek von Twitter</a>.</div>)
     ],
-    [
-      'Schriftarten',
+    ['Schriftarten',
       (
         <div>Für das Logo und verschiedene Überschriften
-  nutzen wir <a href="https://fonts.google.com/specimen/Londrina+Solid">die Schriftart "Londrina Solid" von Google Fonts</a>
-        </div>
-      ),
+        nutzen wir <a href="https://fonts.google.com/specimen/Londrina+Solid">die Schriftart "Londrina Solid" von Google Fonts</a>.</div>)
     ],
-    [
-      'Logo-Icon',
+    ['Logo-Icon',
       (
         <div>Das Logo-Icon "family house" wurde erstellt
-  von <a href="https://thenounproject.com/rafaleao/uploads/?i=38650"> von Oksana Latysheva from the Noun Project</a>
-        </div>
-      ),
+        von <a href="https://thenounproject.com/rafaleao/uploads/?i=38650"> Oksana Latysheva from the Noun Project</a>.</div>)
     ],
-    [
-      'Karten',
+    ['Karten',
       (
         <div>Für unsere Kartendarstellung nutzen wir Karten-Tiles
-  von <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap-Mitwirkende nach CC BY-SA</a>
-        </div>
-      ),
+        von <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap-Mitwirkende nach CC BY-SA</a>.</div>)
     ],
-    [
-      'Css Framework',
+    ['CSS Framework',
       (
         <div>
           <a href="https://bulma.io">
@@ -64,16 +48,21 @@ export const Copyright = () => {
       ),
     ],
   ]
+
   let colorNr = 0
   const rows = []
   infos.forEach((info) => {
-    const myColor = rainbowColors[colorNr++].hexString()
+    const myColor = rainbowColors[colorNr].hexString()
     rows.push((
-      <div className="box SideColorBox" style={{ background: `linear-gradient(to right, ${myColor} , ${myColor} 20px,#fff 20px)` }}>
+      <div
+        className="box SideColorBox"
+        style={{ background: `linear-gradient(to right, ${myColor} ,${myColor} 20px,#fff 20px)` }}
+      >
         <p className="title">{info[0]}</p>
         {info[1]}
       </div>
     ))
+    colorNr += 1
   })
   return (
     <section className="section copyrightBg">
