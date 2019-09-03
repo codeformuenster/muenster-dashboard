@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsWifi extends SearchResultsBase {
-
   render() {
-    const result = this.props.result;
-
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
@@ -23,7 +21,7 @@ class SearchResultsWifi extends SearchResultsBase {
             <span className="title">
               <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">W-LAN</span> &nbsp;
-              <span className={'tag ' + (this.isRunning(result.properties.WLAN_STATUS) ? 'is-success' : 'is-danger')}>
+              <span className={`tag ${this.isRunning(result.properties.WLAN_STATUS) ? 'is-success' : 'is-danger'}`}>
                 {result.properties.WLAN_STATUS}
               </span>
             </span>
@@ -44,12 +42,11 @@ class SearchResultsWifi extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Betrieb';
+  isRunning(wlanStatus) {
+    return wlanStatus === 'in Betrieb'
   }
 }
-
-export default SearchResultsWifi;
+export default SearchResultsWifi

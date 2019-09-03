@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsWc extends SearchResultsBase {
-
   render() {
-    const result = this.props.result;
-
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
@@ -23,9 +21,11 @@ class SearchResultsWc extends SearchResultsBase {
             <span className="title">
               <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">WC</span> &nbsp;
-              {this.isAccessibleWithWheelchair(result.properties.BARRIEREFREI) && <span className="tag is-success">
+              {this.isAccessibleWithWheelchair(result.properties.BARRIEREFREI) && (
+              <span className="tag is-success">
                 <span className="icon"> <i className="mdi mdi-24px mdi-wheelchair-accessibility" /> </span>
-              </span>}
+              </span>
+              )}
             </span>
             <div className="is-clearfix">
               Friedenssaal, Prinzipalmarkt 10
@@ -44,12 +44,11 @@ class SearchResultsWc extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  private isAccessibleWithWheelchair(accessible: string): boolean {
-    return accessible === 'J';
+  isAccessibleWithWheelchair(accessible) {
+    return accessible === 'J'
   }
 }
-
-export default SearchResultsWc;
+export default SearchResultsWc

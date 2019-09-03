@@ -1,13 +1,10 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsWebcam extends SearchResultsBase {
-
   render() {
-    console.log('Rendering webcams search result');
-
-    const result = this.props.result;
-
+    console.log('Rendering webcams search result')
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
@@ -43,8 +40,7 @@ class SearchResultsWebcam extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
-
-export default SearchResultsWebcam;
+export default SearchResultsWebcam

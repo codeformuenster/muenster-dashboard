@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsEvent extends SearchResultsBase {
-
   render() {
-    const result = this.props.result;
-
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
@@ -29,7 +27,8 @@ class SearchResultsEvent extends SearchResultsBase {
                 <span className="icon is-large">
                   <i className="mdi mdi-16px mdi-web" />
                 </span>
-                Webseite besuchen</a>
+                Webseite besuchen
+              </a>
 
               <p className="has-text-danger">
                 <div>
@@ -44,7 +43,7 @@ class SearchResultsEvent extends SearchResultsBase {
                   </span>
                   {this.getMinutesByFeet(result.distance)}
                   &bull;
-              <span className="icon">
+                  <span className="icon">
                     <i className="mdi mdi-car" />
                   </span>
                   {this.getMinutesByCar(result.distance)}
@@ -54,12 +53,11 @@ class SearchResultsEvent extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Bearbeitung';
+  isRunning(wlanStatus) {
+    return wlanStatus === 'in Bearbeitung'
   }
 }
-
-export default SearchResultsEvent;
+export default SearchResultsEvent

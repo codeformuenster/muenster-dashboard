@@ -1,0 +1,30 @@
+{
+  "extends": ["airbnb"],
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "semi": ["error", "never"],
+    "linebreak-style": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": ["off"],
+    "global-require": 0,
+    "arrow-body-style": 0,
+    "react/jsx-boolean-value": 0,
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error",
+    "import/no-default-export": ["error", "never"],
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true,
+    "fetch": true
+  },
+  "parser": "babel-eslint"
+}

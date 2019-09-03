@@ -1,19 +1,15 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
-import { MeinItems } from './MeinItem';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
+import { MeinItems } from './MeinItem'
 
 class SearchResultsDefault extends SearchResultsBase {
-
   render() {
-    const result = this.props.result;
-    let icon = this.props.icon;
-
+    const { result } = this.props
+    let { icon } = this.props
     if (!icon) {
-      icon = 'mdi-home';
+      icon = 'mdi-home'
     }
-
-    let iconClassName = 'mdi mdi-48px ' + icon.trim();
-
+    const iconClassName = `mdi mdi-48px ${icon.trim()}`
     return (
       <div className="media">
         <div className="media-left">
@@ -37,7 +33,8 @@ class SearchResultsDefault extends SearchResultsBase {
                 <span className="icon is-large">
                   <i className="mdi mdi-16px mdi-web" />
                 </span>
-                Webseite besuchen</a>
+                Webseite besuchen
+              </a>
             </div>
             <p className="has-text-danger">
               <span className="icon">
@@ -53,25 +50,23 @@ class SearchResultsDefault extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  protected isRunning(wlanStatus: string): boolean {
-    return wlanStatus === 'in Bearbeitung';
+  isRunning(wlanStatus) {
+    return wlanStatus === 'in Bearbeitung'
   }
 }
-
 /*
   * This JavaScript function takes string as input parameter
   * and capitalizes the first letter
   * @parameter : string
   */
-function capitalizeFirstLetter(word: String) {
+function capitalizeFirstLetter(word) {
   if (!word) {
-    return;
+    return
   }
-  const [firstLetter, ...rest] = word.split('');
-  return [firstLetter.toUpperCase(), ...rest].join('');
+  const [firstLetter, ...rest] = word.split('')
+  return [firstLetter.toUpperCase(), ...rest].join('')
 }
-
-export default SearchResultsDefault;
+export default SearchResultsDefault

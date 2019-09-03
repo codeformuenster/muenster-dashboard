@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsPlayground extends SearchResultsBase {
-
   render() {
-    const result = this.props.result;
-
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
@@ -25,16 +23,12 @@ class SearchResultsPlayground extends SearchResultsBase {
               <span className="tag is-dark">Spielplatz</span> &nbsp;
               {result.properties.Groesse && <span className="tag is-dark"> {result.properties.Groesse} m<sup>2</sup></span>} &nbsp;
               {this.displayPitch(result.properties.Ball, result.properties.Streetball)
-                &&
-                <span
-                  data-balloon="Mit Ballspielplatz"
-                  data-balloon-pos="up"
-                  className="icon"
-                >
-                    <i className="mdi mdi-soccer" />
-                </span>
-              } &nbsp;
-              {this.displaySkater(result.properties.Skater) && <span> <img className="tag-image" src="/media/skateboard.png"/> </span>} &nbsp;
+            && (
+            <span data-balloon="Mit Ballspielplatz" data-balloon-pos="up" className="icon">
+              <i className="mdi mdi-soccer" />
+            </span>
+            )} &nbsp;
+              {this.displaySkater(result.properties.Skater) && <span> <img className="tag-image" src="/media/skateboard.png" /> </span>} &nbsp;
               {result.properties.Bereich && <span className="tag is-success"> {this.displayArea(result.properties.Bereich)} </span>} &nbsp;
             </span>
             <div className="is-clearfix">
@@ -54,47 +48,43 @@ class SearchResultsPlayground extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  private displayName(name: string): string {
-    let result = '';
-    result = name.slice(3);
-
-    return result.toLowerCase().replace(/\b\w/g, function(txt: any) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
+  displayName(name) {
+    let result = ''
+    result = name.slice(3)
+    return result.toLowerCase().replace(/\b\w/g, (txt) => {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    })
   }
 
-  private displayArea(area: string): string {
-    let result = '';
-
+  displayArea(area) {
+    let result = ''
     switch (area) {
-    case 'A':
-        result = 'Großer Spielplatz';
-        break;
-    case 'B/C':
-        result = 'Wohngebiets-Spielplatz';
-        break;
-    case 'C':
-        result = 'Für Kleinkinder';
-        break;
-    case 'A+B/C':
-        result = 'Groß, und extra Kleinkinderbereich';
-        break;
-    default:
+      case 'A':
+        result = 'Großer Spielplatz'
+        break
+      case 'B/C':
+        result = 'Wohngebiets-Spielplatz'
+        break
+      case 'C':
+        result = 'Für Kleinkinder'
+        break
+      case 'A+B/C':
+        result = 'Groß, und extra Kleinkinderbereich'
+        break
+      default:
     }
-
-    return result;
+    return result
   }
 
-  private displayPitch(ball: number, streetBall: string): boolean {
-    return ball === 1 || ball === 2 || streetBall === 'ja';
+  displayPitch(ball, streetBall) {
+    return ball === 1 || ball === 2 || streetBall === 'ja'
   }
 
-  private displaySkater(skater: string): boolean {
-    return skater === 'ja';
+  displaySkater(skater) {
+    return skater === 'ja'
   }
 }
-
-export default SearchResultsPlayground;
+export default SearchResultsPlayground

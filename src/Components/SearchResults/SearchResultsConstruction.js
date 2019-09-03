@@ -1,19 +1,16 @@
-import * as React from 'react';
-import { SearchResultsBase } from './SearchResultsBase';
+import * as React from 'react'
+import { SearchResultsBase } from './SearchResultsBase'
 
 class SearchResultsConstruction extends SearchResultsBase {
-
   render() {
-    console.log('Rendering construction search result');
-
-    const result = this.props.result;
-
+    console.log('Rendering construction search result')
+    const { result } = this.props
     return (
       <div className="media">
         <div className="media-left">
           <p>
             <span className="icon is-large">
-              <i className={'mdi mdi-48px ' + this.props.icon} />
+              <i className={`mdi mdi-48px ${this.props.icon}`} />
             </span>
           </p>
           <div className="distanceDiv has-text-centered">
@@ -25,7 +22,7 @@ class SearchResultsConstruction extends SearchResultsBase {
             <span className="title">
               <span>{result.name} &nbsp; </span>
               <span className="tag is-dark">Baustelle</span> &nbsp;
-              <span className={'tag ' + (this.isUnderConstruction(result.dateStart) ? 'is-danger' : 'is-success')}>
+              <span className={`tag ${this.isUnderConstruction(result.dateStart) ? 'is-danger' : 'is-success'}`}>
                 {this.isUnderConstruction(result.dateStart) ? 'in Bebauung' : 'geplant'}
               </span>
             </span>
@@ -41,14 +38,12 @@ class SearchResultsConstruction extends SearchResultsBase {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  private isUnderConstruction(constructionStartDate: string): boolean {
-    let currentDate = new Date();
-
-    return this.isoDateStringToDate(constructionStartDate) <= currentDate;
+  isUnderConstruction(constructionStartDate) {
+    const currentDate = new Date()
+    return this.isoDateStringToDate(constructionStartDate) <= currentDate
   }
 }
-
-export default SearchResultsConstruction;
+export default SearchResultsConstruction
