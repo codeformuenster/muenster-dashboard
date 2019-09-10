@@ -1,5 +1,5 @@
 import * as Elasticsearch from 'elasticsearch'
-import { getBaseUrl, switchElasticSearchHost, placesIndex } from '../Constants/Elasticsearch'
+import { getBaseUrl, placesIndex } from '../Constants/Elasticsearch'
 
 const client = new Elasticsearch.Client({
   host: getBaseUrl(),
@@ -186,8 +186,7 @@ export class SearchService {
     client
       .search(searchQuery, ((error, body) => {
         if (error) {
-          console.trace('error', error.message)
-          switchElasticSearchHost()
+          console.trace('error #239 -- ', error.message)
         }
         const locations = []
         if (body && body.hits) {
