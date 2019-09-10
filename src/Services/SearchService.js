@@ -128,9 +128,12 @@ export class SearchService {
         bool: {
           must_not: [
             {
-              term: {
-                type: 'event',
-              },
+              "terms": {
+                "type": [
+                   "event",
+                   "papierkorb"
+                ]
+             }
             },
           ],
           must: [
