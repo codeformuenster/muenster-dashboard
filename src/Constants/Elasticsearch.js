@@ -1,6 +1,6 @@
-export const elasticsearchUrlPrefix = process.env.REACT_APP_ELASTICSEARCH_URL_PREFIX || 'https://elasticsearch.codeformuenster.org/mein-ms2-'
+export const elasticsearchUrlPrefix = process.env.REACT_APP_ELASTICSEARCH_URL_PREFIX || 'https://data.mein-ms.de/'
 export const baseUrl = elasticsearchUrlPrefix.slice(0, elasticsearchUrlPrefix.lastIndexOf('/'))
-export const baseUrlAlternativeHost = 'https://data.mein-ms.de/'
+export const baseUrlAlternativeHost = 'https://elasticsearch.codeformuenster.org/mein-ms2-'
 export const prefix = elasticsearchUrlPrefix.slice(elasticsearchUrlPrefix.lastIndexOf('/') + 1)
 export const districtIndex = `${prefix}districts`
 export const placesIndex = `${prefix}places`
@@ -14,15 +14,4 @@ export const getBaseUrl = () => {
     host = baseUrlAlternativeHost
   }
   return host
-}
-/**
- * Method that will be called if an elastic search error occurs
- */
-export const switchElasticSearchHost = () => {
-  if (window.location.hash === '#es2') {
-    console.log('Elasticsearch error occured on alternative host. Not switching hosts.')
-  } else {
-    window.location.href = '#es2'
-    window.location.reload()
-  }
 }
