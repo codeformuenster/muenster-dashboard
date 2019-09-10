@@ -17,7 +17,7 @@ sudo docker container stop muenster-dashboard_dashboard_1
 export REACT_APP_ELASTICSEARCH_URL_PREFIX="http://localhost:9200/mein-ms2-"
 npm start
 ```
-### Debugging
+## Debugging
 
 If "npm start" fails because of this error:
 
@@ -28,7 +28,7 @@ Then you should try:
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
-### Debug kibana index content
+## Debug kibana index content
 
 * Show indexes: https://elasticsearch.codeformuenster.org/mein-ms-places/_cat/indices
 * Show content of mein-ms-places index: https://elasticsearch.codeformuenster.org/mein-ms-places/_search
@@ -36,6 +36,17 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 
 For offline debugging, exchange `elasticsearch.codeformuenster.org` with `localhost:9200`.
 
+### Delete and recreate an index
+
+If you need to delete an index:
+
+    curl -XDELETE localhost:9200/places
+
+Before importing it, don't forget to run the index creation script, otherwise the locations will not be recognized by Elasticsearch.
+
+    node create_indexes.js
+
+careful, this ^ also deletes indexes. uncomment the indexes you dont want to recreate.
 
 ## Data import
 
@@ -53,3 +64,5 @@ export MAPQUEST_KEY="<your mapquest key here>"
 cd import-scripts
 sudo --preserve-env ./import.sh
 ```
+
+Read more about importing mein-ms data in [import-scripts/README.md](import-scripts/README.md)
