@@ -25,7 +25,7 @@ export class SearchService {
     const searchQuery = {
       index: placesIndex,
       body: {
-        size: isNewsSearch ? 15 : 100,
+        size: isNewsSearch ? 15 : 200,
         query: {
           bool: {
             // filter: {},
@@ -109,7 +109,7 @@ export class SearchService {
               range: {
                 date_start: {
                   gte: 'now-1d',
-                  lte: 'now+10d',
+                  lte: 'now+2d',
                 },
               },
             },
