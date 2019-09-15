@@ -63,9 +63,9 @@ export class SearchBar extends React.Component {
     const districtList = districts.map((d) => {
       return <option key={d.number} value={d.number}>{d.name}</option>
     })
-    return (
-      <div className="columns notification is-warning">
-        <div className="column">
+    return (<>
+      <div className="columns notification is-warning is-mobile is-multiline">
+        <div className="column is-full-mobile">
           <div className="field">
 
             <div className="control has-icons-left has-icons-right">
@@ -81,7 +81,7 @@ export class SearchBar extends React.Component {
             </div>
           </div>
         </div>
-        <div className="column">
+        <div className="column is-half-mobile">
           <div className="field">
             <div className="control has-icons-left has-icons-right">
               <div className="select is-large is-fullwidth">
@@ -105,7 +105,7 @@ export class SearchBar extends React.Component {
             </div>
           </div>
         </div>
-        <div className="column">
+        <div className="column is-half-mobile">
           <div className="field">
             <div className="control has-icons-left has-icons-right">
               <div className="select is-large is-fullwidth">
@@ -118,6 +118,6 @@ export class SearchBar extends React.Component {
           </div>
         </div>
       </div>
-    )
+    </>)
   }
 }
