@@ -63,7 +63,7 @@ export class SearchBar extends React.Component {
     const districtList = districts.map((d) => {
       return <option key={d.number} value={d.number}>{d.name}</option>
     })
-    return (<>
+    return (
       <div className="columns notification is-warning is-mobile is-multiline">
         <div className="column is-full-mobile">
           <div className="field">
@@ -118,6 +118,6 @@ export class SearchBar extends React.Component {
           </div>
         </div>
       </div>
-    </>)
+    )
   }
 }
