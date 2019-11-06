@@ -1,0 +1,23 @@
+div.properties {
+  margin-top:20px;
+}
+
+div.properties span {
+  display:block;
+  margin-top:3px;
+}
+div.properties span i {
+  font-weight:bold;
+}
+
+.detailedItem {
+  width:100%;
+  height:100%
+}
+.detailIcon {
+  padding:30px;
+  border-radius:30px;
+}
+.closeBtn {
+  margin-right:-10px;
+}

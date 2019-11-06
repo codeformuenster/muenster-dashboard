@@ -1,0 +1,88 @@
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.newsMap .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+/*
+.leaflet-container { position: fixed !important; top: 60px; z-index:400}
+*/
+.leaflet-container img {
+  max-height: inherit;
+}
+
+
+.lu-icon
+{
+  background:#000;
+  border:4px solid #666;
+  color:white;
+  text-align:center;
+  border-radius:50%;
+  font-size:22px;
+}
+.lu-icon i {
+   margin-top: 3px;
+}
+.lu-icon i.fa-user-circle-o {
+  font-size:25px;
+}
+.lu-icon.igreen {
+  background:#23d160;
+  border: 4px solid #13b150
+}
+.lu-icon.bookbus {
+  background:hsl(217, 71%, 53%);
+}
+.lu-icon.construction {
+  background:hsl(348, 100%, 61%);
+}
+.lu-icon.lunch {
+  background:hsl(217, 71%, 53%);
+}
+.lu-icon.container {
+  background:hsl(287, 71%, 53%);
+}
+.lu-icon.kindergarden {
+  background:hsl(171, 100%, 41%);
+}
+.lu-icon.playground {
+  background:hsl(48, 100%, 67%);
+  color:hsl(0, 0%, 21%);
+}
+.lu-icon.papierkorb {
+  background:hsl(193, 100%, 67%);
+  color:hsl(0, 0%, 21%);
+}
+.lu-icon.pool {
+  background:hsl(204, 86%, 53%);
+}
+.lu-icon.wc {
+  background: hsl(0, 0%, 96%);
+  color:hsl(0, 0%, 21%);
+}
+.lu-icon.wifi {
+  background:hsl(0, 0%, 21%);
+}
+.lu-icon.babychange {
+  background-color:#3273dc;
+  border: 4px solid #ccccff;
+}
+
+.LunchMap {height:255px}
+
+@media only screen and (max-width: 768px) {
+
+  .LunchMap {height:185px}
+
+  .leaflet-container {
+    height: 180px;
+  }
+  .newsMap .leaflet-container {
+    height: 270px;
+  }
+}
