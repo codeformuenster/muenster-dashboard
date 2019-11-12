@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { LatLng } from 'leaflet'
 import styled from 'styled-components'
 
-import { LunchMap } from '../../../Components/LunchMap'
-import { SearchBar } from '../../../Components/SearchBar/SearchBar'
+import { LunchMap } from 'Components/LunchMap'
+import { SearchBar } from 'Components/SearchBar/SearchBar'
+import { SearchService } from 'Services/SearchService/SearchService'
 
 const Layout = styled.div`
   position: relative;
@@ -19,8 +20,12 @@ export class Home extends Component {
     super(props)
 
     this.state = {
+      results: [],
       searchParams: {},
+      searchCache: {},
     }
+
+    this.searchService = new SearchService()
 
     this.getBrowserLocation = this.getBrowserLocation.bind(this)
   }
@@ -58,7 +63,7 @@ export class Home extends Component {
         const searchParams = { ...this.state.searchParams }
         searchParams.latitude = latitude
         searchParams.longitude = longitude
-
+        this.updateSearchParams(searchParams)
         this.setState({
           searchParams,
         })
@@ -71,15 +76,47 @@ export class Home extends Component {
     navigator.geolocation.getCurrentPosition(success, error)
   }
 
+  updateSearchParams(searchParams, district) {
+    const { searchCache } = this.state
+    const newState = { ...this.state, searchParams, district: null }
+    if (district) {
+      newState.district = district
+    }
+    this.setState(newState)
+    // note: not an actual hash, this is just for checking if the query has been done before.
+    // Consider renaming it
+    const searchHash = [searchParams.searchQuery, searchParams.latitude, searchParams.longitude, searchParams.category, searchParams.district].join('')
+    // only query/update the locations if the search hash is different from the last one
+    console.log('search hash:', searchHash);
+    
+    if (searchCache[searchHash]) {
+      this.setState({ results: searchCache[searchHash] })
+    } else if (searchHash !== this.lastSearchHash) {
+      this.searchService.sendSearchToServer(searchParams, (locations) => {
+        searchCache[searchHash] = locations
+        this.setState({ results: locations })
+      })
+    }
+    this.lastSearchHash = searchHash
+  }
+
+  handleSearch = () => {
+
+  }
+
   render() {
     const {
       searchParams,
+      results,
     } = this.state
+
+    console.log(searchParams);
+    
 
     return (
       <Layout>
         <LunchMap
-          // results={results}
+          results={results}
           // updateHandler={this.updateSearchParams}
           searchParams={searchParams}
           // districtPolygon={district}

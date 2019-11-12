@@ -6,6 +6,7 @@ import {
   TileLayer,
   ZoomControl,
 } from 'react-leaflet'
+
 // for custom markers
 import {
   divIcon,
@@ -16,7 +17,8 @@ import {
 
 // for map positions
 import './LunchMap.css'
-import { SearchBar } from '../SearchBar/SearchBar'
+import { getMarkerItem } from '../SearchResults/MeinItem'
+
 /**
  * This component wraps the LeafLet map.
  * It displays the current position and the various search results as markers.
@@ -30,14 +32,14 @@ const getIcon = (name, extraClass = '') => divIcon({
 
 export class LunchMap extends Component {
   /**
-     * componentDidUpdate() is invoked immediately after updating occurs.
-     * This method is not called for the initial render.
-     *
-     * Use this as an opportunity to operate on the DOM when the component has been updated.
-     * This is also a good place to do network requests as long as you compare
-     * the current props to previous props
-     * (e.g. a network request may not be necessary if the props have not changed).
-     */
+   * componentDidUpdate() is invoked immediately after updating occurs.
+   * This method is not called for the initial render.
+   *
+   * Use this as an opportunity to operate on the DOM when the component has been updated.
+   * This is also a good place to do network requests as long as you compare
+   * the current props to previous props
+   * (e.g. a network request may not be necessary if the props have not changed).
+   */
   componentDidUpdate() {
     if (this.markerRef) {
       // This  seems to be the only way to open a marker popup programmatically:
@@ -66,6 +68,7 @@ export class LunchMap extends Component {
       center = this.districtCenterPosition
     }
     this.mapRef.leafletElement.setView(center, zoom, { animate: true, duration: 1 })
+
     // Function for each district overlay
     const onEachFeature = (feature, layer) => {
       layer.on({
@@ -79,7 +82,7 @@ export class LunchMap extends Component {
             color: '#B0B0B0',
           })
         }),
-        click: ((lay) => {
+        click: ((lay) => {          
           searchParams.district = lay.target.feature.properties.number
           // this will hold the corresponding IDistrictResultSlim of
           // the selected district, or None if none is found
@@ -103,6 +106,7 @@ export class LunchMap extends Component {
         }),
       })
     }
+
     // Add district overlays
     if (districts) {
       if (!this.districtsLayer) {
@@ -129,6 +133,7 @@ export class LunchMap extends Component {
         })
       }
     }
+
     // update the Polygon of the currently selected district
     if (districtPolygon) {
       if (!this.districtLayer) {
@@ -140,8 +145,49 @@ export class LunchMap extends Component {
     this.markerRef = null
   }
 
+    /**
+     * Create map markers for all locations
+     */
+    getAllMarkers(locations) {
+      const { searchParams } = this.props
+      const rows = []
+
+      locations.forEach((location) => {
+        const markerItem = getMarkerItem(location.type)
+        const currentIcon = getIcon(markerItem.icon, location.type)
+        const locationPos = new LatLng(location.lat, location.lon)
+
+        const markerOpenPopup = () => {
+          console.log('me run on click');
+          // TODO: add here opening result-display
+        }
+
+        const markerSaveRef = (element) => {
+          if (searchParams.selectedId === location.id) {
+            this.markerRef = element
+            this.centerPosition = new LatLng(location.lat, location.lon)
+          }
+        }
+
+        rows.push(
+          <Marker
+            position={locationPos}
+            key={location.id}
+            icon={currentIcon}
+            onpopupopen={markerOpenPopup}
+            ref={markerSaveRef}
+          >
+            <Popup closeButton={false}>
+              <span>{markerItem.name}:<br /> <b>{location.name}</b></span>
+            </Popup>
+          </Marker>
+        )
+      })
+      return rows
+    }
+
   render() {
-    const { searchParams } = this.props
+    const { searchParams, results } = this.props
     const {
       latitude,
       longitude,
@@ -158,27 +204,25 @@ export class LunchMap extends Component {
       this.centerPosition = null
 
       return (
-        <>
-          {/* <SearchBar /> */}
-          <Map
-            style={{ height: 'calc(100vh - 50px)', zIndex: '5' }}
-            center={position}
-            zoom={18}
-            ref={(el) => { this.mapRef = el }}
-            zoomControl={false}
-          >
-            <TileLayer
-              url="https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29kZTRtcyIsImEiOiJjaXlpeWNuaW8wMDQ0MnFuNGhocGZjMzVlIn0.QBWu9vI5AYJq68dtVIqCJg"
-              attribution="&copy;<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
-            />
-            <ZoomControl position="bottomright" />
-            <Marker position={position} icon={getIcon('user-circle-o', 'igreen')}>
-              <Popup>
-                <span>Du bist hier</span>
-              </Popup>
-            </Marker>
-          </Map>
-        </>
+        <Map
+          style={{ height: 'calc(100vh - 50px)', zIndex: '5' }}
+          center={position}
+          zoom={18}
+          ref={(el) => { this.mapRef = el }}
+          zoomControl={false}
+        >
+          <TileLayer
+            url="https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29kZTRtcyIsImEiOiJjaXlpeWNuaW8wMDQ0MnFuNGhocGZjMzVlIn0.QBWu9vI5AYJq68dtVIqCJg"
+            attribution="&copy;<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
+          />
+          <ZoomControl position="bottomright" />
+          <Marker position={position} icon={getIcon('user-circle-o', 'igreen')}>
+            <Popup>
+              <span>Du bist hier</span>
+            </Popup>
+          </Marker>
+          {this.getAllMarkers(results)}
+        </Map>
       )
     }
 
