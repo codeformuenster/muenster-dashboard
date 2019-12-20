@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 import { LunchMap } from 'Components/LunchMap'
 import { SearchBar } from 'Components/SearchBar/SearchBar'
-import { SearchService } from 'Services/SearchService/SearchService'
+import { SearchService } from 'Services/SearchService/searchService'
+import { DistrictService } from 'Services/DistrictService/districtService'
+import { categories } from 'Constants/SearchTerms'
 
 const Layout = styled.div`
   position: relative;
@@ -13,6 +15,7 @@ const Layout = styled.div`
   height: 100vh;
   max-height: 100vh;
   background: red;
+  /* z-index: -1; */
 `
 
 export class Home extends Component {
@@ -21,6 +24,7 @@ export class Home extends Component {
 
     this.state = {
       results: [],
+      districts: [],
       searchParams: {},
       searchCache: {},
     }
@@ -32,6 +36,13 @@ export class Home extends Component {
 
   componentDidMount() {
     this.getBrowserLocation()
+    new DistrictService().loadDistricts((results) => {
+      console.log('got districts:', results);
+      
+      this.setState({
+        districts: results,
+      })
+    })
   }
 
   getBrowserLocation() {
@@ -77,6 +88,8 @@ export class Home extends Component {
   }
 
   updateSearchParams(searchParams, district) {
+    console.log('updateSearchParams', searchParams);
+    
     const { searchCache } = this.state
     const newState = { ...this.state, searchParams, district: null }
     if (district) {
@@ -100,8 +113,26 @@ export class Home extends Component {
     this.lastSearchHash = searchHash
   }
 
-  handleSearch = () => {
+  escapeRegExp = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+  }
 
+  handleSearch = (e) => {
+    const { districts, searchParams } = this.state
+    const searchTerm = e.target.value
+    // const escapedSearchTerm = this.escapeRegExp(searchTerm)
+    // const fuzzySearchTerm = `${escapedSearchTerm}`
+    // const termRegEx = new RegExp(fuzzySearchTerm, 'i')
+    // const relatedDistricts = districts.filter(district => termRegEx.test(district.name))
+    // console.log('relatedDistricts:', relatedDistricts);
+    // const relatedCategories = categories.filter(category => (
+    //   termRegEx.test(category.name) || termRegEx.test(category.type) || termRegEx.test(category.name) || (category.searchTerms && category.searchTerms.some(term => termRegEx.test(term)))
+    // ))
+    // console.log('relatedCategories:', relatedCategories);
+    
+    this.updateSearchParams({ ...searchParams, searchQuery: searchTerm })
+    
+    // this.updateSearchParams({ ...searchParams, searchQuery: fuzzySearchTerm })
   }
 
   render() {
@@ -122,7 +153,7 @@ export class Home extends Component {
           // districtPolygon={district}
           // districts={districts}https://github.com/codeformuenster/muenster-dashboard.git
         />
-        <SearchBar />
+        <SearchBar onChange={this.handleSearch} />
       </Layout>
     )
   }

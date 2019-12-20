@@ -4,8 +4,9 @@ import { getBaseUrl, placesIndex } from 'Constants/Elasticsearch'
 
 const client = new Elasticsearch.Client({
   host: getBaseUrl(),
-  log: 'trace',
+  // log: 'trace', // un-comment to see full Elasticsearch trace
 })
+
 /**
  * General search handling
  */
@@ -32,6 +33,7 @@ export class SearchService {
             // filter: {},
             must: [],
             must_not: [],
+            should: [],
           },
         },
         sort: [
@@ -87,8 +89,18 @@ export class SearchService {
     //   // };
     // }
     // if (searchParams.searchQuery !== undefined && searchParams.searchQuery !== '')  {
+    // if (searchParams.searchQuery) {
+    //   searchQuery.body.query.bool.must.push({ query_string: { query: searchParams.searchQuery } })
+    // }
     if (searchParams.searchQuery) {
-      searchQuery.body.query.bool.must.push({ query_string: { query: searchParams.searchQuery } })
+      searchQuery.body.query.bool.must.push({
+        wildcard: { type: {
+          value: searchParams.searchQuery,
+        } }
+      })
+      // searchQuery.body.query.bool.must.push({
+      //   fuzzy: { query: searchParams.searchQuery }
+      // })
     }
     if (searchParams.category) {
       searchQuery.body.query.bool.must.push({ term: { type: searchParams.category } })
@@ -187,6 +199,8 @@ export class SearchService {
       //   }
       // }
     }
+    console.log({ searchQuery });
+    
     client
       .search(searchQuery, ((error, body) => {
         if (error) {
