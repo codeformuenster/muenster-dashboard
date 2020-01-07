@@ -62,12 +62,21 @@ const LinkText = styled.span`
   color: #ffffff;
 `
 
+function getParents(e) {
+  var result = [];
+  for (var p = e && e.parentElement; p; p = p.parentElement) {
+    result.push(p);
+  }
+  return result;
+}
+
+
 export class Navbar extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      isOpen: false,
+      isOpen: null,
     }
 
     this.refList = [
@@ -79,20 +88,32 @@ export class Navbar extends Component {
     this.handleToggle = this.handleToggle.bind(this)
   }
 
-  disableGlobalClick = () => {
-    this.handleToggle()
+  componentDidUpdate(prevProps, prevState) {
+    const { isOpen: currentIsOpen } = this.state
+    const { isOpen: formerIsOpen } = prevState
+    if (currentIsOpen !== formerIsOpen) {
+      const body = document.querySelector('body')
+      if (formerIsOpen) {
+        body.removeEventListener('mouseup', this.disableGlobalClick)
+      } else {
+        body.addEventListener('mouseup', this.disableGlobalClick)
+      }
+    }
+  }
+
+  disableGlobalClick = (e) => {
+    const parentsTree = getParents(e.target)
+    const isNavItem = parentsTree.some(elem => elem.id === 'nav-menu-button')
+    if (!isNavItem) {
+      this.handleToggle()
+    }
   }
 
   handleToggle() {
     const { isOpen } = this.state
     this.refList.forEach((item) => {
       item.current.beginElement()
-    })
-    if (isOpen) {
-      window.removeEventListener('mouseup', this.disableGlobalClick)
-    } else {
-      window.addEventListener('mouseup', this.disableGlobalClick)
-    }
+    })    
     this.setState({
       isOpen: !isOpen,
     })
@@ -100,7 +121,6 @@ export class Navbar extends Component {
 
   render() {
     const { isOpen } = this.state
-
     return (
       <NavbarContainer>
         <LeftNav>
@@ -109,7 +129,10 @@ export class Navbar extends Component {
           </NavLink>
           <NavTitle>MEIN-MS.de</NavTitle>
         </LeftNav>
-        <NavMenuIcon onClick={this.handleToggle}>
+        <NavMenuIcon
+          id="nav-menu-button"
+          onClick={this.handleToggle}
+        >
           <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
             <g>
               <title>Layer 1</title>
