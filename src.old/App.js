@@ -91,6 +91,8 @@ export class App extends React.Component {
   }
 
   updateSearchParams(searchParams, district) {
+    console.log('updated:', searchParams, district);
+    
     const { searchCache } = this.state
     const newState = { ...this.state, searchParams, district: null }
     if (district) {

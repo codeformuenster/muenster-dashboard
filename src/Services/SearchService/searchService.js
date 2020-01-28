@@ -213,6 +213,8 @@ export class SearchService {
           for (const result of results) {
             const location = result._source
             const features = location.payment_methods
+            // console.log('locations:', location);
+            
             if (location.wifi) {
               features.push('wifi')
             }

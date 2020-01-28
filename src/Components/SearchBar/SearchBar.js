@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Searchbox = styled.div`
+const SearchContainer = styled.div`
   position: absolute;
   top: 15px;
   width: calc(100% - 30px);
-  height: 45px;
   left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+`
+
+const SearchBox = styled.div`
+  width: 100%;
+  height: 45px;
   display: flex;
   align-items: center;
   background: white;
   padding: 10px;
-  z-index: 10;
   border: 1px solid #FCEF5C;
   border-radius: 10px;
 `
@@ -21,7 +28,6 @@ const SearchIcon = styled.i.attrs({
 })`
   color: gray;
   font-size: 20px;
-
 `
 
 const SearchText = styled.input`
@@ -37,6 +43,19 @@ const SearchText = styled.input`
   }
 `
 
+const SearchOffer = styled.div`
+  position: relative;
+  background: white;
+  width: 100%;
+  height: 35px;
+  color: red;
+  padding: 5px 10px;
+  border: 1px solid #FCEF5C;
+  border-radius: 10px;
+  z-index: 100;
+  top: 0;
+`
+
 export class SearchBar extends Component {
   constructor(props) {
     super(props)
@@ -45,11 +64,23 @@ export class SearchBar extends Component {
   }
 
   render() {
+    console.log('box props:', this.props);
+    const { searchQuery } = this.props
+    
     return (
-      <Searchbox>
-        <SearchIcon />
-        <SearchText placeholder='Suchgriff' onChange={this.props.onChange} />
-      </Searchbox>
+      <SearchContainer>
+        <SearchBox>
+          <SearchIcon />
+          <SearchText placeholder='Suchgriff' onChange={this.props.onChange} value={searchQuery} />
+        </SearchBox>
+        {
+          this.props.searchOffers.map(offer => (
+            <SearchOffer onClick={() => this.props.offerSelected(offer)}>
+              {offer.icon} - {offer.name}
+            </SearchOffer>
+          ))
+        }
+      </SearchContainer>
     )
   }
 }
