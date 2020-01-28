@@ -71,7 +71,7 @@ export class SearchBar extends Component {
       <SearchContainer>
         <SearchBox>
           <SearchIcon />
-          <SearchText placeholder='Suchgriff' onChange={this.props.onChange} value={searchQuery} />
+          <SearchText placeholder='Suchbegriff' onChange={this.props.onChange} value={searchQuery} />
         </SearchBox>
         {
           this.props.searchOffers.map(offer => (
