@@ -4,6 +4,8 @@ import {
   NavLink,
 } from 'react-router-dom'
 
+const logo = require('./Logo.svg')
+
 const NavbarContainer = styled.nav`
   width: 100vw;
   background-color: #000000;
@@ -125,7 +127,7 @@ export class Navbar extends Component {
       <NavbarContainer>
         <LeftNav>
           <NavLink to="/">
-            <Logo src='https://mein-ms.de/static/media/Logo.9a658356.svg' />
+            <Logo src={logo} />
           </NavLink>
           <NavTitle>MEIN-MS.de</NavTitle>
         </LeftNav>
