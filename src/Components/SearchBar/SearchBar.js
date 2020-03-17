@@ -36,7 +36,7 @@ const SearchText = styled.input`
   outline: none;
   padding-left: 10px;
   padding-right: 10px;
-  max-width: calc(100% - 20px);
+  min-width: calc(100% - 20px);
 
   :focus {
     outline: none;
