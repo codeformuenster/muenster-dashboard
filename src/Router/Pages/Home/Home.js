@@ -7,6 +7,8 @@ import { SearchBar } from 'Components/SearchBar/SearchBar'
 import { SearchService } from 'Services/SearchService/searchService'
 import { DistrictService } from 'Services/DistrictService/districtService'
 import { categories } from 'Constants/SearchTerms'
+import { debouncer } from 'Util-Functions/debounce'
+
 
 const Layout = styled.div`
   position: relative;
@@ -32,6 +34,10 @@ export class Home extends Component {
     this.searchService = new SearchService()
 
     this.getBrowserLocation = this.getBrowserLocation.bind(this)
+    this.debouncedSearch = debouncer(
+      500,
+      this.sendQuery
+    )
   }
 
   componentDidMount() {
@@ -93,7 +99,7 @@ export class Home extends Component {
     this.setState({
       ...newState,
     }, () => {
-      this.sendQuery(searchParams)
+      this.debouncedSearch(searchParams)
       // TODO: bring cache query hashing back to life
     })
   }
@@ -202,10 +208,7 @@ export class Home extends Component {
       searchParams,
       results,
       searchOffers,
-    } = this.state
-
-    console.log('searchParams:', searchParams);
-    
+    } = this.state    
 
     return (
       <Layout>
