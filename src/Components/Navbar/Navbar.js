@@ -41,7 +41,7 @@ const NavMenuIcon = styled.i`
 
 const SlideMenu = styled.div`
   width: 100vw;
-  top: 50px;
+  top: 49px;
   transform: ${p => p.isOpen ? 'scaleY(1)' : 'scaleY(0)'};
   transform-origin: top left;
   background-color: #000000;
