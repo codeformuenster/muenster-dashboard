@@ -51,7 +51,7 @@ export class Home extends Component {
       searchParams.latitude = 51.9624047
       searchParams.longitude = 7.6255008
       this.hasGeoSelector = true
-      this.updateSearchParams(searchParams)
+      this.sendQuery(searchParams)
     }
     if (!navigator.geolocation) {
       console.log('Geolokation wird von ihrem Browser nicht unterstützt')
@@ -72,7 +72,7 @@ export class Home extends Component {
         
         searchParams.latitude = latitude
         searchParams.longitude = longitude
-        this.updateSearchParams(searchParams)
+        this.sendQuery(searchParams)
       }
     }
     const error = () => {
@@ -100,7 +100,9 @@ export class Home extends Component {
 
   sendQuery = (searchParams) => {
     this.searchService.sendSearchToServer(searchParams, (locations) => {
-      this.setState({ results: locations })
+      this.setState({
+        results: locations,
+      })
     })
   }
 
@@ -136,44 +138,63 @@ export class Home extends Component {
         }))
     }
     
-    this.updateSearchParams({ ...searchParams, searchQuery: searchTerm, searchTerm, }, null, [...relevantSubject, ...relevantDistrict])
+    this.updateSearchParams(
+      {
+        ...searchParams,
+        searchQuery: searchTerm,
+        searchTerm,
+      },
+      null,
+      [
+        ...relevantSubject,
+        ...relevantDistrict,
+      ]
+    )
   }
 
   offerSelected = (offer) => {
-
-    if (offer.type) {
-      this.updateSearchParams(
+    if (offer.type) { // category
+      this.setState(
         {
-          latitude: 51.9624047,
-          longitude: 7.6255008,
-          category: offer.type,
-          searchTerm: offer.name,
-          searchQuery: '',
-        },
-        null, // TODO: offered districts
-        []
+          district: null,
+          searchOffers: [],
+        }, () => {
+          this.sendQuery(
+            {
+              latitude: 51.9624047,
+              longitude: 7.6255008,
+              category: offer.type,
+              searchTerm: offer.name,
+              searchQuery: '',
+            },
+          )  
+        }
       )
       return
     }
-    if (offer.id) {      
-      this.updateSearchParams(
+    if (offer.id) { // district
+      this.setState(
         {
-          latitude: 51.9624047,
-          longitude: 7.6255008,
-          district: offer.id,
-          searchTerm: offer.name,
-          searchQuery: '',
-          centerLat: offer.centerLat,
-          centerLon: offer.centerLon
-        },
-        {
-          ...offer,
-        }, // TODO: offered districts
-        []
-      )
+          district: {
+            ...offer,
+          },
+          searchOffers: [],
+        }, () => {
+          this.sendQuery(
+            {
+              latitude: 51.9624047,
+              longitude: 7.6255008,
+              district: offer.id,
+              searchTerm: offer.name,
+              searchQuery: '',
+              centerLat: offer.centerLat,
+              centerLon: offer.centerLon
+            },
+          )
+        }
+      )    
       return
     }
-
   }
 
   render() {
