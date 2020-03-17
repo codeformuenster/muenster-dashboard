@@ -136,13 +136,13 @@ export class Navbar extends Component {
           <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
             <g>
               <title>Layer 1</title>
-              <line stroke="#000" id="svg_2" x1="2" x2="28" y1="5" y2="5" strokeWidth="2" stroke="white">
+              <line id="svg_2" x1="2" x2="28" y1="5" y2="5" strokeWidth="2" stroke="white">
                 <animate ref={this.refList[0]} attributeName="y2" from={isOpen ? "5" : "25"} to={isOpen ? "25" : "5"} begin="click" dur='1s' fill="freeze" /> 
               </line>
-              <line stroke="#000" id="svg_3" y2="15" x2="28" y1="15" x1="2" opacity='1' strokeWidth="2" stroke="white">
+              <line id="svg_3" y2="15" x2="28" y1="15" x1="2" opacity='1' strokeWidth="2" stroke="white">
                 <animate ref={this.refList[1]} attributeName="opacity" from={isOpen ? "1" : "0"} to={isOpen ? "0" : "1"} begin="click" dur='1s' fill="freeze" /> 
               </line>
-              <line stroke="#000" id="svg_4" x1="2" x2="28" y1="25" y2='25' strokeWidth="2" stroke="white">
+              <line id="svg_4" x1="2" x2="28" y1="25" y2='25' strokeWidth="2" stroke="white">
                 <animate ref={this.refList[2]} attributeName="y2" from={isOpen ? "25" : "5"} to={isOpen ? "5" : "25"} begin="click" dur='1s' fill="freeze" /> 
               </line>
             </g>

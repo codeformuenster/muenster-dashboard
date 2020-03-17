@@ -23,8 +23,9 @@ export class Home extends Component {
     this.state = {
       results: [],
       districts: [],
-      searchParams: {},
-      searchCache: {},
+      searchParams: {
+        searchTerm: ''
+      },
       searchOffers: [],
     }
 
@@ -42,7 +43,6 @@ export class Home extends Component {
       })
     })
   }
-
 
   getBrowserLocation() {
     const handleMissingCoordinate = () => {
@@ -82,8 +82,6 @@ export class Home extends Component {
   }
 
   updateSearchParams = (searchParams, district, searchOffers) => {
-    
-    const { searchCache } = this.state
     const newState = { ...this.state, searchParams, district: null }
     
     if (district) {
@@ -95,10 +93,14 @@ export class Home extends Component {
     this.setState({
       ...newState,
     }, () => {
-      this.searchService.sendSearchToServer(searchParams, (locations) => {
-        this.setState({ results: locations })
-      })
-      // TODO: bring query hashing back to life
+      this.sendQuery(searchParams)
+      // TODO: bring cache query hashing back to life
+    })
+  }
+
+  sendQuery = (searchParams) => {
+    this.searchService.sendSearchToServer(searchParams, (locations) => {
+      this.setState({ results: locations })
     })
   }
 
@@ -181,6 +183,8 @@ export class Home extends Component {
       searchOffers,
     } = this.state
 
+    console.log('searchParams:', searchParams);
+    
 
     return (
       <Layout>

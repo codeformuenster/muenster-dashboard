@@ -59,8 +59,6 @@ const SearchOffer = styled.div`
 export class SearchBar extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {}
   }
 
   render() {
@@ -74,7 +72,7 @@ export class SearchBar extends Component {
         </SearchBox>
         {
           this.props.searchOffers.map(offer => (
-            <SearchOffer onClick={() => this.props.offerSelected(offer)}>
+            <SearchOffer key={offer.name} onClick={() => this.props.offerSelected(offer)}>
               {offer.icon} - {offer.name}
             </SearchOffer>
           ))
