@@ -30,7 +30,6 @@ export class DistrictService {
         }
         let districts = []
         if (body && body.hits) {
-          console.log('hits', body.hits.total)
           const results = body.hits.hits
           for (const { _id, _source: { properties: district, center: { coordinates }, geometry } } of results) {
             districts.push({

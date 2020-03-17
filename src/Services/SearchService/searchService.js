@@ -208,12 +208,10 @@ export class SearchService {
         }
         const locations = []
         if (body && body.hits) {
-          console.log('hits', body.hits.total)
           const results = body.hits.hits
           for (const result of results) {
             const location = result._source
             const features = location.payment_methods
-            // console.log('locations:', location);
             
             if (location.wifi) {
               features.push('wifi')
@@ -235,7 +233,6 @@ export class SearchService {
             }
           }
         }
-        console.log('locations', locations)
         callback(locations)
       }))
   }

@@ -64,7 +64,6 @@ export class SearchBar extends Component {
   }
 
   render() {
-    console.log('box props:', this.props);
     const { searchQuery } = this.props
     
     return (

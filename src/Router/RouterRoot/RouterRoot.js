@@ -13,11 +13,6 @@ import { News } from '../Pages/News'
 import { Impressum } from '../Pages/Impressum'
 import { Copyright } from '../Pages/Copyright'
 
-// import TestPage from './TestPage'
-// import { Lunchheader } from './Components/Lunchheader'
-// import { WorkInProgress } from './Pages/WorkInProgress'
-// import { Copyright } from './Pages/Copyright'
-
 export class RouterRoot extends Component {
   render() {
     return (
@@ -29,8 +24,6 @@ export class RouterRoot extends Component {
             <Route path="/aktuelles" component={News} />
             <Route path="/copyright" component={Copyright} />
             <Route path="/impressum" component={Impressum} />
-            {/* <Route path="/test" component={TestPage} />
-            <Route path="/team" component={WorkInProgress} /> */}
             <Redirect from="*" to="/" />
           </Switch>
         </>

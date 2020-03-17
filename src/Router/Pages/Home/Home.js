@@ -36,7 +36,6 @@ export class Home extends Component {
   componentDidMount() {
     this.getBrowserLocation()
     new DistrictService().loadDistricts((results) => {
-      console.log('got districts:', results);
       
       this.setState({
         districts: results,
@@ -44,10 +43,6 @@ export class Home extends Component {
     })
   }
 
-  componentDidUpdate(){
-    console.log('$$$$$$$$$$$$$ I got updated');
-    
-  }
 
   getBrowserLocation() {
     const handleMissingCoordinate = () => {
@@ -59,7 +54,7 @@ export class Home extends Component {
       this.updateSearchParams(searchParams)
     }
     if (!navigator.geolocation) {
-      console.log('<p>Geolokation wird von ihrem Browser nicht unterstützt</p>')
+      console.log('Geolokation wird von ihrem Browser nicht unterstützt')
       handleMissingCoordinate()
       return
     }
@@ -69,35 +64,24 @@ export class Home extends Component {
       const { latitude } = position.coords
       const { longitude } = position.coords
       const distance = new LatLng(latitude, longitude).distanceTo(new LatLng(51.9624047, 7.6255008))
-      console.log(`Lokalisierung war erfolgreich: ${latitude} ${longitude}; Distanz: ${distance}`)
       // if the distance of the user's position to the city center is over 15 km ignore it
       if (distance > 15000) {
-        console.log('Benutzer-Koordinaten sind > 15 km von Stadtzentrum entfernt. Ignoriere dies.')
         handleMissingCoordinate()
       } else {
         const searchParams = { ...this.state.searchParams }
-        console.log('++++++++++++++++++++++');
-        console.log('will update search:', searchParams);
         
         searchParams.latitude = latitude
         searchParams.longitude = longitude
         this.updateSearchParams(searchParams)
-        // this.setState({
-        //   searchParams,
-        // })
       }
     }
     const error = () => {
-      console.log('Es war nicht möglich Sie zu lokalisieren')
       handleMissingCoordinate()
     }
     navigator.geolocation.getCurrentPosition(success, error)
   }
 
   updateSearchParams = (searchParams, district, searchOffers) => {
-    console.log('updateSearchParams - searchParams', searchParams);
-    console.log('updateSearchParams - district', district);
-    console.log('updateSearchParams - searchOffers', searchOffers);
     
     const { searchCache } = this.state
     const newState = { ...this.state, searchParams, district: null }
@@ -106,11 +90,8 @@ export class Home extends Component {
       newState.district = district
     }
     if (searchOffers) {
-      console.log('relevant offers:', searchOffers);
       newState.searchOffers = searchOffers
     }
-    console.log('--------------');
-    console.log('my new state:', newState);
     this.setState({
       ...newState,
     }, () => {
@@ -118,21 +99,6 @@ export class Home extends Component {
         this.setState({ results: locations })
       })
       // TODO: bring query hashing back to life
-      // // note: not an actual hash, this is just for checking if the query has been done before.
-      // // Consider renaming it
-      // const searchHash = [searchParams.searchQuery, searchParams.latitude, searchParams.longitude, searchParams.category, searchParams.district].join('')
-      // // only query/update the locations if the search hash is different from the last one
-      // console.log('search hash:', searchHash);
-      
-      // if (searchCache[searchHash]) {
-      //   this.setState({ results: searchCache[searchHash] })
-      // } else if (searchHash !== this.lastSearchHash) {
-      //   this.searchService.sendSearchToServer(searchParams, (locations) => {
-      //     searchCache[searchHash] = locations
-      //     this.setState({ results: locations })
-      //   })
-      // }
-      // this.lastSearchHash = searchHash
     })
   }
 
@@ -140,9 +106,7 @@ export class Home extends Component {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
 
-  handleSearch = (e) => {
-    console.log('search start:', e);
-    
+  handleSearch = (e) => {    
     const { districts, searchParams } = this.state
     const searchTerm = e.target.value
 
@@ -170,27 +134,10 @@ export class Home extends Component {
         }))
     }
     
-    console.log('==================');
-    // console.log(searchTerm, 'relevant found:', relevant);
-    
-    // const escapedSearchTerm = this.escapeRegExp(searchTerm)
-    // const fuzzySearchTerm = `${escapedSearchTerm}`
-    // const termRegEx = new RegExp(fuzzySearchTerm, 'i')
-    // const relatedDistricts = districts.filter(district => termRegEx.test(district.name))
-    // console.log('relatedDistricts:', relatedDistricts);
-    // const relatedCategories = categories.filter(category => (
-    //   termRegEx.test(category.name) || termRegEx.test(category.type) || termRegEx.test(category.name) || (category.searchTerms && category.searchTerms.some(term => termRegEx.test(term)))
-    // ))
-    // console.log('relatedCategories:', relatedCategories);
-    
     this.updateSearchParams({ ...searchParams, searchQuery: searchTerm, searchTerm, }, null, [...relevantSubject, ...relevantDistrict])
-    
-    // this.updateSearchParams({ ...searchParams, searchQuery: fuzzySearchTerm })
   }
 
   offerSelected = (offer) => {
-    console.log('user likes my offer:', offer);
-    console.log('my former search:', this.state.searchParams);
 
     if (offer.type) {
       this.updateSearchParams(
@@ -206,9 +153,7 @@ export class Home extends Component {
       )
       return
     }
-    if (offer.id) {
-      console.log('showing district');
-      
+    if (offer.id) {      
       this.updateSearchParams(
         {
           latitude: 51.9624047,
@@ -236,8 +181,6 @@ export class Home extends Component {
       searchOffers,
     } = this.state
 
-    console.log('????????????????????????????????????');
-    console.log('my state', this.state);
 
     return (
       <Layout>

@@ -158,7 +158,6 @@ export class LunchMap extends Component {
         const locationPos = new LatLng(location.lat, location.lon)
 
         const markerOpenPopup = () => {
-          console.log('me run on click');
           // TODO: add here opening result-display
         }
 
@@ -216,7 +215,11 @@ export class LunchMap extends Component {
             attribution="&copy;<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
           />
           <ZoomControl position="bottomright" />
-          <Marker position={position} icon={getIcon('user-circle-o', 'igreen')}>
+          <Marker
+            position={position}
+            icon={getIcon('user-circle-o', 'igreen')}
+            zIndexOffset={1000} // to make sure the my-position marker is on top of all other markers
+          >
             <Popup>
               <span>Du bist hier</span>
             </Popup>

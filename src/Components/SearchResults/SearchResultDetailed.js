@@ -163,7 +163,6 @@ export class SearchResultDetailed extends React.Component {
 
   render() {
     const { result } = this.props
-    console.log('Detailed result:', result)
     const meinItem = MeinItems.getItem(result.type)
     let { icon } = meinItem
     if (!icon) {
