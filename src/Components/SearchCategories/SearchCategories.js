@@ -38,20 +38,6 @@ const SearchOffer = styled.div`
   border-radius: 10px;
 `
 
-const categories = [
-  {
-    name: "wifi",
-  },
-  {
-    name: "toilet",
-  },
-  {
-    name: "park",
-  },
-  {
-    name: "swimmingpool",
-  },
-]
 
 export class SearchCategories extends Component {
   constructor(props) {
@@ -132,7 +118,12 @@ export class SearchCategories extends Component {
   }
 
   render() {
-    const { xOffset } = this.state
+    const { xOffset } = this.state 
+    const {
+      categories,
+      categorySelected,
+    } = this.props
+    
     return (
       <SearchCatContainer ref={this.containerRef}>
         <SearchCatRow
@@ -144,7 +135,7 @@ export class SearchCategories extends Component {
         >
           {
             categories.map((item) => (
-              <SearchOffer>
+              <SearchOffer onClick={() => categorySelected(item)}>
                 {item.name}
               </SearchOffer>
             ))

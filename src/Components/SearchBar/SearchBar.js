@@ -132,15 +132,24 @@ export class SearchBar extends Component {
 
 
   render() {
-    const { searchQuery } = this.props
-    const { isCategoriesOpen } = this.state
+    const {
+      searchQuery,
+      categories,
+      offerSelected,
+      searchOffers,
+    } = this.props
+    const { isCategoriesOpen  } = this.state
     
     return (
       <SearchContainer>
         <UpperBox>
           <SearchBox>
             <SearchIcon />
-            <SearchText placeholder='Suchbegriff' onChange={this.props.onChange} value={searchQuery} />
+            <SearchText
+              placeholder='Suchbegriff'
+              onChange={this.props.onChange}
+              value={searchQuery}
+            />
           </SearchBox>
           <SearchOptions onClick={this.handleOpen}>
             <ChevronIcon isOpen={isCategoriesOpen} />
@@ -148,12 +157,20 @@ export class SearchBar extends Component {
         </UpperBox>
         {
           isCategoriesOpen
-            ? <SearchCategories />
+            ? (
+              <SearchCategories
+                categories={categories}
+                categorySelected={offerSelected}
+              />
+            )
             : null
         }
         {
-          this.props.searchOffers.map(offer => (
-            <SearchOffer key={offer.name} onClick={() => this.props.offerSelected(offer)}>
+          searchOffers.map(offer => (
+            <SearchOffer
+              key={offer.name}
+              onClick={() => offerSelected(offer)}
+            >
               {offer.icon} - {offer.name}
             </SearchOffer>
           ))

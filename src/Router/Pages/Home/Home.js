@@ -7,7 +7,7 @@ import { SearchBar } from 'Components/SearchBar/SearchBar'
 import { SearchService } from 'Services/SearchService/searchService'
 import { DistrictService } from 'Services/DistrictService/districtService'
 import { categories } from 'Constants/SearchTerms'
-import { debouncer } from 'Util-Functions/debounce'
+import { debounce } from 'Util-Functions/debounce'
 
 
 const Layout = styled.div`
@@ -34,7 +34,7 @@ export class Home extends Component {
     this.searchService = new SearchService()
 
     this.getBrowserLocation = this.getBrowserLocation.bind(this)
-    this.debouncedSearch = debouncer(
+    this.debouncedSearch = debounce(
       500,
       this.sendQuery
     )
@@ -121,26 +121,25 @@ export class Home extends Component {
     const searchTerm = e.target.value
 
     let relevantSubject = []
-    if (searchTerm.length > 1) {
-      relevantSubject = categories
-        .filter(item => {
-          return item.name.includes(searchTerm) || item.type.includes(searchTerm)
-        })
-        .map(offer => ({
-          ...offer,
-          icon: 'category',
-        }))
-    }
-
     let relevantDistrict = []
     if (searchTerm.length > 1) {
-      relevantDistrict = districts
+      const searchTermRegex = new RegExp(searchTerm, 'i')
+      relevantSubject = categories
         .filter(item => {
-          return item.name.includes(searchTerm)
+          return searchTermRegex.test(item.name) || searchTermRegex.test(item.type)
         })
         .map(offer => ({
           ...offer,
-          icon: 'district'
+          icon: 'Kategorie',
+        }))
+
+      relevantDistrict = districts
+        .filter(item => {
+          return searchTermRegex.test(item.name)
+        })
+        .map(offer => ({
+          ...offer,
+          icon: 'Stadtkreis'
         }))
     }
     
@@ -224,6 +223,7 @@ export class Home extends Component {
           searchQuery={searchParams.searchTerm}
           searchOffers={searchOffers}
           offerSelected={this.offerSelected}
+          categories={categories}
         />
       </Layout>
     )
