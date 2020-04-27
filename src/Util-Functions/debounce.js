@@ -1,5 +1,5 @@
 
-export const debouncer = (debTime, func) => {
+export const debounce = (debTime, func) => {
   let timer
   return (...args) => {    
     clearTimeout(timer)

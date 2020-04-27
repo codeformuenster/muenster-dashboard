@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { SearchCategories } from 'Components/SearchCategories/SearchCategories'
 
 const SearchContainer = styled.div`
   position: absolute;
@@ -12,8 +13,17 @@ const SearchContainer = styled.div`
   z-index: 10;
 `
 
-const SearchBox = styled.div`
+const UpperBox = styled.div`
   width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+`
+
+const SearchBox = styled.div`
+  width: calc(100% - 50px);
   height: 45px;
   display: flex;
   align-items: center;
@@ -21,6 +31,43 @@ const SearchBox = styled.div`
   padding: 10px;
   border: 1px solid #FCEF5C;
   border-radius: 10px;
+`
+
+const SearchOptions = styled.div`
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  border: 1px solid #FCEF5C;
+  border-radius: 50px;
+`
+
+const rotateUp180 = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(180deg); }
+`
+
+const rotateDown180 = keyframes`
+  0% { transform: rotate(180deg); }
+  100% { transform: rotate(0deg); }
+`
+
+const ChevronIcon = styled.i.attrs({
+  className: 'fa fa-chevron-down',
+})`
+  color: gray;
+  font-size: 20px;
+  transform-origin: 50% 50%;
+  animation-name: ${(props) => {
+    if (props.isOpen === null) {
+      return null
+    }
+    return props.isOpen ? rotateUp180 : rotateDown180
+  }};
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 `
 
 const SearchIcon = styled.i.attrs({
@@ -56,23 +103,74 @@ const SearchOffer = styled.div`
   top: 0;
 `
 
+const CategoriesContainer = styled.div`
+  position: relative;
+  background: white;
+  height: 35px;
+  color: red;
+  padding: 5px 10px;
+  border: 1px solid #FCEF5C;
+  border-radius: 10px;
+  z-index: 100;
+  top: 0;
+`
+
 export class SearchBar extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      isCategoriesOpen: true,
+    }
   }
 
+  handleOpen = () => {
+    this.setState({
+      isCategoriesOpen: !this.state.isCategoriesOpen
+    })
+  }
+
+
   render() {
-    const { searchQuery } = this.props
+    const {
+      searchQuery,
+      categories,
+      offerSelected,
+      searchOffers,
+    } = this.props
+    const { isCategoriesOpen  } = this.state
     
     return (
       <SearchContainer>
-        <SearchBox>
-          <SearchIcon />
-          <SearchText placeholder='Suchbegriff' onChange={this.props.onChange} value={searchQuery} />
-        </SearchBox>
+        <UpperBox>
+          <SearchBox>
+            <SearchIcon />
+            <SearchText
+              placeholder='Suchbegriff'
+              onChange={this.props.onChange}
+              value={searchQuery}
+            />
+          </SearchBox>
+          <SearchOptions onClick={this.handleOpen}>
+            <ChevronIcon isOpen={isCategoriesOpen} />
+          </SearchOptions>
+        </UpperBox>
         {
-          this.props.searchOffers.map(offer => (
-            <SearchOffer key={offer.name} onClick={() => this.props.offerSelected(offer)}>
+          isCategoriesOpen
+            ? (
+              <SearchCategories
+                categories={categories}
+                categorySelected={offerSelected}
+              />
+            )
+            : null
+        }
+        {
+          searchOffers.map(offer => (
+            <SearchOffer
+              key={offer.name}
+              onClick={() => offerSelected(offer)}
+            >
               {offer.icon} - {offer.name}
             </SearchOffer>
           ))
