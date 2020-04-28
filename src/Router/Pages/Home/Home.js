@@ -158,10 +158,15 @@ export class Home extends Component {
   }
 
   offerSelected = (offer) => {
-    if (offer.type) { // category
+    const { searchParams } = this.state
+    if (offer.type) { // category      
       this.setState(
         {
           district: null,
+          searchParams: {
+            ...searchParams,
+            searchTerm: offer.name
+          },
           searchOffers: [],
         }, () => {
           this.sendQuery(
@@ -182,6 +187,10 @@ export class Home extends Component {
         {
           district: {
             ...offer,
+          },
+          searchParams: {
+            ...searchParams,
+            searchTerm: offer.name
           },
           searchOffers: [],
         }, () => {
@@ -207,7 +216,7 @@ export class Home extends Component {
       searchParams,
       results,
       searchOffers,
-    } = this.state    
+    } = this.state       
 
     return (
       <Layout>

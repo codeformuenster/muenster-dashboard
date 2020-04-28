@@ -38,7 +38,6 @@ const SearchOffer = styled.div`
   border-radius: 10px;
 `
 
-
 export class SearchCategories extends Component {
   constructor(props) {
     super(props)
@@ -134,7 +133,7 @@ export class SearchCategories extends Component {
         >
           {
             categories.map((item) => (
-              <SearchOffer onClick={() => categorySelected(item)}>
+              <SearchOffer key={item.name} onClick={() => categorySelected(item)}>
                 {item.name}
               </SearchOffer>
             ))
