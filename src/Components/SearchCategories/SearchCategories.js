@@ -76,7 +76,6 @@ export class SearchCategories extends Component {
       clientX: formerClientX,
       xOffset,
       maxXOffset,
-      containerWidth,
     } = this.state
     if (!formerClientX) {
       this.setState({
