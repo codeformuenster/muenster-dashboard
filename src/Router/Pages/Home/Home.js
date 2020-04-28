@@ -216,7 +216,7 @@ export class Home extends Component {
       searchParams,
       results,
       searchOffers,
-    } = this.state       
+    } = this.state;
 
     return (
       <Layout>
