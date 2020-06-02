@@ -150,7 +150,7 @@ export class LunchMap extends Component {
      */
     getAllMarkers(locations) {
       const { searchParams } = this.props
-      const rows = []
+      const rows = []      
 
       locations.forEach((location) => {
         const markerItem = getMarkerItem(location.type)
@@ -229,6 +229,6 @@ export class LunchMap extends Component {
       )
     }
 
-    return <div />
+    return <div>NO LAT/LON = NO MAP!</div>
   }
 }
