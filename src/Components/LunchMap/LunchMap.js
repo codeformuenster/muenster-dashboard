@@ -59,9 +59,6 @@ export class LunchMap extends Component {
       searchParams,
       updateHandler,
     } = this.props
-    if (!(searchParams.latitude && searchParams.longitude)) {
-      return;
-    }
     let center = new LatLng(searchParams.latitude, searchParams.longitude)
     let zoom = 14
     if (this.centerPosition) {
@@ -153,7 +150,7 @@ export class LunchMap extends Component {
      */
     getAllMarkers(locations) {
       const { searchParams } = this.props
-      const rows = []
+      const rows = []      
 
       locations.forEach((location) => {
         const markerItem = getMarkerItem(location.type)
@@ -190,17 +187,12 @@ export class LunchMap extends Component {
 
   render() {
     const { searchParams, results } = this.props
-    let {
+    const {
       latitude,
       longitude,
       centerLat,
       centerLon,
     } = searchParams
-
-    if (!(latitude || centerLat)) {
-      latitude = 51.959752
-      longitude = 7.627176
-    }
 
     if (latitude || centerLat) {
       const position = new LatLng(latitude, longitude)
