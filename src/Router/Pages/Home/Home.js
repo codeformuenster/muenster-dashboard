@@ -90,10 +90,10 @@ export class Home extends Component {
       clearTimeout(timeoutId)   
       handleMissingCoordinate()
     }
-    navigator.geolocation.getCurrentPosition(success, error)
     timeoutId = setTimeout(() => {
       error()
     }, 5000)
+    navigator.geolocation.getCurrentPosition(success, error)
 
   }
 
