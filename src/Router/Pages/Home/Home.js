@@ -51,6 +51,10 @@ export class Home extends Component {
   }
 
   getBrowserLocation() {
+    // firefox mobile is silently failing on getCurrentPosition
+    // the timeout in this code block is to handle that error
+    let timeoutId
+    
     const handleMissingCoordinate = () => {
       // when the user coordinate is missing or invalid replace it with a default value
       const { searchParams } = this.state
@@ -67,6 +71,7 @@ export class Home extends Component {
     // define the callback functions that are called when the device's position
     // could / could not be determined
     const success = (position) => {
+      clearTimeout(timeoutId)   
       const { latitude } = position.coords
       const { longitude } = position.coords
       const distance = new LatLng(latitude, longitude).distanceTo(new LatLng(51.9624047, 7.6255008))
@@ -81,10 +86,15 @@ export class Home extends Component {
         this.sendQuery(searchParams)
       }
     }
-    const error = () => {
+    const error = (e) => {
+      clearTimeout(timeoutId)   
       handleMissingCoordinate()
     }
     navigator.geolocation.getCurrentPosition(success, error)
+    timeoutId = setTimeout(() => {
+      error()
+    }, 5000)
+
   }
 
   updateSearchParams = (searchParams, district, searchOffers) => {
