@@ -71,6 +71,8 @@ export class Home extends Component {
     // define the callback functions that are called when the device's position
     // could / could not be determined
     const success = (position) => {
+      console.log('got position:', position);
+      
       clearTimeout(timeoutId)   
       const { latitude } = position.coords
       const { longitude } = position.coords
@@ -87,13 +89,22 @@ export class Home extends Component {
       }
     }
     const error = (e) => {
+      console.log('position error:', e);
+      
       clearTimeout(timeoutId)   
       handleMissingCoordinate()
     }
     timeoutId = setTimeout(() => {
       error()
     }, 5000)
-    navigator.geolocation.getCurrentPosition(success, error)
+    navigator.geolocation.getCurrentPosition(
+      success,
+      error,
+      {
+        enableHighAccuracy: true,
+        timeout : 5000,
+      }
+    )
 
   }
 
@@ -168,6 +179,7 @@ export class Home extends Component {
   }
 
   offerSelected = (offer) => {
+    // TODO: coordinates needs to be adjusted to the current scrolled user coordinated
     if (offer.type) { // category
       this.setState(
         {
