@@ -93,7 +93,14 @@ export class Home extends Component {
     timeoutId = setTimeout(() => {
       error()
     }, 5000)
-    navigator.geolocation.getCurrentPosition(success, error)
+    navigator.geolocation.getCurrentPosition(
+      success,
+      error,
+      {
+        enableHighAccuracy: true,
+        timeout : 5000,
+      }
+    )
 
   }
 
@@ -168,6 +175,7 @@ export class Home extends Component {
   }
 
   offerSelected = (offer) => {
+    // TODO: coordinates needs to be adjusted to the current scrolled user coordinated
     if (offer.type) { // category
       this.setState(
         {
