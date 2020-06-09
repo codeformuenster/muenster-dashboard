@@ -103,24 +103,12 @@ const SearchOffer = styled.div`
   top: 0;
 `
 
-const CategoriesContainer = styled.div`
-  position: relative;
-  background: white;
-  height: 35px;
-  color: red;
-  padding: 5px 10px;
-  border: 1px solid #FCEF5C;
-  border-radius: 10px;
-  z-index: 100;
-  top: 0;
-`
-
 export class SearchBar extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      isCategoriesOpen: true,
+      isCategoriesOpen: false,
     }
   }
 
