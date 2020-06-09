@@ -194,6 +194,9 @@ export class LunchMap extends Component {
       centerLon,
     } = searchParams
 
+    console.log('lunch map search params:', searchParams);
+    
+
     if (latitude || centerLat) {
       const position = new LatLng(latitude, longitude)
 
@@ -228,7 +231,8 @@ export class LunchMap extends Component {
         </Map>
       )
     }
-
+    console.log('no latitude, no centerLat:', latitude, centerLat);
+    
     return <div>NO LAT/LON = NO MAP!</div>
   }
 }
