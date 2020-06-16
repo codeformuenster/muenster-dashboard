@@ -26,7 +26,11 @@ export class Home extends Component {
       results: [],
       districts: [],
       searchParams: {
-        searchTerm: ''
+        searchTerm: '',
+        latitude: 51.9646164,
+        longitude: 7.6573507,
+        centerLat: 51.961270,
+        centerLon: 7.625436,
       },
       searchOffers: [],
     }

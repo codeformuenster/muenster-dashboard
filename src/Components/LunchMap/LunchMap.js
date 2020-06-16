@@ -195,7 +195,6 @@ export class LunchMap extends Component {
     } = searchParams
 
     console.log('lunch map search params:', searchParams);
-    
 
     if (latitude || centerLat) {
       const position = new LatLng(latitude, longitude)
