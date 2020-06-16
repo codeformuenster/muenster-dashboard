@@ -64,8 +64,8 @@ export class Home extends Component {
       const { searchParams } = this.state
       const nextSearchParams = {
         ...searchParams,
-        latitude: 51.9624047,
-        longitude: 7.6255008,
+        latitude: 51.961270,
+        longitude: 7.625436,
       }
       this.hasGeoSelector = true
       this.sendQuery(nextSearchParams)
