@@ -70,7 +70,7 @@ export class Home extends Component {
         centerLon: 7.625308,
       }
       this.hasGeoSelector = true
-      this.sendQuery(nextSearchParams)
+      this.updateSearchParams(nextSearchParams)
     }
     if (!navigator.geolocation) {
       console.log('Geolokation wird von ihrem Browser nicht unterstützt')
@@ -97,7 +97,7 @@ export class Home extends Component {
           centerLat: latitude,
           centerLon: longitude,
         }        
-        this.sendQuery(nextSearchParams)
+        this.updateSearchParams(nextSearchParams)
       }
     }
     const error = (e) => {
