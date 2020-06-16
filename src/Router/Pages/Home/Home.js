@@ -27,10 +27,10 @@ export class Home extends Component {
       districts: [],
       searchParams: {
         searchTerm: '',
-        latitude: 51.961270,
-        longitude: 7.625436,
-        centerLat: 51.961270,
-        centerLon: 7.625436,
+        latitude: 51.961389,
+        longitude: 7.625308,
+        centerLat: 51.961389,
+        centerLon: 7.625308,
       },
       searchOffers: [],
     }
@@ -64,8 +64,10 @@ export class Home extends Component {
       const { searchParams } = this.state
       const nextSearchParams = {
         ...searchParams,
-        latitude: 51.961270,
-        longitude: 7.625436,
+        latitude: 51.961389,
+        longitude: 7.625308,
+        centerLat: 51.961389,
+        centerLon: 7.625308,
       }
       this.hasGeoSelector = true
       this.sendQuery(nextSearchParams)
@@ -92,6 +94,8 @@ export class Home extends Component {
           ...searchParams,
           latitude: latitude,
           longitude: longitude,
+          centerLat: latitude,
+          centerLon: longitude,
         }        
         this.sendQuery(nextSearchParams)
       }
