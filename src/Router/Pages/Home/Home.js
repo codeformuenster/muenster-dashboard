@@ -105,7 +105,6 @@ export class Home extends Component {
         timeout : 5000,
       }
     )
-
   }
 
   updateSearchParams = (searchParams, district, searchOffers) => {
