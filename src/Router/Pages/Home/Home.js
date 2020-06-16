@@ -79,9 +79,7 @@ export class Home extends Component {
     }
     // define the callback functions that are called when the device's position
     // could / could not be determined
-    const success = (position) => {
-      console.log('got position:', position);
-      
+    const success = (position) => {      
       clearTimeout(timeoutId)   
       const { latitude, longitude } = position.coords
       const distance = new LatLng(latitude, longitude).distanceTo(new LatLng(51.9624047, 7.6255008))
@@ -100,9 +98,7 @@ export class Home extends Component {
         this.updateSearchParams(nextSearchParams)
       }
     }
-    const error = (e) => {
-      console.log('position error:', e);
-      
+    const error = (e) => {      
       clearTimeout(timeoutId)   
       handleMissingCoordinate()
     }

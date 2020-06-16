@@ -13,6 +13,5 @@ export const getBaseUrl = () => {
     console.log('Using elastic host fallback.')
     host = baseUrlAlternativeHost
   }
-  console.log('elastic url:', host);
   return host
 }
