@@ -26,7 +26,11 @@ export class Home extends Component {
       results: [],
       districts: [],
       searchParams: {
-        searchTerm: ''
+        searchTerm: '',
+        latitude: 51.961389,
+        longitude: 7.625308,
+        centerLat: 51.961389,
+        centerLon: 7.625308,
       },
       searchOffers: [],
     }
@@ -58,10 +62,15 @@ export class Home extends Component {
     const handleMissingCoordinate = () => {
       // when the user coordinate is missing or invalid replace it with a default value
       const { searchParams } = this.state
-      searchParams.latitude = 51.9624047
-      searchParams.longitude = 7.6255008
+      const nextSearchParams = {
+        ...searchParams,
+        latitude: 51.961389,
+        longitude: 7.625308,
+        centerLat: 51.961389,
+        centerLon: 7.625308,
+      }
       this.hasGeoSelector = true
-      this.sendQuery(searchParams)
+      this.updateSearchParams(nextSearchParams)
     }
     if (!navigator.geolocation) {
       console.log('Geolokation wird von ihrem Browser nicht unterstützt')
@@ -70,27 +79,26 @@ export class Home extends Component {
     }
     // define the callback functions that are called when the device's position
     // could / could not be determined
-    const success = (position) => {
-      console.log('got position:', position);
-      
+    const success = (position) => {      
       clearTimeout(timeoutId)   
-      const { latitude } = position.coords
-      const { longitude } = position.coords
+      const { latitude, longitude } = position.coords
       const distance = new LatLng(latitude, longitude).distanceTo(new LatLng(51.9624047, 7.6255008))
       // if the distance of the user's position to the city center is over 15 km ignore it
       if (distance > 15000) {
         handleMissingCoordinate()
       } else {
-        const searchParams = { ...this.state.searchParams }
-        
-        searchParams.latitude = latitude
-        searchParams.longitude = longitude
-        this.sendQuery(searchParams)
+        const { searchParams } = this.state
+        const nextSearchParams = {
+          ...searchParams,
+          latitude: latitude,
+          longitude: longitude,
+          centerLat: latitude,
+          centerLon: longitude,
+        }        
+        this.updateSearchParams(nextSearchParams)
       }
     }
-    const error = (e) => {
-      console.log('position error:', e);
-      
+    const error = (e) => {      
       clearTimeout(timeoutId)   
       handleMissingCoordinate()
     }
@@ -105,7 +113,6 @@ export class Home extends Component {
         timeout : 5000,
       }
     )
-
   }
 
   updateSearchParams = (searchParams, district, searchOffers) => {
