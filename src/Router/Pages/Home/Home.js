@@ -230,7 +230,7 @@ export class Home extends Component {
       searchParams,
       results,
       searchOffers,
-      zoomLevel
+      zoomLevel,
     } = this.state
 
     return (
