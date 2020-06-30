@@ -58,9 +58,10 @@ export class LunchMap extends Component {
       districtPolygon,
       searchParams,
       updateHandler,
+      zoomLevel,
     } = this.props
     let center = new LatLng(searchParams.latitude, searchParams.longitude)
-    let zoom = 14
+    let zoom = zoomLevel
     if (this.centerPosition) {
       center = this.centerPosition
       zoom = 16
@@ -186,7 +187,13 @@ export class LunchMap extends Component {
     }
 
   render() {
-    const { searchParams, results } = this.props
+    const {
+      searchParams,
+      results,
+      onNewCenter,
+      onNewZoomLevel,
+      zoomLevel,
+    } = this.props
     const {
       latitude,
       longitude,
@@ -206,15 +213,29 @@ export class LunchMap extends Component {
         <Map
           style={{ height: 'calc(100vh - 50px)', zIndex: '5' }}
           center={position}
-          zoom={18}
+          zoom={zoomLevel}
           ref={(el) => { this.mapRef = el }}
           zoomControl={false}
+          onzoomend={(e) => {
+            console.log('zoom e:', e)
+            const newCenter = e.target.getCenter()
+            const newZoomLevel = e.target.getZoom()
+            console.log('new zoom level:', newZoomLevel)
+            onNewZoomLevel(newZoomLevel)
+            onNewCenter(newCenter)
+          }}
+          ondrag={(e) => {
+            const newCenter = e.target.getCenter()
+            onNewCenter(newCenter)
+          }}
         >
           <TileLayer
             url="https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29kZTRtcyIsImEiOiJjaXlpeWNuaW8wMDQ0MnFuNGhocGZjMzVlIn0.QBWu9vI5AYJq68dtVIqCJg"
             attribution="&copy;<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
           />
-          <ZoomControl position="bottomright" />
+          <ZoomControl
+            position="bottomright"
+          />
           <Marker
             position={position}
             icon={getIcon('user-circle-o', 'igreen')}

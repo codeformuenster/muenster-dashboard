@@ -26,8 +26,9 @@ export class Home extends Component {
       results: [],
       districts: [],
       searchParams: {
-        searchTerm: ''
+        searchTerm: '',
       },
+      zoomLevel: 14,
       searchOffers: [],
     }
 
@@ -36,14 +37,13 @@ export class Home extends Component {
     this.getBrowserLocation = this.getBrowserLocation.bind(this)
     this.debouncedSearch = debounce(
       500,
-      this.sendQuery
+      this.sendQuery,
     )
   }
 
   componentDidMount() {
     this.getBrowserLocation()
     new DistrictService().loadDistricts((results) => {
-      
       this.setState({
         districts: results,
       })
@@ -75,7 +75,7 @@ export class Home extends Component {
         handleMissingCoordinate()
       } else {
         const searchParams = { ...this.state.searchParams }
-        
+
         searchParams.latitude = latitude
         searchParams.longitude = longitude
         this.sendQuery(searchParams)
@@ -89,7 +89,7 @@ export class Home extends Component {
 
   updateSearchParams = (searchParams, district, searchOffers) => {
     const newState = { ...this.state, searchParams, district: null }
-    
+
     if (district) {
       newState.district = district
     }
@@ -106,9 +106,17 @@ export class Home extends Component {
 
   sendQuery = (searchParams) => {
     this.searchService.sendSearchToServer(searchParams, (locations) => {
-      this.setState({
-        results: locations,
-      })
+      if (locations.length > 100) {
+        const randomStarter = Math.floor(Math.random() * 3)
+        const results = locations.filter((value, idx) => (randomStarter + idx) % 2 === 0)
+        this.setState({
+          results,
+        })
+      } else {
+        this.setState({
+          results: locations,
+        })
+      }
     })
   }
 
@@ -116,7 +124,7 @@ export class Home extends Component {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   }
 
-  handleSearch = (e) => {    
+  handleSearch = (e) => {
     const { districts, searchParams } = this.state
     const searchTerm = e.target.value
 
@@ -142,7 +150,7 @@ export class Home extends Component {
           icon: 'Stadtkreis'
         }))
     }
-    
+
     this.updateSearchParams(
       {
         ...searchParams,
@@ -153,19 +161,19 @@ export class Home extends Component {
       [
         ...relevantSubject,
         ...relevantDistrict,
-      ]
+      ],
     )
   }
 
   offerSelected = (offer) => {
     const { searchParams } = this.state
-    if (offer.type) { // category      
+    if (offer.type) { // category
       this.setState(
         {
           district: null,
           searchParams: {
             ...searchParams,
-            searchTerm: offer.name
+            searchTerm: offer.name,
           },
           searchOffers: [],
         }, () => {
@@ -177,8 +185,8 @@ export class Home extends Component {
               searchTerm: offer.name,
               searchQuery: '',
             },
-          )  
-        }
+          )
+        },
       )
       return
     }
@@ -190,7 +198,7 @@ export class Home extends Component {
           },
           searchParams: {
             ...searchParams,
-            searchTerm: offer.name
+            searchTerm: offer.name,
           },
           searchOffers: [],
         }, () => {
@@ -202,7 +210,7 @@ export class Home extends Component {
               searchTerm: offer.name,
               searchQuery: '',
               centerLat: offer.centerLat,
-              centerLon: offer.centerLon
+              centerLon: offer.centerLon,
             },
           )
         }
@@ -211,12 +219,19 @@ export class Home extends Component {
     }
   }
 
+  handleNewZoomLevel = (zoomLevel) => {
+    this.setState({
+      zoomLevel,
+    })
+  }
+
   render() {
     const {
       searchParams,
       results,
       searchOffers,
-    } = this.state       
+      zoomLevel
+    } = this.state
 
     return (
       <Layout>
@@ -224,6 +239,15 @@ export class Home extends Component {
           results={results}
           // updateHandler={this.updateSearchParams}
           searchParams={searchParams}
+          onNewCenter={(newCords) => {
+            this.updateSearchParams({
+              ...searchParams,
+              centerLat: newCords.lat,
+              centerLon: newCords.lng,
+            })
+          }}
+          onNewZoomLevel={this.handleNewZoomLevel}
+          zoomLevel={zoomLevel}
           // districtPolygon={district}
           // districts={districts}https://github.com/codeformuenster/muenster-dashboard.git
         />

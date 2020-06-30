@@ -41,8 +41,8 @@ export class SearchService {
           {
             _geo_distance: {
               'address.geo': {
-                lat: latitude,
-                lon: longitude,
+                lat: centerLat || latitude,
+                lon: centerLon || longitude,
               },
               order: 'asc',
               unit: 'm',
@@ -158,8 +158,8 @@ export class SearchService {
                   lon: centerLon || longitude,
                 },
               },
-            },
-          ],
+            }
+          ]
         },
       })
       // searchQuery.body.query.bool.filter = {
