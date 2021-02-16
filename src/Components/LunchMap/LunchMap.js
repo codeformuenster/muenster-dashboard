@@ -211,8 +211,8 @@ export class LunchMap extends Component {
           zoomControl={false}
         >
           <TileLayer
-            url="https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29kZTRtcyIsImEiOiJjaXlpeWNuaW8wMDQ0MnFuNGhocGZjMzVlIn0.QBWu9vI5AYJq68dtVIqCJg"
-            attribution="&copy;<a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>"
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png"
+            attribution="&copy;<a href='http://carto.com/basemaps'>Carto</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
           />
           <ZoomControl position="bottomright" />
           <Marker
