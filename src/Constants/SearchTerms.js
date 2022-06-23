@@ -6,7 +6,7 @@ export const categories = [
   { name: 'Mittagstische', type: 'lunch', searchTerms: [] },
   { name: 'Recycling-Container', type: 'container', searchTerms: [] },
   { name: 'Spielplätze', type: 'playground', searchTerms: [] },
-  { name: 'Stillplätze', type: 'kindergarden', searchTerms: [] },
+  { name: 'Stillplätze', type: 'babychange', searchTerms: [] },
   { name: 'Termine', type: 'event', searchTerms: [] },
   { name: 'WCs', type: 'wc', searchTerms: [] },
   { name: 'Webcams', type: 'webcam', searchTerms: [] },
